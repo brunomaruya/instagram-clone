@@ -1,4 +1,6 @@
 import {
+  AtSymbolIcon,
+  Bars3Icon,
   ChatBubbleOvalLeftEllipsisIcon,
   GlobeAltIcon,
   HeartIcon,
@@ -9,7 +11,7 @@ import {
   UserCircleIcon,
 } from "@heroicons/react/24/outline";
 
-export const SidebarBtnArr = [
+export const sidebarBtnsArr = [
   {
     name: "Home",
     icon: <HomeIcon />,
@@ -41,5 +43,16 @@ export const SidebarBtnArr = [
   {
     name: "Profile",
     icon: <UserCircleIcon />,
+  },
+];
+
+export const sidebarBtnsArr2 = [
+  {
+    name: "Threads",
+    icon: <AtSymbolIcon />,
+  },
+  {
+    name: "More",
+    icon: <Bars3Icon />,
   },
 ];

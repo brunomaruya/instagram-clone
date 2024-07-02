@@ -1,11 +1,10 @@
 import React from "react";
 import SidebarBtn from "./SidebarBtn";
-import { SidebarBtnArr } from "@/constants/SidebarBtnsArr";
 
-export default function SidebarBtns() {
+export default function SidebarBtns({ items }: { items: any }) {
   return (
     <div>
-      {SidebarBtnArr.map((item) => (
+      {items.map((item: any) => (
         <SidebarBtn name={item.name} icon={item.icon} />
       ))}
     </div>
