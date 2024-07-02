@@ -1,5 +1,10 @@
+import InstagramLogo from "@/common/InstagramLogo";
 import Image from "next/image";
 
 export default function Home() {
-  return <main className="logo">Hello World</main>;
+  return (
+    <main>
+      <InstagramLogo />
+    </main>
+  );
 }
