@@ -14,7 +14,6 @@ export default function Sidebar() {
           <SidebarBtns items={sidebarBtnsArr} />
         </div>
       </div>
-
       <div>
         <SidebarBtns items={sidebarBtnsArr2} />
       </div>
