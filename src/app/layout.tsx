@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "../components/Sidebar";
+import Stories from "@/components/Stories";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,9 +18,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="flex justify-between ">
+      <body className="flex justify-between scroll-p-0 ">
         <Sidebar />
-        {children}
+        <div className="w-full flex  justify-center">
+          <div className="w-[630px] border-white border">
+            <div>
+              <Stories />
+            </div>
+            <div>{children}</div>
+          </div>
+          <div className="w-[383px] pl-16  border-white border">Others</div>
+        </div>
       </body>
     </html>
   );
