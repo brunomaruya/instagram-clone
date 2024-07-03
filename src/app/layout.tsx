@@ -21,7 +21,7 @@ export default function RootLayout({
       <body className="flex justify-between scroll-p-0 ">
         <Sidebar />
         <div className="w-full flex  justify-center">
-          <div className="w-[630px] border-white border">
+          <div className="w-[630px] mt-4 border-white border">
             <div>
               <Stories />
             </div>
