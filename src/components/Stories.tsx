@@ -35,7 +35,7 @@ export default function Stories() {
     arr.push(i);
   }
   return (
-    <Carousel responsive={responsive}>
+    <Carousel responsive={responsive} className="mb-6">
       {arr.map((i) => (
         <Story />
       ))}

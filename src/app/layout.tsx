@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "../components/Sidebar";
 import Stories from "@/components/Stories";
+import Feed from "@/components/Feed";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +26,9 @@ export default function RootLayout({
             <div>
               <Stories />
             </div>
-            <div>{children}</div>
+            <div>
+              <Feed />
+            </div>
           </div>
           <div className="w-[383px] pl-16  border-white border">Others</div>
         </div>
