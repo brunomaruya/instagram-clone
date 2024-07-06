@@ -2,8 +2,13 @@ import Image from "next/image";
 import React from "react";
 import image from "../../public/assets/forest.jpg";
 import {
+  BookmarkIcon,
+  ChatBubbleOvalLeftEllipsisIcon,
+  ChatBubbleOvalLeftIcon,
   EllipsisHorizontalCircleIcon,
   EllipsisHorizontalIcon,
+  HeartIcon,
+  PaperAirplaneIcon,
 } from "@heroicons/react/24/outline";
 
 export default function Post() {
@@ -39,7 +44,17 @@ export default function Post() {
         />
       </main>
 
-      <footer></footer>
+      {/* FOOTER  */}
+      <footer className="w-full">
+        <div className="flex justify-between items-center w-full my-1">
+          <div className="flex">
+            <HeartIcon className="h-11 w-11 p-2" />
+            <ChatBubbleOvalLeftIcon className="h-11 w-11 p-2" />
+            <PaperAirplaneIcon className="h-11 w-11 p-2" />
+          </div>
+          <BookmarkIcon className="h-11 w-11 p-2" />
+        </div>
+      </footer>
     </div>
   );
 }
