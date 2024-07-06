@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className="flex justify-between scroll-p-0 ">
         <Sidebar />
         <div className="w-full flex  justify-center">
-          <div className="w-[630px] mt-4 border-white border">
+          <div className="w-[630px] mt-4 border-transparent border">
             <div>
               <Stories />
             </div>
@@ -30,7 +30,9 @@ export default function RootLayout({
               <Feed />
             </div>
           </div>
-          <div className="w-[383px] pl-16  border-white border">Others</div>
+          <div className="w-[383px] pl-16  border-transparent border">
+            Others
+          </div>
         </div>
       </body>
     </html>

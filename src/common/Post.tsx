@@ -13,7 +13,7 @@ import {
 
 export default function Post() {
   return (
-    <div className="w-[470px] mx-auto">
+    <div className="w-[470px] mx-auto pb-4 mb-5 border-b-[1px] border-[#333333]">
       {/* HEADER  */}
       <header className="flex items-center gap-2 pb-3 ">
         <div>
@@ -53,6 +53,13 @@ export default function Post() {
             <PaperAirplaneIcon className="h-11 w-11 p-2" />
           </div>
           <BookmarkIcon className="h-11 w-11 p-2" />
+        </div>
+        <div>Curtido por aaaaa e outras pessoas</div>
+        <div className="mt-2">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
+          nulla, rem illum dicta porro ipsum soluta aperiam architecto dolorem
+          voluptatum quo incidunt dignissimos mollitia optio tenetur fuga non
+          nam expedita.
         </div>
       </footer>
     </div>
