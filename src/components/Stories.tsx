@@ -5,7 +5,7 @@ import React from "react";
 
 export default function Stories() {
   return (
-    <div className="py-2 flex space-x-6">
+    <div className="py-2 flex space-x-4">
       <Story />
       <Story />
     </div>
