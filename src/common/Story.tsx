@@ -13,7 +13,7 @@ export default function Story() {
             height={500}
             src={image}
             alt="forest"
-            className="w-14 h-14 rounded-full"
+            className="min-w-[56px] h-[56px] rounded-full"
           />
         </div>
       </div>
