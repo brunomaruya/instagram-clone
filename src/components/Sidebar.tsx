@@ -5,7 +5,7 @@ import { sidebarBtnsArr, sidebarBtnsArr2 } from "@/constants/SidebarBtnsArr";
 
 export default function Sidebar() {
   return (
-    <div className="lg:w-[244px] xl:min-w-[335px] h-screen px-3 pt-2 pb-5 flex flex-col justify-between  border-r-[1px] border-[#1a1a1a]">
+    <div className="lg:w-[244px] xl:min-w-[335px] h-screen px-3 pt-2 pb-5 flex flex-col justify-between  border-r-[1px] border-[#1a1a1a] fixed">
       <div className="">
         <div className="mt-2 mb-5">
           <InstagramLogo />

@@ -4,6 +4,7 @@ import "./globals.css";
 import Sidebar from "../components/Sidebar";
 import Stories from "@/components/Stories";
 import Feed from "@/components/Feed";
+import Rightbar from "@/components/Rightbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="flex justify-between scroll-p-0 ">
         <Sidebar />
-        <div className="w-full flex  justify-center">
+        <div className="w-full flex  justify-center lg:ml-[244px] xl:ml-[335px]">
           <div className="w-[630px] mt-4 border-transparent border">
             <div>
               <Stories />
@@ -30,8 +31,8 @@ export default function RootLayout({
               <Feed />
             </div>
           </div>
-          <div className="w-[383px] pl-16  border-transparent border">
-            Others
+          <div className="w-[383px] pl-16  border-transparent border mt-9">
+            <Rightbar />
           </div>
         </div>
       </body>
