@@ -12,15 +12,28 @@ export default function Rightbar() {
         <User type="suggestion" />
       </div>
 
-      <div className="flex justify-between py-1 px-4 text-sm">
-        <span>Sugestões para voce</span>
-        <span>Ver tudo</span>
-      </div>
-      {arr.map((i) => (
-        <div className="px-4 py-2">
-          <User type="suggestion" />
+      <main className="mt-6 mb-2">
+        <div className="flex justify-between py-1 px-4 text-sm">
+          <span className="cursor-pointer">Sugestões para voce</span>
+          <span className="cursor-pointer">Ver tudo</span>
         </div>
-      ))}
+        <div className="py-2">
+          {arr.map((i) => (
+            <div className="px-4 py-2">
+              <User type="suggestion" />
+            </div>
+          ))}
+        </div>
+      </main>
+      <footer>
+        <div className="text-xs px-4 pb-4 leading-5 cursor-pointer">
+          Sobre Ajuda Imprensa API Carreiras Privacidade Termos Localizações
+          Idioma Meta Verified
+        </div>
+        <div className="text-xs px-4 leading-5 cursor-pointer">
+          © 2024 INSTAGRAM FROM META
+        </div>
+      </footer>
     </div>
   );
 }
