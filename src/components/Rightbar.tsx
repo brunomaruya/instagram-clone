@@ -30,7 +30,7 @@ export default function Rightbar() {
           Sobre Ajuda Imprensa API Carreiras Privacidade Termos Localizações
           Idioma Meta Verified
         </div>
-        <div className="text-xs px-4 leading-5 cursor-pointer">
+        <div className="text-xs px-4 leading-5 ">
           © 2024 INSTAGRAM FROM META
         </div>
       </footer>
