@@ -2,8 +2,8 @@ import React from "react";
 
 export default function Topbar() {
   return (
-    <div>
-      <div className="logo p-3 ">Instagram</div>
+    <div className="flex items-center px-4 h-[60px]  border-b-[1px] border-gray-500">
+      <div className="logo  p-0">Instagram</div>
     </div>
   );
 }

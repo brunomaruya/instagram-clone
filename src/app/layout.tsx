@@ -24,8 +24,8 @@ export default function RootLayout({
       <body className="flex justify-between scroll-p-0 ">
         <Sidebar />
         <div className="w-full flex  justify-center ml-0 xl:ml-[244px] 2xl:ml-[335px]">
-          <div className="md:w-[630px] w-full  mt-4 border-transparent border">
-            <div>
+          <div className="md:w-[630px] w-full mt-0  md:mt-4 border-transparent border">
+            <div className="md:hidden mb-5">
               <Topbar />
             </div>
             <div>
