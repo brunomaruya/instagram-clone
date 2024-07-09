@@ -17,13 +17,13 @@ const responsive = {
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 8,
+    items: 7,
     slidesToSlide: 4,
     partialVisibilityGutter: 30,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 8,
+    items: 5,
     slidesToSlide: 4,
     partialVisibilityGutter: 30,
   },
