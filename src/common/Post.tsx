@@ -14,7 +14,7 @@ import User from "./User";
 
 export default function Post() {
   return (
-    <div className="w-[470px] mx-auto pb-4 mb-5 border-b-[1px] border-[#333333]">
+    <div className="w-[400px] md:w-[470px] mx-auto pb-4 mb-5 border-b-[1px] border-[#333333]">
       {/* HEADER  */}
       <div className="pb-3">
         <User type="post" />
@@ -27,7 +27,7 @@ export default function Post() {
           height={500}
           src={image}
           alt="forest"
-          className="w-[468px] h-[580px] object-cover rounded-md"
+          className="md:w-[468px] h-[580px] object-cover rounded-md"
         />
       </main>
 

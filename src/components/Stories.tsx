@@ -19,11 +19,13 @@ const responsive = {
     breakpoint: { max: 1024, min: 464 },
     items: 8,
     slidesToSlide: 4,
+    partialVisibilityGutter: 30,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
     items: 8,
     slidesToSlide: 4,
+    partialVisibilityGutter: 30,
   },
 };
 
@@ -35,7 +37,7 @@ export default function Stories() {
     arr.push(i);
   }
   return (
-    <Carousel responsive={responsive} className="mb-6">
+    <Carousel responsive={responsive} className="mb-6 mx-6">
       {arr.map((i) => (
         <Story />
       ))}
