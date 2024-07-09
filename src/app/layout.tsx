@@ -25,10 +25,10 @@ export default function RootLayout({
         <Sidebar />
         <div className="w-full flex  justify-center ml-0 xl:ml-[244px] 2xl:ml-[335px]">
           <div className="md:w-[630px] w-full mt-0  md:mt-4 border-transparent border">
-            <div className="md:hidden mb-5">
+            <div className="md:hidden mb-5 fixed w-full bg-black top-0 z-[1000000000]">
               <Topbar />
             </div>
-            <div>
+            <div className="mt-[60px]">
               <Stories />
             </div>
             <div>
