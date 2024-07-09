@@ -6,6 +6,7 @@ import Stories from "@/components/Stories";
 import Feed from "@/components/Feed";
 import Rightbar from "@/components/Rightbar";
 import Topbar from "@/components/Topbar";
+import Bottombar from "@/components/Bottombar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,11 +29,14 @@ export default function RootLayout({
             <div className="md:hidden mb-5 fixed w-full bg-black top-0 z-[1000000000]">
               <Topbar />
             </div>
-            <div className="mt-[60px]">
+            <div className="mt-[70px]">
               <Stories />
             </div>
             <div>
               <Feed />
+            </div>
+            <div className="fixed bottom-0 w-full md:hidden">
+              <Bottombar />
             </div>
           </div>
           <div className="w-[383px] pl-16  border-transparent border mt-9 hidden xl:block">
