@@ -12,10 +12,9 @@ export default function SidebarBtns({ items }: { items: ISidebarBtnsArr[] }) {
   return (
     <div>
       {items.map((item: ISidebarBtnsArr) => (
-        <SidebarBtn
-          name={item.name}
-          icon={pathname === "/" ? item.activeIcon : item.icon}
-        />
+        <div onClick={item.function}>
+          <SidebarBtn name={item.name} icon={item.icon} />
+        </div>
       ))}
     </div>
   );
