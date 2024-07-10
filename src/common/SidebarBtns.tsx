@@ -1,13 +1,21 @@
+"use client";
 import React from "react";
 import SidebarBtn from "./SidebarBtn";
-
 import { ISidebarBtn } from "@/interfaces/ISidebarBtn";
+import { usePathname } from "next/navigation";
+import { ISidebarBtnsArr } from "@/interfaces/ISidebarBtnsArr";
 
-export default function SidebarBtns({ items }: { items: ISidebarBtn[] }) {
+//Check active links: https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating
+
+export default function SidebarBtns({ items }: { items: ISidebarBtnsArr[] }) {
+  const pathname = usePathname();
   return (
     <div>
-      {items.map((item: ISidebarBtn) => (
-        <SidebarBtn name={item.name} icon={item.icon} />
+      {items.map((item: ISidebarBtnsArr) => (
+        <SidebarBtn
+          name={item.name}
+          icon={pathname === "/" ? item.activeIcon : item.icon}
+        />
       ))}
     </div>
   );
