@@ -1,22 +1,22 @@
 import InstagramLogo from "../common/InstagramLogo";
-import SidebarBtns from "../common/SidebarBtns";
+
 import React from "react";
-import { sidebarBtnsArr, sidebarBtnsArr2 } from "@/constants/SidebarBtnsArr";
+import HomeBtn from "./SidebarBtns/HomeBtn";
+import SearchBtn from "./SidebarBtns/SearchBtn";
 
 export default function Sidebar() {
   return (
-    <div className="xl:w-[72px] 2xl:min-w-[335px] h-screen px-3 pt-2 pb-5 hidden md:flex flex-col justify-between  border-r-[1px] border-[#1a1a1a] fixed">
-      <div className="">
+    <div className="sidebar">
+      <div>
         <div className="mt-2 mb-5">
           <InstagramLogo />
         </div>
         <div>
-          <SidebarBtns items={sidebarBtnsArr} />
+          <HomeBtn />
+          <SearchBtn />
         </div>
       </div>
-      <div>
-        <SidebarBtns items={sidebarBtnsArr2} />
-      </div>
+      <div>{/* bottom */}</div>
     </div>
   );
 }
