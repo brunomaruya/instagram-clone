@@ -6,17 +6,15 @@ import { EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
 export default function User({ type }: { type: "suggestion" | "post" }) {
   return (
     <header className="flex items-center gap-2  ">
-      <div>
-        <Image
-          width={500}
-          height={500}
-          src={image}
-          alt="forest"
-          className={` ${
-            type == "suggestion" ? "h-12 w-12" : "h-10 w-10"
-          } rounded-full cursor-pointer`}
-        />
-      </div>
+      <Image
+        width={500}
+        height={500}
+        src={image}
+        alt="forest"
+        className={` ${
+          type == "suggestion" ? "h-12 w-12" : "h-10 w-10"
+        } rounded-full cursor-pointer`}
+      />
       <div className="flex-1 cursor-pointer">
         <span>Forest</span> {type == "post" && <span>• 2h</span>}
       </div>

@@ -7,6 +7,8 @@ import Feed from "@/components/Feed";
 import Rightbar from "@/components/Rightbar";
 import Topbar from "@/components/Topbar";
 import Bottombar from "@/components/Bottombar";
+import SidebarIconContextProvider from "@/contexts/SidebarIconContext";
+import MainProvider from "@/providers/MainProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,12 +24,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="flex justify-between scroll-p-0 ">
-        <Sidebar />
-        <div className="w-full ml-0 xl:ml-[244px] 2xl:ml-[335px]">
-          {children}
-        </div>
-      </body>
+      <MainProvider>
+        <body className="flex justify-between scroll-p-0 ">
+          <Sidebar />
+          <div className="w-full ml-0 xl:ml-[244px] 2xl:ml-[335px]">
+            {children}
+          </div>
+        </body>
+      </MainProvider>
     </html>
   );
 }

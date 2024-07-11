@@ -3,10 +3,7 @@ import React from "react";
 import image from "../../public/assets/forest.jpg";
 import {
   BookmarkIcon,
-  ChatBubbleOvalLeftEllipsisIcon,
   ChatBubbleOvalLeftIcon,
-  EllipsisHorizontalCircleIcon,
-  EllipsisHorizontalIcon,
   HeartIcon,
   PaperAirplaneIcon,
 } from "@heroicons/react/24/outline";
