@@ -11,17 +11,16 @@ export default function SearchBtn() {
     setIcon("search");
   };
   return (
-    <div onClick={handleOnClick}>
-      <SidebarBtn
-        name="Search"
-        icon={
-          icon == "search" ? (
-            <ActiveMagnifyingGlassIcon />
-          ) : (
-            <MagnifyingGlassIcon />
-          )
-        }
-      />
-    </div>
+    <SidebarBtn
+      onClick={handleOnClick}
+      name="Search"
+      icon={
+        icon == "search" ? (
+          <ActiveMagnifyingGlassIcon />
+        ) : (
+          <MagnifyingGlassIcon />
+        )
+      }
+    />
   );
 }

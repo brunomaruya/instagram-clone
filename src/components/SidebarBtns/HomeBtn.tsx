@@ -11,11 +11,10 @@ export default function HomeBtn() {
     window.location.href = "/";
   };
   return (
-    <div onClick={handleOnClick}>
-      <SidebarBtn
-        name="Home"
-        icon={icon == "home" ? <ActiveHomeIcon /> : <HomeIcon />}
-      />
-    </div>
+    <SidebarBtn
+      name="Home"
+      icon={icon == "home" ? <ActiveHomeIcon /> : <HomeIcon />}
+      onClick={handleOnClick}
+    />
   );
 }
