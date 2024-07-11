@@ -12,12 +12,20 @@ import {
   UserCircleIcon,
 } from "@heroicons/react/24/outline";
 
-import { HomeIcon as ActiveHomeIcon } from "@heroicons/react/16/solid";
+import {
+  HomeIcon as ActiveHomeIcon,
+  GlobeAltIcon as ActiveGlobeAltIcon,
+  PlayCircleIcon as ActivePlayCircleIcon,
+  ChatBubbleOvalLeftEllipsisIcon as ActiveChatBubbleOvalLeftEllipsisIcon,
+  MagnifyingGlassIcon as ActiveMagnifyingGlassIcon,
+} from "@heroicons/react/16/solid";
 
 export const sidebarBtnsArr = [
   {
     name: "Home",
-    icon: window.location.href == "/" ? <HomeIcon /> : <ActiveHomeIcon />,
+    icon: <HomeIcon />,
+    activeIcon: <ActiveHomeIcon />,
+    pathname: "/",
     function: () => {
       window.location.href = "/";
     },
@@ -25,18 +33,35 @@ export const sidebarBtnsArr = [
   {
     name: "Search",
     icon: <MagnifyingGlassIcon />,
+    activeIcon: <ActiveMagnifyingGlassIcon />,
+    pathname: "/search",
   },
   {
     name: "Explore",
     icon: <GlobeAltIcon />,
+    activeIcon: <ActiveGlobeAltIcon />,
+    pathname: "/explore",
+    function: () => {
+      window.location.href = "/explore";
+    },
   },
   {
     name: "Reels",
     icon: <PlayCircleIcon />,
+    activeIcon: <ActivePlayCircleIcon />,
+    pathname: "/reels",
+    function: () => {
+      window.location.href = "/reels";
+    },
   },
   {
     name: "Messages",
     icon: <ChatBubbleOvalLeftEllipsisIcon />,
+    activeIcon: <ActiveChatBubbleOvalLeftEllipsisIcon />,
+    pathname: "/direct",
+    function: () => {
+      window.location.href = "/direct";
+    },
   },
   {
     name: "Notifications",

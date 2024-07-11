@@ -1,8 +1,9 @@
 import { MouseEventHandler } from "react";
 
 export interface ISidebarBtnsArr {
-  name: String;
+  name: string;
   icon: React.JSX.Element;
   activeIcon: React.JSX.Element;
   function: MouseEventHandler;
+  pathname: string;
 }
