@@ -1,3 +1,4 @@
+"use client";
 import { Icon } from "next/dist/lib/metadata/types/metadata-types";
 import React, {
   createContext,
@@ -27,6 +28,15 @@ export default function SidebarIconContextProvider({
     switch (pathname) {
       case "/":
         setIcon("home");
+        break;
+      case "/explore":
+        setIcon("explore");
+        break;
+      case "/reels":
+        setIcon("reels");
+        break;
+      case "/direct":
+        setIcon("messages");
         break;
     }
   }, []);
