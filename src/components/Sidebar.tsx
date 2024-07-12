@@ -7,6 +7,7 @@ import ExploreBtn from "./SidebarBtns/ExploreBtn";
 import ReelsBtn from "./SidebarBtns/ReelsBtn";
 import MessagesBtn from "./SidebarBtns/MessagesBtn";
 import NotificationsBtn from "./SidebarBtns/NotificationsBtn";
+import CreateBtn from "./SidebarBtns/CreateBtn";
 
 export default function Sidebar() {
   return (
@@ -22,6 +23,7 @@ export default function Sidebar() {
           <ReelsBtn />
           <MessagesBtn />
           <NotificationsBtn />
+          <CreateBtn />
         </div>
       </div>
       <div>{/* bottom */}</div>
