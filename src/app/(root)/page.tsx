@@ -1,5 +1,5 @@
 import Topbar from "@/components/Topbar";
-import InstagramLogo from "../common/InstagramLogo";
+import InstagramLogo from "../../common/InstagramLogo";
 import Image from "next/image";
 import Bottombar from "@/components/Bottombar";
 import Feed from "@/components/Feed";

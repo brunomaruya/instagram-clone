@@ -5,7 +5,6 @@
 
 .logo {
   font-family: "Grand Hotel", cursive;
-  font-size: 1.8rem;
 }
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -44,5 +43,8 @@ body {
   }
   .sidebar {
     @apply xl:w-[72px] 2xl:min-w-[335px] h-screen px-3 pt-2 pb-5 hidden md:flex flex-col justify-between  !border-r-[1px] !border-[#1a1a1a] fixed;
+  }
+  .sign-up-box {
+    @apply !border-[1px] !border-white flex flex-col items-center w-[350px] py-[10px];
   }
 }
