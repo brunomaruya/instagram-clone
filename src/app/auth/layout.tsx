@@ -7,7 +7,7 @@ import { PiFlagBannerFoldLight } from "react-icons/pi";
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className="flex h-screen items-center mx-[484px]">
+      <body className="flex gap-3 h-screen justify-center items-center mx-[484px]">
         <Image
           className="flex-1 object-contain"
           src="https://pngbuy.com/wp-content/uploads/2023/06/splash-instagram-logo-pnginstagram-png-logo.png"

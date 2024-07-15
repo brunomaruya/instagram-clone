@@ -1,15 +1,17 @@
+import SignupForm from "@/components/SignupForm";
 import React from "react";
 
 export default function page() {
   return (
     <div>
-      <div className="sign-up-box ">
+      <div className="sign-box mb-[10px] ">
         <span className="logo pt-9 pb-3 text-5xl">Instagram</span>
-        <form action="">
-          <span className="text-center">
-            Cadastre-se para ver fotos e vídeos dos seus amigos.
-          </span>
-        </form>
+        <SignupForm />
+      </div>
+      <div className="sign-box  ">
+        <div className="h-12 flex items-center gap-1">
+          <span>Tem uma conta?</span> <span className="link">Conecte-se</span>
+        </div>
       </div>
     </div>
   );
