@@ -1,11 +1,28 @@
 "use client";
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+type Inputs = {
+  telOrEmail: string | number;
+  name: string;
+  username: string;
+  password: string;
+};
 
 export default function SignupForm() {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Inputs>();
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+
+  console.log(watch("telOrEmail"));
+
   return (
-    <div className="mx-[40px] ">
+    <form onSubmit={handleSubmit(onSubmit)} className="mx-[40px] ">
       <div className=" mb-[10px] text-center">
         Cadastre-se para ver fotos e vídeos dos seus amigos.
       </div>
@@ -16,10 +33,23 @@ export default function SignupForm() {
         <div className="line"></div>
       </div>
 
-      <input className="input" placeholder="Numero do celular ou email" />
-      <input className="input" placeholder="Nome Completo" />
-      <input className="input" placeholder="Nome de usuário" />
-      <input className="input" placeholder="Senha" />
+      <input
+        {...register("telOrEmail")}
+        className="input"
+        placeholder="Numero do celular ou email"
+      />
+
+      <input
+        {...register("name")}
+        className="input"
+        placeholder="Nome Completo"
+      />
+      <input
+        {...register("username")}
+        className="input"
+        placeholder="Nome de usuário"
+      />
+      <input {...register("password")} className="input" placeholder="Senha" />
       <div className="text-xs mb-[6px] text-center">
         As pessoas que usam nosso serviço podem ter enviado suas informações de
         contato para o Instagram. Saiba mais
@@ -28,7 +58,9 @@ export default function SignupForm() {
         Ao se cadastrar, você concorda com nossos Termos, Política de
         Privacidade e Política de Cookies.
       </div>
-      <button className="form-btn">Cadastre-se</button>
-    </div>
+      <button className="form-btn" type="submit">
+        Cadastre-se
+      </button>
+    </form>
   );
 }
