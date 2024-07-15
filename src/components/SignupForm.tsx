@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 
 type Inputs = {
   telOrEmail: string | number;
@@ -9,17 +11,24 @@ type Inputs = {
   password: string;
 };
 
+const schema = z.object({
+  telOrEmail: z.string().min(5) || z.number().min(5),
+  name: z.string().min(5),
+  username: z.string(),
+  password: z.string(),
+});
+
+type Schema = z.infer<typeof schema>;
+
 export default function SignupForm() {
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<Schema>({ resolver: zodResolver(schema) });
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
-
-  console.log(watch("telOrEmail"));
+  const onSubmit: SubmitHandler<Schema> = (data: Schema) => console.log(data);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="mx-[40px] ">
@@ -38,6 +47,9 @@ export default function SignupForm() {
         className="input"
         placeholder="Numero do celular ou email"
       />
+      {errors.telOrEmail && (
+        <div className="text-sm text-red-500">{errors.telOrEmail?.message}</div>
+      )}
 
       <input
         {...register("name")}
