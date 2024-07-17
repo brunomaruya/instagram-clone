@@ -4,16 +4,10 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
-type Inputs = {
-  telOrEmail: string | number;
-  name: string;
-  username: string;
-  password: string;
-};
-
 const schema = z.object({
-  telOrEmail: z.string().min(5) || z.number().min(5),
-  name: z.string().min(5),
+  telOrEmail:
+    z.string().email({ message: "enter a valid email" }) || z.number(),
+  name: z.string(),
   username: z.string(),
   password: z.string(),
 });
