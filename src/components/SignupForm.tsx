@@ -4,13 +4,19 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
-const schema = z.object({
-  telOrEmail:
-    z.string().email({ message: "enter a valid email" }) || z.number(),
-  name: z.string(),
-  username: z.string(),
-  password: z.string(),
-});
+const schema = z
+  .object({
+    telOrEmail:
+      z.string().email({ message: "enter a valid email" }) || z.number(),
+    name: z.string(),
+    username: z.string(),
+    password: z.string(),
+    confirmPassword: z.string().min(2),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ["confirmPassword"],
+  });
 
 type Schema = z.infer<typeof schema>;
 
@@ -35,7 +41,6 @@ export default function SignupForm() {
         <div>OU</div>
         <div className="line"></div>
       </div>
-
       <input
         {...register("telOrEmail")}
         className="input"
@@ -44,18 +49,42 @@ export default function SignupForm() {
       {errors.telOrEmail && (
         <div className="text-sm text-red-500">{errors.telOrEmail?.message}</div>
       )}
-
       <input
         {...register("name")}
         className="input"
         placeholder="Nome Completo"
       />
+      {errors.name && (
+        <div className="text-sm text-red-500">{errors.name?.message}</div>
+      )}
       <input
         {...register("username")}
         className="input"
         placeholder="Nome de usuário"
       />
-      <input {...register("password")} className="input" placeholder="Senha" />
+      {errors.username && (
+        <div className="text-sm text-red-500">{errors.username?.message}</div>
+      )}
+      <input
+        {...register("password")}
+        className="input"
+        placeholder="Senha"
+        type="password"
+      />
+      {errors.password && (
+        <div className="text-sm text-red-500">{errors.password?.message}</div>
+      )}
+      <input
+        {...register("confirmPassword")}
+        className="input"
+        placeholder="Confirmar senha"
+        type="password"
+      />
+      {errors.confirmPassword && (
+        <div className="text-sm text-red-500">
+          {errors.confirmPassword?.message}
+        </div>
+      )}
       <div className="text-xs mb-[6px] text-center">
         As pessoas que usam nosso serviço podem ter enviado suas informações de
         contato para o Instagram. Saiba mais
