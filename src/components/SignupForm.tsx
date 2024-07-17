@@ -10,8 +10,8 @@ const schema = z
       z.string().email({ message: "enter a valid email" }) || z.number(),
     name: z.string(),
     username: z.string(),
-    password: z.string(),
-    confirmPassword: z.string().min(2),
+    password: z.string().min(5),
+    confirmPassword: z.string().min(5),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords don't match",
