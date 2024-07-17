@@ -1,12 +1,5 @@
 "use client";
-import { Icon } from "next/dist/lib/metadata/types/metadata-types";
-import React, {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import React, { createContext, ReactNode, useEffect, useState } from "react";
 
 interface IContext {
   icon: String;
