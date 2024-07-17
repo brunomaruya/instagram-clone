@@ -33,7 +33,7 @@ export default function SignupForm() {
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
+        window.location.href = "/";
       })
       .catch((error) => {
         const errorCode = error.code;
