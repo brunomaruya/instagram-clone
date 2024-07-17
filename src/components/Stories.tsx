@@ -39,7 +39,7 @@ export default function Stories() {
   return (
     <Carousel responsive={responsive} className="mb-6 mx-6">
       {arr.map((i) => (
-        <Story />
+        <Story key={i} />
       ))}
     </Carousel>
   );

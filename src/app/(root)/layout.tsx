@@ -24,14 +24,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <MainProvider>
-        <body className="flex justify-between scroll-p-0 ">
+      <body className="flex justify-between scroll-p-0 ">
+        <MainProvider>
           <Sidebar />
           <div className="w-full ml-0 xl:ml-[244px] 2xl:ml-[335px]">
             {children}
           </div>
-        </body>
-      </MainProvider>
+        </MainProvider>
+      </body>
     </html>
   );
 }
