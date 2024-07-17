@@ -3,15 +3,16 @@ import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import { auth } from "@/app/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const schema = z
   .object({
-    telOrEmail:
-      z.string().email({ message: "enter a valid email" }) || z.number(),
+    email: z.string().email({ message: "enter a valid email" }),
     name: z.string(),
     username: z.string(),
-    password: z.string().min(5),
-    confirmPassword: z.string().min(5),
+    password: z.string().min(6),
+    confirmPassword: z.string().min(6),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords don't match",
@@ -28,7 +29,17 @@ export default function SignupForm() {
     formState: { errors },
   } = useForm<Schema>({ resolver: zodResolver(schema) });
 
-  const onSubmit: SubmitHandler<Schema> = (data: Schema) => console.log(data);
+  const onSubmit: SubmitHandler<Schema> = (data: Schema) => {
+    createUserWithEmailAndPassword(auth, data.email, data.password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="mx-[40px] ">
@@ -41,13 +52,9 @@ export default function SignupForm() {
         <div>OU</div>
         <div className="line"></div>
       </div>
-      <input
-        {...register("telOrEmail")}
-        className="input"
-        placeholder="Numero do celular ou email"
-      />
-      {errors.telOrEmail && (
-        <div className="text-sm text-red-500">{errors.telOrEmail?.message}</div>
+      <input {...register("email")} className="input" placeholder="Email" />
+      {errors.email && (
+        <div className="text-sm text-red-500">{errors.email?.message}</div>
       )}
       <input
         {...register("name")}
