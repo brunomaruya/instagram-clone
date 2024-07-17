@@ -8,7 +8,7 @@ export default function Feed() {
   }
 
   return (
-    <div>
+    <div className="">
       {arr.map((i) => (
         <Post />
       ))}
