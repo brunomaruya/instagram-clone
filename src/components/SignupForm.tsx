@@ -39,6 +39,7 @@ export default function SignupForm() {
   }) => {
     try {
       await setDoc(doc(db, "users", user.uid), {
+        id: user.uid,
         name: data.name,
         username: data.username,
       });

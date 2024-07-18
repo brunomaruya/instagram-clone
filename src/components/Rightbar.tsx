@@ -4,7 +4,7 @@ import { UserContext } from "@/contexts/UserContext";
 import React, { useContext } from "react";
 
 export default function Rightbar() {
-  const { userId, users } = useContext(UserContext);
+  const { userId, users, currentUser } = useContext(UserContext);
   let arr = [];
   for (let i = 0; i < 5; i++) {
     arr.push(i);
@@ -12,8 +12,7 @@ export default function Rightbar() {
   return (
     <div>
       <div className="px-4">
-        <User name="me" type="suggestion" />
-        {userId}
+        <User name={currentUser ? currentUser.name : ""} type="suggestion" />
       </div>
 
       <main className="mt-6 mb-2">

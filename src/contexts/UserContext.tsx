@@ -15,8 +15,10 @@ import { db } from "@/app/firebase";
 interface IContext {
   userId: string;
   users: any;
+  currentUser: any;
 }
 interface Users {
+  id: string;
   name: string;
   username: string;
 }
@@ -26,6 +28,7 @@ export const UserContext = createContext({} as IContext);
 export default function UserProvider({ children }: { children: ReactNode }) {
   const [userId, setUserId] = useState("");
   const [users, setUsers] = useState<any[]>([]);
+  const [currentUser, setCurrentUser] = useState();
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -48,8 +51,12 @@ export default function UserProvider({ children }: { children: ReactNode }) {
     getUsers();
   }, []);
 
+  useEffect(() => {
+    setCurrentUser(users.find((user) => user.id === userId));
+  }, [users]);
+
   return (
-    <UserContext.Provider value={{ userId, users }}>
+    <UserContext.Provider value={{ userId, users, currentUser }}>
       {children}
     </UserContext.Provider>
   );
