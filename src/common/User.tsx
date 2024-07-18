@@ -3,7 +3,13 @@ import React from "react";
 import image from "../../public/assets/forest.jpg";
 import { EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
 
-export default function User({ type }: { type: "suggestion" | "post" }) {
+export default function User({
+  type,
+  name,
+}: {
+  type: "suggestion" | "post";
+  name: string;
+}) {
   return (
     <header className="flex items-center gap-2  ">
       <Image
@@ -16,7 +22,7 @@ export default function User({ type }: { type: "suggestion" | "post" }) {
         } rounded-full cursor-pointer`}
       />
       <div className="flex-1 cursor-pointer">
-        <span>Forest</span> {type == "post" && <span>• 2h</span>}
+        <span>{name}</span> {type == "post" && <span>• 2h</span>}
       </div>
       <div className="cursor-pointer">
         {type == "post" ? (

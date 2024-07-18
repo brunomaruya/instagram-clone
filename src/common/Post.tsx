@@ -9,12 +9,12 @@ import {
 } from "@heroicons/react/24/outline";
 import User from "./User";
 
-export default function Post() {
+export default function Post({ name }: { name: string }) {
   return (
     <div className="w-full sm:w-[470px] mx-auto pb-4 mb-5 border-b-[1px] border-[#333333]">
       {/* HEADER  */}
       <div className="pb-3">
-        <User type="post" />
+        <User name={name} type="post" />
       </div>
 
       {/* MAIN  */}

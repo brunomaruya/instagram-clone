@@ -1,7 +1,10 @@
+"use client";
 import Post from "@/common/Post";
-import React from "react";
+import { UserContext } from "@/contexts/UserContext";
+import React, { useContext } from "react";
 
 export default function Feed() {
+  const { users } = useContext(UserContext);
   let arr = [];
   for (let i = 0; i < 5; i++) {
     arr.push(i);
@@ -9,8 +12,8 @@ export default function Feed() {
 
   return (
     <div className="">
-      {arr.map((i) => (
-        <Post />
+      {users.map((user: any) => (
+        <Post name={user.name} key={user.name} />
       ))}
     </div>
   );
