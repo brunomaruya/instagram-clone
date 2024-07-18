@@ -3,8 +3,9 @@ import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { auth } from "@/app/firebase";
+import { auth, db } from "@/app/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
 
 const schema = z
   .object({
@@ -29,11 +30,30 @@ export default function SignupForm() {
     formState: { errors },
   } = useForm<Schema>({ resolver: zodResolver(schema) });
 
+  const createUserDb = async ({
+    user,
+    data,
+  }: {
+    user: { uid: string };
+    data: { name: string; username: string };
+  }) => {
+    try {
+      const docRef = await addDoc(collection(db, "users"), {
+        id: user.uid,
+        name: data.name,
+        username: data.username,
+      });
+      window.location.href = "/";
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  };
+
   const onSubmit: SubmitHandler<Schema> = (data: Schema) => {
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
         const user = userCredential.user;
-        window.location.href = "/";
+        createUserDb({ user, data });
       })
       .catch((error) => {
         const errorCode = error.code;
