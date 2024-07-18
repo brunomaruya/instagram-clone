@@ -1,4 +1,5 @@
 import SignupForm from "@/components/SignupForm";
+import Link from "next/link";
 import React from "react";
 
 export default function page() {
@@ -10,7 +11,10 @@ export default function page() {
       </div>
       <div className="sign-box  ">
         <div className="h-12 flex items-center gap-1">
-          <span>Tem uma conta?</span> <span className="link">Conecte-se</span>
+          <span>Tem uma conta?</span>
+          <Link href="/auth/login" className="link">
+            Conecte-se
+          </Link>
         </div>
       </div>
     </div>

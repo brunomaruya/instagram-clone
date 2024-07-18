@@ -1,7 +1,10 @@
+"use client";
 import User from "@/common/User";
-import React from "react";
+import { UserContext } from "@/contexts/UserContext";
+import React, { useContext } from "react";
 
 export default function Rightbar() {
+  const { userId } = useContext(UserContext);
   let arr = [];
   for (let i = 0; i < 5; i++) {
     arr.push(i);
@@ -10,6 +13,7 @@ export default function Rightbar() {
     <div>
       <div className="px-4">
         <User type="suggestion" />
+        {userId}
       </div>
 
       <main className="mt-6 mb-2">

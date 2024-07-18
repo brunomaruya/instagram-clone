@@ -1,5 +1,6 @@
 import SigninForm from "@/components/SigninForm";
 import SignupForm from "@/components/SignupForm";
+import Link from "next/link";
 import React from "react";
 
 export default function page() {
@@ -12,7 +13,9 @@ export default function page() {
       <div className="sign-box  ">
         <div className="h-12 flex items-center gap-1">
           <span>Nao tem uma conta?</span>
-          <span className="link">Cadastre-se</span>
+          <Link href="/auth/accounts/emailsignup" className="link">
+            Cadastre-se
+          </Link>
         </div>
       </div>
     </div>
