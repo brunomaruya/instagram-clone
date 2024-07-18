@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { auth, db } from "@/app/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 
 const schema = z
   .object({
@@ -38,8 +38,7 @@ export default function SignupForm() {
     data: { name: string; username: string };
   }) => {
     try {
-      const docRef = await addDoc(collection(db, "users"), {
-        id: user.uid,
+      await setDoc(doc(db, "users", user.uid), {
         name: data.name,
         username: data.username,
       });
