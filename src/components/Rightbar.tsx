@@ -22,7 +22,7 @@ export default function Rightbar() {
         </div>
         <div className="py-2">
           {users.map((user: any) => (
-            <div className="px-4 py-2">
+            <div className="px-4 py-2 " key={user.id}>
               <User name={user.name} type="suggestion" />
             </div>
           ))}
