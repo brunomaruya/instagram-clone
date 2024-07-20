@@ -1,7 +1,19 @@
+"use client";
+import { storage } from "@/app/firebase";
 import { PhotoIcon } from "@heroicons/react/24/outline";
-import React from "react";
+import { ref, uploadBytes } from "firebase/storage";
+import React, { useState } from "react";
+import { v4 } from "uuid";
 
 export default function CreateModal() {
+  const [imageUpload, setImageUpload] = useState<any>(null);
+  const uploadImage = () => {
+    if (imageUpload == null) return;
+    const imageRef = ref(storage, `posts/${imageUpload.name + v4()}`);
+    uploadBytes(imageRef, imageUpload).then(() => {
+      alert("image uploaded!");
+    });
+  };
   return (
     <div className="w-full h-screen flex justify-center items-center bg-gradient-to-t from-[rgba(0,0,0,0.7)] to-[rgba(0,0,0,0.7)] absolute z-[100000000] ">
       <div className="w-[692px] h-[735px] bg-[#262626] rounded-xl">
@@ -11,9 +23,25 @@ export default function CreateModal() {
         <main className="flex justify-center items-center flex-col h-full">
           <PhotoIcon className="h-32 w-32" />
           <div>Arraste as fotos e os videos aqui</div>
-          <button className="form-btn w-fit mt-5">
-            Selecionar do computador
-          </button>
+
+          <div className=" mt-5">
+            <label htmlFor="files" className="form-btn w-fit">
+              Selecionar do computador
+            </label>
+            <input
+              onChange={(event) => {
+                if (!event.target.files) {
+                  return;
+                } else {
+                  setImageUpload(event.target.files[0]);
+                }
+              }}
+              type="file"
+              id="files"
+              className="invisible w-0"
+            />
+            <button onClick={uploadImage}>upload</button>
+          </div>
         </main>
       </div>
     </div>
