@@ -1,12 +1,16 @@
 "use client";
 import SidebarBtn from "@/common/SidebarBtn";
+import { PostModalContext } from "@/contexts/PostModalContext";
 
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
 
-import React from "react";
+import React, { useContext } from "react";
 
 export default function CreateBtn() {
-  const handleOnClick = () => {};
+  const { setIsModalOpen } = useContext(PostModalContext);
+  const handleOnClick: any = () => {
+    setIsModalOpen(true);
+  };
   return (
     <>
       <SidebarBtn
