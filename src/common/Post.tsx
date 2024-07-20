@@ -9,12 +9,12 @@ import {
 } from "@heroicons/react/24/outline";
 import User from "./User";
 
-export default function Post({ name }: { name: string }) {
+export default function Post({ src }: any) {
   return (
     <div className="w-full sm:w-[470px] mx-auto pb-4 mb-5 border-b-[1px] border-[#333333]">
       {/* HEADER  */}
       <div className="pb-3">
-        <User name={name} type="post" />
+        <User name="test" type="post" />
       </div>
 
       {/* MAIN  */}
@@ -22,7 +22,7 @@ export default function Post({ name }: { name: string }) {
         <Image
           width={500}
           height={500}
-          src={image}
+          src={src}
           alt="forest"
           className="w-full sm:w-[468px] h-[580px] object-cover rounded-md"
         />
