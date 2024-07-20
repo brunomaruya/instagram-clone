@@ -8,10 +8,12 @@ import React from "react";
 export default function CreateBtn() {
   const handleOnClick = () => {};
   return (
-    <SidebarBtn
-      onClick={handleOnClick}
-      name="Create"
-      icon={<PlusCircleIcon />}
-    />
+    <>
+      <SidebarBtn
+        onClick={handleOnClick}
+        name="Create"
+        icon={<PlusCircleIcon />}
+      />
+    </>
   );
 }

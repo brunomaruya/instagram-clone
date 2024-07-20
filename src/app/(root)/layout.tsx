@@ -9,6 +9,7 @@ import Topbar from "@/components/Topbar";
 import Bottombar from "@/components/Bottombar";
 import SidebarIconContextProvider from "@/contexts/SidebarIconContext";
 import MainProvider from "@/providers/MainProvider";
+import CreateModal from "@/components/CreateModal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <MainProvider>
+          <CreateModal />
           <div className="flex justify-between scroll-p-0 ">
             <Sidebar />
             <div className="w-full ml-0 md:ml-[76px]  xl:ml-[244px] 2xl:ml-[335px]">
