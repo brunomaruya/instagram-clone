@@ -1,17 +1,21 @@
 "use client";
 import { storage } from "@/app/firebase";
+import { PostsContext } from "@/contexts/PostsContext";
 import { PhotoIcon } from "@heroicons/react/24/outline";
-import { ref, uploadBytes } from "firebase/storage";
-import React, { useState } from "react";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import React, { useContext, useState } from "react";
 import { v4 } from "uuid";
 
 export default function CreateModal() {
   const [imageUpload, setImageUpload] = useState<any>(null);
+  const { setImageList } = useContext(PostsContext);
   const uploadImage = () => {
     if (imageUpload == null) return;
     const imageRef = ref(storage, `posts/${imageUpload.name + v4()}`);
-    uploadBytes(imageRef, imageUpload).then(() => {
-      alert("image uploaded!");
+    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setImageList((prev: any) => [...prev, url]);
+      });
     });
   };
   return (
