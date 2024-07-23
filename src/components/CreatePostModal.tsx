@@ -7,7 +7,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React, { useContext, useState } from "react";
 import { v4 } from "uuid";
 
-export default function CreateModal() {
+export default function CreatePostModal() {
   const { isModalOpen, setIsModalOpen } = useContext(PostModalContext);
   const [imageUpload, setImageUpload] = useState<any>(null);
   const { setImageList } = useContext(PostsContext);
