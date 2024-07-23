@@ -8,6 +8,7 @@ import ReelsBtn from "./SidebarBtns/ReelsBtn";
 import MessagesBtn from "./SidebarBtns/MessagesBtn";
 import NotificationsBtn from "./SidebarBtns/NotificationsBtn";
 import CreateBtn from "./SidebarBtns/CreateBtn";
+import Profile from "./SidebarBtns/Profile";
 
 export default function Sidebar() {
   return (
@@ -24,6 +25,7 @@ export default function Sidebar() {
           <MessagesBtn />
           <NotificationsBtn />
           <CreateBtn />
+          <Profile />
         </div>
       </div>
       <div>{/* bottom */}</div>

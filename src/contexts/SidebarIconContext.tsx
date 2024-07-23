@@ -31,6 +31,9 @@ export default function SidebarIconContextProvider({
       case "/direct":
         setIcon("messages");
         break;
+      case "/profile":
+        setIcon("profile");
+        break;
     }
   }, []);
 
