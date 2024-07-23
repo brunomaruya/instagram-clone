@@ -37,6 +37,11 @@ body {
   }
 }
 
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
 @layer components {
   .sidebarBtn {
     @apply flex items-center gap-3 text-xl p-3 my-1 hover:bg-[#1a1a1a] rounded-lg hover:cursor-pointer;

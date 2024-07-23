@@ -8,7 +8,8 @@ import React, { useContext, useState } from "react";
 import { v4 } from "uuid";
 
 export default function CreatePostModal() {
-  const { isModalOpen, setIsModalOpen } = useContext(PostModalContext);
+  const { isModalOpen, setIsModalOpen, closeModal } =
+    useContext(PostModalContext);
   const [imageUpload, setImageUpload] = useState<any>(null);
   const { setImageList } = useContext(PostsContext);
   const uploadImage = () => {
@@ -17,17 +18,22 @@ export default function CreatePostModal() {
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
         setImageList((prev: any) => [...prev, url]);
-        setIsModalOpen(false);
+        closeModal();
       });
     });
   };
   return (
     <div
       className={`${
-        isModalOpen ? "flex" : "hidden"
-      } w-full h-screen  justify-center items-center bg-gradient-to-t from-[rgba(0,0,0,0.7)] to-[rgba(0,0,0,0.7)] absolute z-[100000000] `}
+        isModalOpen ? "flex " : "hidden"
+      }  w-full  fixed z-[10000] `}
     >
-      <div className="w-[692px] h-[735px] bg-[#262626] rounded-xl">
+      <div
+        onClick={closeModal}
+        className="w-full h-screen  justify-center items-center bg-gradient-to-t from-[rgba(0,0,0,0.7)] to-[rgba(0,0,0,0.7)]"
+      ></div>
+
+      <div className="w-[692px] h-[735px] bg-[#262626] rounded-xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <header className="h-[42px] border-b-[1px] border-[#333333] flex justify-center items-center">
           Criar nova publicação
         </header>
