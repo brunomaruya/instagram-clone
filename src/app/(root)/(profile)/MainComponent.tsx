@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/app/firebase";
 import Header from "./Header";
+import Posts from "./Posts";
 
 export default function MainComponent({ username }: { username: string }) {
   const [user, setUser] = useState<any>();
@@ -27,6 +28,7 @@ export default function MainComponent({ username }: { username: string }) {
       {user ? (
         <div className="w-[975px] flex items-center  flex-col">
           <Header user={user} />
+          <Posts />
         </div>
       ) : (
         <div className="text-center">
