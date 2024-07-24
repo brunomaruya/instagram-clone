@@ -15,7 +15,6 @@ export default function PostsContextProvider({
     listAll(imageListRef).then((response) => {
       response.items.forEach((item) => {
         getDownloadURL(item).then((url) => {
-          console.log(url);
           setImageList((prev: any) => [...prev, url]);
         });
       });

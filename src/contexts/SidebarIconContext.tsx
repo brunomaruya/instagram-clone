@@ -14,7 +14,6 @@ export default function SidebarIconContextProvider({
   children: ReactNode;
 }) {
   const pathname = window.location.pathname;
-
   const [icon, setIcon] = useState<String>(pathname);
 
   useEffect(() => {

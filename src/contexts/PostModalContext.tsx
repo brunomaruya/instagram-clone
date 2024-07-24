@@ -18,9 +18,7 @@ export default function PostsModalContextProvider({
     disableScroll.off();
   };
   return (
-    <PostModalContext.Provider
-      value={{ isModalOpen, setIsModalOpen, openModal, closeModal }}
-    >
+    <PostModalContext.Provider value={{ isModalOpen, openModal, closeModal }}>
       {children}
     </PostModalContext.Provider>
   );

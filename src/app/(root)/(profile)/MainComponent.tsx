@@ -17,7 +17,6 @@ export default function MainComponent({ username }: { username: string }) {
 
     if (docSnap.exists()) {
       setUser(docSnap.data());
-      console.log("Document data: ", docSnap.data());
     } else {
       console.log("No such document");
     }

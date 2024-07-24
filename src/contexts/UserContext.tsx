@@ -43,7 +43,6 @@ export default function UserProvider({ children }: { children: ReactNode }) {
     const getUsers = async () => {
       const querySnapshot = await getDocs(collection(db, "users"));
       querySnapshot.forEach((doc) => {
-        console.log(doc.data());
         setUsers((oldArray: any) => [...oldArray, doc.data()]);
       });
     };

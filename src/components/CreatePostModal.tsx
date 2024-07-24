@@ -17,9 +17,7 @@ export default function CreatePostModal() {
 
   const [imageUpload, setImageUpload] = useState<any>(null);
   const [caption, setCaption] = useState("");
-  useEffect(() => {
-    console.log(imageUpload);
-  }, [imageUpload]);
+  useEffect(() => {}, [imageUpload]);
 
   const showImage = (e: any) => {
     if (e.target.files && e.target.files[0]) {

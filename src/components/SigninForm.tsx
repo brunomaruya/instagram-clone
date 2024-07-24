@@ -3,8 +3,7 @@ import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { auth } from "@/app/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signIn } from "@/contexts/DataContext";
 
 const schema = z.object({
   email: z.string().email({ message: "enter a valid email" }),
@@ -22,16 +21,7 @@ export default function SigninForm() {
   } = useForm<Schema>({ resolver: zodResolver(schema) });
 
   const onSubmit: SubmitHandler<Schema> = (data: Schema) => {
-    signInWithEmailAndPassword(auth, data.email, data.password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user);
-        window.location.href = "/";
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
+    signIn(data);
   };
 
   return (

@@ -1,4 +1,5 @@
 "use client";
+import DataContextProvider from "@/contexts/DataContext";
 import PostsModalContextProvider from "@/contexts/PostModalContext";
 import PostsContextProvider from "@/contexts/PostsContext";
 import SidebarIconContextProvider from "@/contexts/SidebarIconContext";
@@ -11,7 +12,9 @@ export default function MainProvider({ children }: { children: ReactNode }) {
       <SidebarIconContextProvider>
         <PostsContextProvider>
           <PostsModalContextProvider>
-            <UserProvider>{children}</UserProvider>
+            <DataContextProvider>
+              <UserProvider>{children}</UserProvider>
+            </DataContextProvider>
           </PostsModalContextProvider>
         </PostsContextProvider>
       </SidebarIconContextProvider>
