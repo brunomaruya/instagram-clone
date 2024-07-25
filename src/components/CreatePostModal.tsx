@@ -1,5 +1,6 @@
 "use client";
 import { db, storage } from "@/app/firebase";
+import { createPost } from "@/contexts/DataContext";
 import { PostModalContext } from "@/contexts/PostModalContext";
 import { PostsContext } from "@/contexts/PostsContext";
 import { UserContext } from "@/contexts/UserContext";
@@ -15,41 +16,45 @@ export default function CreatePostModal() {
   const { setImageList } = useContext(PostsContext);
   const { currentUser } = useContext(UserContext);
 
-  const [imageUpload, setImageUpload] = useState<any>(null);
+  const [uploadedImage, setUploadedImage] = useState<any>(null);
   const [caption, setCaption] = useState("");
-  useEffect(() => {}, [imageUpload]);
+  const [url, setUrl] = useState("");
 
   const showImage = (e: any) => {
     if (e.target.files && e.target.files[0]) {
-      setImageUpload(URL.createObjectURL(e.target.files[0]));
-    }
-  };
-  const createPost = async () => {
-    try {
-      const docRef = await addDoc(collection(db, "posts"), {
-        //TODO: try to get the image id
-        image: "",
-        username: currentUser.username,
-        caption: caption,
-        date: "",
-      });
-      console.log("Document create with id: ", docRef.id);
-    } catch (e) {
-      console.error("Error adding document: ", e);
+      setUploadedImage(e.target.files[0]);
+      console.log(e.target.files[0]);
     }
   };
 
   const uploadImage = () => {
-    if (imageUpload == null) return;
-    console.log(imageUpload);
-    const imageRef = ref(storage, `posts/${imageUpload.name + v4()}`);
-    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+    if (uploadImage == null) return;
+
+    const postPath = `posts/${uploadedImage.name + v4()}`;
+    const imageRef = ref(storage, postPath);
+
+    uploadBytes(imageRef, uploadedImage).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
         setImageList((prev: any) => [...prev, url]);
+
+        getDownloadURL(ref(storage, postPath))
+          .then((url) => {
+            console.log(url);
+            createPost(currentUser.username, url, caption, "3");
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+
         closeModal();
       });
     });
   };
+
+  useEffect(() => {
+    uploadImage;
+  }, [uploadedImage]);
+
   return (
     <div
       className={`${
@@ -61,7 +66,7 @@ export default function CreatePostModal() {
         className="w-full h-screen  justify-center items-center bg-gradient-to-t from-[rgba(0,0,0,0.7)] to-[rgba(0,0,0,0.7)]"
       ></div>
 
-      {imageUpload ? (
+      {uploadedImage ? (
         <>
           <div className="w-[1032px] h-[735px] flex flex-col items-center bg-[#262626] rounded-xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <header className="h-[42px] w-full px-4 flex justify-between border-b-[1px] border-[#333333] items-center">
@@ -77,10 +82,10 @@ export default function CreatePostModal() {
             <div className="flex overflow-hidden w-full ">
               <Image
                 className=" h-[735px-31px] object-cover flex-[2] "
-                src={imageUpload}
+                src={URL.createObjectURL(uploadedImage)}
                 width={500}
                 height={500}
-                alt="imageUpload"
+                alt="uploadedImage"
               />
               <div className=" px-4 flex-[1]">
                 <div className="h-[60px] flex items-center">

@@ -9,12 +9,12 @@ import {
 } from "@heroicons/react/24/outline";
 import User from "./User";
 
-export default function Post({ src }: any) {
+export default function Post({ post }: any) {
   return (
     <div className="w-full sm:w-[470px] mx-auto pb-4 mb-5 border-b-[1px] border-[#333333]">
       {/* HEADER  */}
       <div className="pb-3">
-        <User name="test" type="post" />
+        <User name={post.username} type="post" />
       </div>
 
       {/* MAIN  */}
@@ -22,12 +22,11 @@ export default function Post({ src }: any) {
         <Image
           width={500}
           height={500}
-          src={src}
+          src={post.url.toString()}
           alt="forest"
           className="w-full sm:w-[468px] h-[580px] object-cover rounded-md"
         />
       </main>
-
       {/* FOOTER  */}
       <footer className="w-full px-4 text-md md:text-xl">
         <div className="flex justify-between items-center w-full my-1">
@@ -40,10 +39,8 @@ export default function Post({ src }: any) {
         </div>
         <div>Curtido por aaaaa e outras pessoas</div>
         <div className="mt-2">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
-          nulla, rem illum dicta porro ipsum soluta aperiam architecto dolorem
-          voluptatum quo incidunt dignissimos mollitia optio tenetur fuga non
-          nam expedita.
+          {post.username}
+          <span>{post.caption}</span>
         </div>
         <div className="mt-2">Ver todos os comentários</div>
         <input

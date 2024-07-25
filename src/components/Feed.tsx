@@ -1,6 +1,7 @@
 "use client";
 import { storage } from "@/app/firebase";
 import Post from "@/common/Post";
+import { DataContext } from "@/contexts/DataContext";
 import { PostsContext } from "@/contexts/PostsContext";
 import { UserContext } from "@/contexts/UserContext";
 import { getDownloadURL, listAll, ref } from "firebase/storage";
@@ -9,11 +10,14 @@ import React, { useContext, useEffect, useState } from "react";
 
 export default function Feed() {
   const { imageList } = useContext(PostsContext);
+  const { posts } = useContext(DataContext);
 
   return (
     <div>
-      {imageList.map((image: any, index: any) => (
-        <Post key={index} src={image} />
+      {posts.map((post: any, index: any) => (
+        <>
+          <Post key={index} post={post} />
+        </>
       ))}
     </div>
   );

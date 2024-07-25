@@ -4,7 +4,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { getDocs, collection, doc, setDoc } from "firebase/firestore";
+import { getDocs, collection, doc, setDoc, addDoc } from "firebase/firestore";
 
 import React, { createContext, ReactNode, useEffect, useState } from "react";
 
@@ -19,11 +19,29 @@ const createUserDb = async ({
 }) => {
   try {
     await setDoc(doc(db, "users", data.username), {
-      id: user.uid,
+      authId: user.uid,
       name: data.name,
       username: data.username,
     });
     window.location.href = "/";
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+};
+
+export const createPost = async (
+  username: string,
+  url: string,
+  caption: string,
+  date: string
+) => {
+  try {
+    const docRef = await addDoc(collection(db, "posts"), {
+      username: username,
+      url: url,
+      caption: caption,
+      date: date,
+    });
   } catch (e) {
     console.error("Error adding document: ", e);
   }
@@ -62,7 +80,7 @@ export default function DataContextProvider({
   const [currentUserId, setCurrentUserId] = useState("");
   const [users, setUsers] = useState<any[]>([]);
   const [currentUser, setCurrentUser] = useState();
-  const [posts, setPosts] = useState();
+  const [posts, setPosts] = useState<any[]>([]);
 
   const checkAuth = () => {
     onAuthStateChanged(auth, (user) => {
@@ -82,9 +100,17 @@ export default function DataContextProvider({
     });
   };
 
+  const getPosts = async () => {
+    const querySnapshot = await getDocs(collection(db, "posts"));
+    querySnapshot.forEach((doc) => {
+      setPosts((oldArray: any) => [...oldArray, doc.data()]);
+    });
+  };
+
   useEffect(() => {
     checkAuth();
     getUsers();
+    getPosts();
   }, []);
 
   useEffect(() => {
@@ -92,7 +118,7 @@ export default function DataContextProvider({
   }, [users]);
 
   return (
-    <DataContext.Provider value={{ createUser }}>
+    <DataContext.Provider value={{ createUser, posts }}>
       {children}
     </DataContext.Provider>
   );
