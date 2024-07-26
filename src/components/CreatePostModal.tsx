@@ -22,7 +22,6 @@ export default function CreatePostModal() {
   const showImage = (e: any) => {
     if (e.target.files && e.target.files[0]) {
       setUploadedImage(e.target.files[0]);
-      console.log(e.target.files[0]);
     }
   };
 
@@ -41,6 +40,7 @@ export default function CreatePostModal() {
           .then((url) => {
             const date = new Date();
             createPost(currentUser.username, url, caption, date.toString());
+            window.location.reload();
           })
           .catch((e) => {
             console.log(e);

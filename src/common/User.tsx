@@ -2,14 +2,18 @@ import Image from "next/image";
 import React from "react";
 import image from "../../public/assets/forest.jpg";
 import { EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
+import { getDateDiff } from "@/functions/getDateDiff";
 
 export default function User({
   type,
   name,
+  date,
 }: {
   type: "suggestion" | "post";
   name: string;
+  date?: string;
 }) {
+  console.log(getDateDiff(date));
   return (
     <header className="flex items-center gap-2  ">
       <Image
@@ -22,7 +26,8 @@ export default function User({
         } rounded-full cursor-pointer`}
       />
       <div className="flex-1 cursor-pointer">
-        <span>{name}</span> {type == "post" && <span>• 2h</span>}
+        <span>{name}</span>{" "}
+        {type == "post" && <span> • {date ? getDateDiff(date) : ""}</span>}
       </div>
       <div className="cursor-pointer">
         {type == "post" ? (

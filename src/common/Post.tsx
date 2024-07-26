@@ -14,7 +14,7 @@ export default function Post({ post }: any) {
     <div className="w-full sm:w-[470px] mx-auto pb-4 mb-5 border-b-[1px] border-[#333333]">
       {/* HEADER  */}
       <div className="pb-3">
-        <User name={post.username} type="post" />
+        <User name={post.username} type="post" date={post.date} />
       </div>
 
       {/* MAIN  */}
@@ -28,7 +28,7 @@ export default function Post({ post }: any) {
         />
       </main>
       {/* FOOTER  */}
-      <footer className="w-full px-4 text-md md:text-xl">
+      <footer className="w-full px-4 text-[14px] ">
         <div className="flex justify-between items-center w-full my-1">
           <div className="flex">
             <HeartIcon className="h-11 w-11 p-2 cursor-pointer" />
