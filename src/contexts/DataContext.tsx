@@ -42,6 +42,7 @@ export const createPost = async (
       caption: caption,
       date: date,
     });
+    console.log(docRef);
   } catch (e) {
     console.error("Error adding document: ", e);
   }

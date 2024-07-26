@@ -40,7 +40,7 @@ export default function Post({ post }: any) {
         <div>Curtido por aaaaa e outras pessoas</div>
         <div className="mt-2">
           {post.username}
-          <span>{post.caption}</span>
+          <span> {post.caption}</span>
         </div>
         <div className="mt-2">Ver todos os comentários</div>
         <input

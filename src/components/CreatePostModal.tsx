@@ -18,7 +18,6 @@ export default function CreatePostModal() {
 
   const [uploadedImage, setUploadedImage] = useState<any>(null);
   const [caption, setCaption] = useState("");
-  const [url, setUrl] = useState("");
 
   const showImage = (e: any) => {
     if (e.target.files && e.target.files[0]) {
@@ -29,6 +28,7 @@ export default function CreatePostModal() {
 
   const uploadImage = () => {
     if (uploadImage == null) return;
+    closeModal();
 
     const postPath = `posts/${uploadedImage.name + v4()}`;
     const imageRef = ref(storage, postPath);
@@ -39,21 +39,15 @@ export default function CreatePostModal() {
 
         getDownloadURL(ref(storage, postPath))
           .then((url) => {
-            console.log(url);
-            createPost(currentUser.username, url, caption, "3");
+            const date = new Date();
+            createPost(currentUser.username, url, caption, date.toString());
           })
           .catch((e) => {
             console.log(e);
           });
-
-        closeModal();
       });
     });
   };
-
-  useEffect(() => {
-    uploadImage;
-  }, [uploadedImage]);
 
   return (
     <div
