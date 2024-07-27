@@ -9,7 +9,7 @@ import { createUser, DataContext } from "@/contexts/DataContext";
 export default function SignupForm() {
   const { users } = useContext(DataContext);
 
-  const checkUsername = (newUsername: string) => {
+  const checkIfExits = (newUsername: string) => {
     if (users) {
       for (const user of users) {
         if (user.username === newUsername) {
@@ -32,9 +32,13 @@ export default function SignupForm() {
       message: "Passwords don't match",
       path: ["confirmPassword"],
     })
-    .refine((data) => !checkUsername(data.username), {
+    .refine((data) => !checkIfExits(data.username), {
       message: "Username already taken",
       path: ["username"],
+    })
+    .refine((data) => !checkIfExits(data.email), {
+      message: "Email already taken",
+      path: ["email"],
     });
   type Schema = z.infer<typeof schema>;
 

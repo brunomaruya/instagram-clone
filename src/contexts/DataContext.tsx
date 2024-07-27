@@ -15,13 +15,14 @@ const createUserDb = async ({
   data,
 }: {
   user: { uid: string };
-  data: { name: string; username: string };
+  data: { name: string; username: string; email: string };
 }) => {
   try {
     await setDoc(doc(db, "users", data.username), {
       authId: user.uid,
       name: data.name,
       username: data.username,
+      email: data.email,
     });
     window.location.href = "/";
   } catch (e) {
