@@ -119,7 +119,7 @@ export default function DataContextProvider({
   }, [users]);
 
   return (
-    <DataContext.Provider value={{ createUser, posts, users }}>
+    <DataContext.Provider value={{ createUser, posts, users, currentUser }}>
       {children}
     </DataContext.Provider>
   );
