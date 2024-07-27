@@ -1,10 +1,10 @@
 "use client";
 import User from "@/common/User";
-import { UserContext } from "@/contexts/UserContext";
+import { DataContext } from "@/contexts/DataContext";
 import React, { useContext } from "react";
 
 export default function Rightbar() {
-  const { userId, users, currentUser } = useContext(UserContext);
+  const { users, currentUser } = useContext(DataContext);
   let arr = [];
   for (let i = 0; i < 5; i++) {
     arr.push(i);

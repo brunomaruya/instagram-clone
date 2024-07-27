@@ -8,10 +8,11 @@ import {
   EllipsisHorizontalIcon,
   UserPlusIcon,
 } from "@heroicons/react/24/outline";
-import { UserContext } from "@/contexts/UserContext";
+
+import { DataContext } from "@/contexts/DataContext";
 
 export default function Header({ user }: { user: any }) {
-  const { currentUser } = useContext(UserContext);
+  const { currentUser } = useContext(DataContext);
   return (
     <div className="pt-[30px] px-[20px] flex mb-20">
       <div className="w-[280px] mr-7 flex justify-center items-center">

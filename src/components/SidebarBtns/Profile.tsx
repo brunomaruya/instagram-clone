@@ -5,11 +5,11 @@ import React, { useContext } from "react";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
 import { UserCircleIcon as Active } from "@heroicons/react/16/solid";
 import { SidebarIconContext } from "@/contexts/SidebarIconContext";
-import { UserContext } from "@/contexts/UserContext";
+import { DataContext } from "@/contexts/DataContext";
 
 export default function Profile() {
   const { icon, setIcon } = useContext(SidebarIconContext);
-  const { currentUser } = useContext(UserContext);
+  const { currentUser } = useContext(DataContext);
   const handleOnClick = () => {
     setIcon("profile");
     window.location.pathname = `/${currentUser.username}`;

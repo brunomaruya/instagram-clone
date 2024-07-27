@@ -3,7 +3,7 @@ import { db, storage } from "@/app/firebase";
 import { createPost } from "@/contexts/DataContext";
 import { PostModalContext } from "@/contexts/PostModalContext";
 import { PostsContext } from "@/contexts/PostsContext";
-import { UserContext } from "@/contexts/UserContext";
+import { DataContext } from "@/contexts/DataContext";
 import { ArrowLeftIcon, PhotoIcon } from "@heroicons/react/24/outline";
 import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
@@ -14,7 +14,7 @@ import { v4 } from "uuid";
 export default function CreatePostModal() {
   const { isModalOpen, closeModal } = useContext(PostModalContext);
   const { setImageList } = useContext(PostsContext);
-  const { currentUser } = useContext(UserContext);
+  const { currentUser } = useContext(DataContext);
 
   const [uploadedImage, setUploadedImage] = useState<any>(null);
   const [caption, setCaption] = useState("");

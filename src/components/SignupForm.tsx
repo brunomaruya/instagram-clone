@@ -1,27 +1,38 @@
 "use client";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
 import { createUser, DataContext } from "@/contexts/DataContext";
 
-const schema = z
-  .object({
-    email: z.string().email({ message: "enter a valid email" }),
-    name: z.string(),
-    username: z.string(),
-    password: z.string().min(6),
-    confirmPassword: z.string().min(6),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords don't match",
-    path: ["confirmPassword"],
-  });
-
-type Schema = z.infer<typeof schema>;
-
 export default function SignupForm() {
+  const { users } = useContext(DataContext);
+  const [usersList, setUsersList] = useState<any[]>([]);
+
+  useEffect(() => {
+    setUsersList(users);
+    console.log(users);
+  }, []);
+
+  const schema = z
+    .object({
+      email: z.string().email({ message: "enter a valid email" }),
+      name: z.string(),
+      username: z.string(),
+      password: z.string().min(6),
+      confirmPassword: z.string().min(6),
+    })
+    .refine((data) => data.password === data.confirmPassword, {
+      message: "Passwords don't match",
+      path: ["confirmPassword"],
+    })
+    .refine((data) => !usersList.includes(data.username), {
+      message: "Username already taken",
+      path: ["username"],
+    });
+  type Schema = z.infer<typeof schema>;
+
   const {
     register,
     handleSubmit,

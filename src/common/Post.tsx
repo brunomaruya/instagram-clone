@@ -28,7 +28,7 @@ export default function Post({ post }: any) {
         />
       </main>
       {/* FOOTER  */}
-      <footer className="w-full px-4 text-[14px] ">
+      <footer className="w-full px-4 md:px-0 text-[14px] ">
         <div className="flex justify-between items-center w-full my-1">
           <div className="flex">
             <HeartIcon className="h-11 w-11 p-2 cursor-pointer" />

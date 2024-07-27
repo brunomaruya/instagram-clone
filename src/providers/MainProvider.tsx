@@ -3,7 +3,7 @@ import DataContextProvider from "@/contexts/DataContext";
 import PostsModalContextProvider from "@/contexts/PostModalContext";
 import PostsContextProvider from "@/contexts/PostsContext";
 import SidebarIconContextProvider from "@/contexts/SidebarIconContext";
-import UserProvider from "@/contexts/UserContext";
+
 import React, { ReactNode } from "react";
 
 export default function MainProvider({ children }: { children: ReactNode }) {
@@ -12,9 +12,7 @@ export default function MainProvider({ children }: { children: ReactNode }) {
       <SidebarIconContextProvider>
         <PostsContextProvider>
           <PostsModalContextProvider>
-            <DataContextProvider>
-              <UserProvider>{children}</UserProvider>
-            </DataContextProvider>
+            <DataContextProvider>{children}</DataContextProvider>
           </PostsModalContextProvider>
         </PostsContextProvider>
       </SidebarIconContextProvider>

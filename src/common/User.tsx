@@ -13,7 +13,6 @@ export default function User({
   name: string;
   date?: string;
 }) {
-  console.log(getDateDiff(date));
   return (
     <header className="flex items-center gap-2  ">
       <Image
@@ -26,7 +25,7 @@ export default function User({
         } rounded-full cursor-pointer`}
       />
       <div className="flex-1 cursor-pointer">
-        <span>{name}</span>{" "}
+        <span onClick={() => (window.location.href = `/${name}`)}>{name}</span>{" "}
         {type == "post" && <span> • {date ? getDateDiff(date) : ""}</span>}
       </div>
       <div className="cursor-pointer">
