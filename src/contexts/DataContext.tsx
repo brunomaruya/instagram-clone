@@ -83,9 +83,11 @@ export function signIn(data: any) {
     });
 }
 
-export async function updateUserPosts(username: string) {
-  await updateDoc(doc(db, "users", "user1"), {
-    posts: ["post1"],
+export async function updateUserPosts(username: string, posts: any) {
+  console.log("function called");
+  console.log(posts);
+  await updateDoc(doc(db, "users", username.toString()), {
+    posts: posts,
   });
 }
 
@@ -125,20 +127,54 @@ export default function DataContextProvider({
       setPosts((oldArray: any) => [...oldArray, doc.data()]);
     });
   };
+  // const getCurrentUserPosts = async () => {
+  //   const querySnapshot = await getDocs(collection(db, "posts"));
+  //   querySnapshot.forEach((doc) => {
+  //     if (currentUser) {
+  //       if (
+  //         doc.data().username.toString() === currentUser.username.toString()
+  //       ) {
+  //         setCurrentUserPosts((oldArray: any) => [...oldArray, doc.data()]);
+  //         console.log(currentUserPosts);
+  //         console.log("success");
+  //       }
+  //     }
+  //   });
+  // };
 
   useEffect(() => {
     checkAuth();
     getUsers();
     getPosts();
+    // getCurrentUserPosts();
+    console.log(currentUserPosts);
   }, []);
 
   useEffect(() => {
     setCurrentUser(users.find((user) => user.authId === currentUserId));
-    setCurrentUserPosts(currentUser ? currentUser.posts : "");
   }, [users]);
 
+  useEffect(() => {
+    console.log("running");
+    if (currentUser) {
+      posts.forEach((post) => {
+        if (post.username.toString() === currentUser.username.toString()) {
+          console.log(post);
+          setCurrentUserPosts((oldArray: any) => [...oldArray, post]);
+          console.log(currentUserPosts);
+        }
+      });
+    }
+  }, [posts, users]);
+
+  useEffect(() => {
+    updateUserPosts(currentUser.username, currentUserPosts);
+  }, [currentUserPosts]);
+
   return (
-    <DataContext.Provider value={{ createUser, posts, users, currentUser }}>
+    <DataContext.Provider
+      value={{ createUser, posts, users, currentUser, currentUserPosts }}
+    >
       {children}
     </DataContext.Provider>
   );
