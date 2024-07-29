@@ -21,8 +21,8 @@ export default function Rightbar() {
           <span className="cursor-pointer">Ver tudo</span>
         </div>
         <div className="py-2">
-          {users.map((user: any) => (
-            <div className="px-4 py-2 " key={user.id}>
+          {users.map((user: any, index: number) => (
+            <div className="px-4 py-2 " key={user.authId}>
               <User name={user.name} type="suggestion" />
             </div>
           ))}

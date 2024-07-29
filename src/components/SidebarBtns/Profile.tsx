@@ -12,6 +12,7 @@ export default function Profile() {
   const { currentUser } = useContext(DataContext);
   const handleOnClick = () => {
     setIcon("profile");
+    console.log(currentUser);
     window.location.pathname = `/${currentUser.username}`;
   };
   return (

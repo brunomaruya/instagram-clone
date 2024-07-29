@@ -14,11 +14,9 @@ export default function Feed() {
 
   return (
     <div>
-      {posts.map((post: any, index: any) => (
-        <>
-          <Post key={index} post={post} />
-        </>
-      ))}
+      {posts.map((post: any, index: any) => {
+        return <Post key={index} post={post} />;
+      })}
     </div>
   );
 }

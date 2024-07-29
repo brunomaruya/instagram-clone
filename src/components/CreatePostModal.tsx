@@ -1,6 +1,6 @@
 "use client";
 import { db, storage } from "@/app/firebase";
-import { createPost } from "@/contexts/DataContext";
+import { createPost, updateUserPosts } from "@/contexts/DataContext";
 import { PostModalContext } from "@/contexts/PostModalContext";
 import { PostsContext } from "@/contexts/PostsContext";
 import { DataContext } from "@/contexts/DataContext";
@@ -40,7 +40,8 @@ export default function CreatePostModal() {
           .then((url) => {
             const date = new Date();
             createPost(currentUser.username, url, caption, date.toString());
-            window.location.reload();
+            updateUserPosts(currentUser);
+            // window.location.reload();
           })
           .catch((e) => {
             console.log(e);

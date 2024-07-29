@@ -4,9 +4,19 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { getDocs, collection, doc, setDoc, addDoc } from "firebase/firestore";
+import {
+  getDocs,
+  collection,
+  doc,
+  setDoc,
+  addDoc,
+  updateDoc,
+} from "firebase/firestore";
+import { child, getDatabase, push, ref, update } from "firebase/database";
 
 import React, { createContext, ReactNode, useEffect, useState } from "react";
+import firebase from "firebase/compat/app";
+import { getDateDiff } from "@/functions/getDateDiff";
 
 export const DataContext = createContext({} as any);
 
@@ -43,7 +53,6 @@ export const createPost = async (
       caption: caption,
       date: date,
     });
-    console.log(docRef);
   } catch (e) {
     console.error("Error adding document: ", e);
   }
@@ -74,6 +83,12 @@ export function signIn(data: any) {
     });
 }
 
+export async function updateUserPosts(username: string) {
+  await updateDoc(doc(db, "users", "user1"), {
+    posts: ["post1"],
+  });
+}
+
 export default function DataContextProvider({
   children,
 }: {
@@ -81,13 +96,15 @@ export default function DataContextProvider({
 }) {
   const [currentUserId, setCurrentUserId] = useState("");
   const [users, setUsers] = useState<any[]>([]);
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState<any>();
   const [posts, setPosts] = useState<any[]>([]);
+  const [currentUserPosts, setCurrentUserPosts] = useState<any[]>([]);
 
   const checkAuth = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const uid = user.uid;
+
         setCurrentUserId(uid);
       } else {
         console.log("no one logged");
@@ -116,7 +133,8 @@ export default function DataContextProvider({
   }, []);
 
   useEffect(() => {
-    setCurrentUser(users.find((user) => user.id === currentUserId));
+    setCurrentUser(users.find((user) => user.authId === currentUserId));
+    setCurrentUserPosts(currentUser ? currentUser.posts : "");
   }, [users]);
 
   return (
