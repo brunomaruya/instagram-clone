@@ -27,7 +27,7 @@ export default function MainComponent({ username }: { username: string }) {
       {user ? (
         <div className="w-[975px] flex items-center  flex-col">
           <Header user={user} />
-          <Posts />
+          <Posts username={username} />
         </div>
       ) : (
         <div className="text-center">

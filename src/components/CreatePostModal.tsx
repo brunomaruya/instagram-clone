@@ -16,10 +16,6 @@ export default function CreatePostModal() {
   const { setImageList } = useContext(PostsContext);
   const { currentUser, currentUserPosts } = useContext(DataContext);
 
-  useEffect(() => {
-    console.log(currentUserPosts);
-  }, []);
-
   const [uploadedImage, setUploadedImage] = useState<any>(null);
   const [caption, setCaption] = useState("");
 
@@ -44,8 +40,9 @@ export default function CreatePostModal() {
           .then((url) => {
             const date = new Date();
             createPost(currentUser.username, url, caption, date.toString());
-            updateUserPosts(currentUser.username, currentUserPosts);
-            // window.location.reload();
+            // updateUserPosts(currentUser.username, currentUserPosts);
+            alert("image upload");
+            window.location.reload();
           })
           .catch((e) => {
             console.log(e);

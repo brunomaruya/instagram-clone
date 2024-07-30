@@ -12,11 +12,8 @@ import {
   addDoc,
   updateDoc,
 } from "firebase/firestore";
-import { child, getDatabase, push, ref, update } from "firebase/database";
 
 import React, { createContext, ReactNode, useEffect, useState } from "react";
-import firebase from "firebase/compat/app";
-import { getDateDiff } from "@/functions/getDateDiff";
 
 export const DataContext = createContext({} as any);
 
@@ -83,12 +80,19 @@ export function signIn(data: any) {
     });
 }
 
-export async function updateUserPosts(username: string, posts: any) {
-  console.log("function called");
+export async function updateUserPosts(currentUser: any, posts: any) {
+  console.log(currentUser.username);
   console.log(posts);
-  await updateDoc(doc(db, "users", username.toString()), {
+  await updateDoc(doc(db, "users", currentUser.username.toString()), {
     posts: posts,
-  });
+  })
+    .then(() => {
+      console.log("update");
+      console.log(currentUser.posts);
+    })
+    .catch((e) => {
+      console.log(e);
+    });
 }
 
 export default function DataContextProvider({
@@ -127,27 +131,11 @@ export default function DataContextProvider({
       setPosts((oldArray: any) => [...oldArray, doc.data()]);
     });
   };
-  // const getCurrentUserPosts = async () => {
-  //   const querySnapshot = await getDocs(collection(db, "posts"));
-  //   querySnapshot.forEach((doc) => {
-  //     if (currentUser) {
-  //       if (
-  //         doc.data().username.toString() === currentUser.username.toString()
-  //       ) {
-  //         setCurrentUserPosts((oldArray: any) => [...oldArray, doc.data()]);
-  //         console.log(currentUserPosts);
-  //         console.log("success");
-  //       }
-  //     }
-  //   });
-  // };
 
   useEffect(() => {
     checkAuth();
     getUsers();
     getPosts();
-    // getCurrentUserPosts();
-    console.log(currentUserPosts);
   }, []);
 
   useEffect(() => {
@@ -155,21 +143,13 @@ export default function DataContextProvider({
   }, [users]);
 
   useEffect(() => {
-    console.log("running");
-    if (currentUser) {
-      posts.forEach((post) => {
-        if (post.username.toString() === currentUser.username.toString()) {
-          console.log(post);
-          setCurrentUserPosts((oldArray: any) => [...oldArray, post]);
-          console.log(currentUserPosts);
-        }
-      });
-    }
-  }, [posts, users]);
-
-  useEffect(() => {
-    updateUserPosts(currentUser.username, currentUserPosts);
-  }, [currentUserPosts]);
+    setCurrentUserPosts([]);
+    posts.forEach((post) => {
+      if (post.username.toString() === currentUser.username.toString()) {
+        setCurrentUserPosts((oldArray: any) => [...oldArray, post]);
+      }
+    });
+  }, [currentUser]);
 
   return (
     <DataContext.Provider
