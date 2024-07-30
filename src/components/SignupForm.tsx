@@ -10,10 +10,20 @@ import { createUser } from "@/functions/firebaseFunctions";
 export default function SignupForm() {
   const { users } = useContext(DataContext);
 
-  const checkIfExits = (newUsername: string) => {
+  const checkIfUsernameExits = (newUsername: string) => {
     if (users) {
       for (const user of users) {
         if (user.username === newUsername) {
+          return false;
+        }
+        return true;
+      }
+    }
+  };
+  const checkIfEmailExits = (email: string) => {
+    if (users) {
+      for (const user of users) {
+        if (user.email === email) {
           return false;
         }
         return true;
@@ -33,11 +43,11 @@ export default function SignupForm() {
       message: "Passwords don't match",
       path: ["confirmPassword"],
     })
-    .refine((data) => checkIfExits(data.username), {
+    .refine((data) => checkIfUsernameExits(data.username), {
       message: "Username already taken",
       path: ["username"],
     })
-    .refine((data) => checkIfExits(data.email), {
+    .refine((data) => checkIfEmailExits(data.email), {
       message: "Email already taken",
       path: ["email"],
     });

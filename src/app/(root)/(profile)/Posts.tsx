@@ -5,7 +5,6 @@ import React, { useContext, useEffect, useState } from "react";
 export default function Posts({ username }: { username: string }) {
   const { posts } = useContext(DataContext);
   const [userPosts, setUserPosts] = useState<any[]>([]);
-  console.log(posts);
 
   useEffect(() => {
     posts.forEach((post: any) => {
