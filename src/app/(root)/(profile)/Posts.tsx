@@ -1,18 +1,23 @@
+import { db } from "@/app/firebase";
 import { DataContext } from "@/contexts/DataContext";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import Image from "next/image";
 import React, { useContext, useEffect, useState } from "react";
 
 export default function Posts({ username }: { username: string }) {
-  const { posts } = useContext(DataContext);
   const [userPosts, setUserPosts] = useState<any[]>([]);
 
   useEffect(() => {
-    posts.forEach((post: any) => {
-      if (post.username.toString() === username.toString()) {
-        setUserPosts((oldArray: any) => [...oldArray, post]);
-      }
-    });
+    getPosts();
   }, []);
+
+  const getPosts = async () => {
+    const q = query(collection(db, "users"), where("username", "==", username));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      setUserPosts(doc.data().posts);
+    });
+  };
 
   return (
     <div className="border-t-[#868686] border-t-[1px] w-full flex flex-col  items-center">
