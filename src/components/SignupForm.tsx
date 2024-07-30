@@ -20,6 +20,7 @@ export default function SignupForm() {
       }
     }
   };
+
   const checkIfEmailExits = (email: string) => {
     if (users) {
       for (const user of users) {

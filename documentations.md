@@ -9,3 +9,5 @@ Other way to add data with firebase:
 - https://firebase.google.com/docs/firestore/manage-data/add-data?hl=pt-br
 
 - getImage:https://firebase.google.com/docs/storage/web/download-files?hl=pt-br
+
+- arrays: https://firebase.google.com/docs/firestore/manage-data/add-data?hl=pt-br

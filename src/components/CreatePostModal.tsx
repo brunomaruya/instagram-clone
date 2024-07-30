@@ -10,12 +10,12 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import Image from "next/image";
 import React, { useContext, useEffect, useState } from "react";
 import { v4 } from "uuid";
-import { createPost } from "@/functions/firebaseFunctions";
+import { createPost, updateUserPosts } from "@/functions/firebaseFunctions";
 
 export default function CreatePostModal() {
   const { isModalOpen, closeModal } = useContext(PostModalContext);
   const { setImageList } = useContext(PostsContext);
-  const { currentUser, currentUserPosts } = useContext(DataContext);
+  const { currentUser } = useContext(DataContext);
 
   const [uploadedImage, setUploadedImage] = useState<any>(null);
   const [caption, setCaption] = useState("");
@@ -41,7 +41,12 @@ export default function CreatePostModal() {
           .then((url) => {
             const date = new Date();
             createPost(currentUser.username, url, caption, date.toString());
-            // updateUserPosts(currentUser.username, currentUserPosts);
+            updateUserPosts(
+              currentUser.username,
+              url,
+              caption,
+              date.toString()
+            );
             alert("image upload");
             window.location.reload();
           })
@@ -54,80 +59,76 @@ export default function CreatePostModal() {
 
   return (
     <>
-      {currentUserPosts ? (
+      <div
+        className={`${
+          isModalOpen ? "flex " : "hidden"
+        }  w-full  fixed z-[10000] `}
+      >
         <div
-          className={`${
-            isModalOpen ? "flex " : "hidden"
-          }  w-full  fixed z-[10000] `}
-        >
-          <div
-            onClick={closeModal}
-            className="w-full h-screen  justify-center items-center bg-gradient-to-t from-[rgba(0,0,0,0.7)] to-[rgba(0,0,0,0.7)]"
-          ></div>
+          onClick={closeModal}
+          className="w-full h-screen  justify-center items-center bg-gradient-to-t from-[rgba(0,0,0,0.7)] to-[rgba(0,0,0,0.7)]"
+        ></div>
 
-          {uploadedImage ? (
-            <>
-              <div className="w-[1032px] h-[735px] flex flex-col items-center bg-[#262626] rounded-xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <header className="h-[42px] w-full px-4 flex justify-between border-b-[1px] border-[#333333] items-center">
-                  <ArrowLeftIcon className="h-[30px] w-[30px]" />
-                  <div>Create new post</div>
-                  <div
-                    className="text-blue-500 cursor-pointer"
-                    onClick={uploadImage}
-                  >
-                    Share
+        {uploadedImage ? (
+          <>
+            <div className="w-[1032px] h-[735px] flex flex-col items-center bg-[#262626] rounded-xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <header className="h-[42px] w-full px-4 flex justify-between border-b-[1px] border-[#333333] items-center">
+                <ArrowLeftIcon className="h-[30px] w-[30px]" />
+                <div>Create new post</div>
+                <div
+                  className="text-blue-500 cursor-pointer"
+                  onClick={uploadImage}
+                >
+                  Share
+                </div>
+              </header>
+              <div className="flex overflow-hidden w-full ">
+                <Image
+                  className=" h-[735px-31px] object-cover flex-[2] "
+                  src={URL.createObjectURL(uploadedImage)}
+                  width={500}
+                  height={500}
+                  alt="uploadedImage"
+                />
+                <div className=" px-4 flex-[1]">
+                  <div className="h-[60px] flex items-center">
+                    {currentUser.username}
                   </div>
-                </header>
-                <div className="flex overflow-hidden w-full ">
-                  <Image
-                    className=" h-[735px-31px] object-cover flex-[2] "
-                    src={URL.createObjectURL(uploadedImage)}
-                    width={500}
-                    height={500}
-                    alt="uploadedImage"
+                  <textarea
+                    onChange={(e) => setCaption(e.target.value)}
+                    className=" h-[168px] w-full bg-transparent focus:outline-none"
+                    placeholder="Write a caption"
                   />
-                  <div className=" px-4 flex-[1]">
-                    <div className="h-[60px] flex items-center">
-                      {currentUser.username}
-                    </div>
-                    <textarea
-                      onChange={(e) => setCaption(e.target.value)}
-                      className=" h-[168px] w-full bg-transparent focus:outline-none"
-                      placeholder="Write a caption"
-                    />
-                  </div>
                 </div>
               </div>
-            </>
-          ) : (
-            <>
-              <div className="w-[692px] h-[735px] flex flex-col items-center bg-[#262626] rounded-xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <header className="h-[42px] w-full border-b-[1px] border-[#333333] flex justify-center items-center">
-                  Create new post
-                </header>
-                <main className="flex justify-center items-center flex-col h-full">
-                  <PhotoIcon className="h-32 w-32" />
-                  <div>Arraste as fotos e os videos aqui</div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="w-[692px] h-[735px] flex flex-col items-center bg-[#262626] rounded-xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <header className="h-[42px] w-full border-b-[1px] border-[#333333] flex justify-center items-center">
+                Create new post
+              </header>
+              <main className="flex justify-center items-center flex-col h-full">
+                <PhotoIcon className="h-32 w-32" />
+                <div>Arraste as fotos e os videos aqui</div>
 
-                  <div className=" mt-5">
-                    <label htmlFor="files" className="form-btn w-fit">
-                      Selecionar do computador
-                    </label>
-                    <input
-                      onChange={showImage}
-                      type="file"
-                      id="files"
-                      className="invisible w-0"
-                    />
-                  </div>
-                </main>
-              </div>
-            </>
-          )}
-        </div>
-      ) : (
-        currentUserPosts
-      )}
+                <div className=" mt-5">
+                  <label htmlFor="files" className="form-btn w-fit">
+                    Selecionar do computador
+                  </label>
+                  <input
+                    onChange={showImage}
+                    type="file"
+                    id="files"
+                    className="invisible w-0"
+                  />
+                </div>
+              </main>
+            </div>
+          </>
+        )}
+      </div>
     </>
   );
 }

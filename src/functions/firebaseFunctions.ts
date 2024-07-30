@@ -3,7 +3,14 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { addDoc, collection, doc, setDoc, updateDoc } from "firebase/firestore";
+import {
+  addDoc,
+  arrayUnion,
+  collection,
+  doc,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 
 //USERS AUTH
 
@@ -71,6 +78,22 @@ export const createPost = async (
   } catch (e) {
     console.error("Error adding document: ", e);
   }
+};
+
+export const updateUserPosts = async (
+  username: string,
+  url: string,
+  caption: string,
+  date: string
+) => {
+  await updateDoc(doc(db, "users", username.toString()), {
+    posts: arrayUnion({
+      username: username,
+      url: url,
+      caption: caption,
+      date: date,
+    }),
+  });
 };
 
 //DATA
