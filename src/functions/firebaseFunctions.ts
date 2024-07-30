@@ -100,3 +100,14 @@ export const updateUserPosts = async (
 export async function updateData(path: string, id: string, newData: any) {
   await updateDoc(doc(db, path, id), newData);
 }
+
+//FOLLOW
+
+export async function follow(user: string, userToFollow: string) {
+  await updateDoc(doc(db, "users", user.toString()), {
+    following: arrayUnion(userToFollow),
+  });
+  await updateDoc(doc(db, "users", userToFollow.toString()), {
+    follower: arrayUnion(user),
+  });
+}

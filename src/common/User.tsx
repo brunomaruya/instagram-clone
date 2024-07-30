@@ -1,8 +1,12 @@
 import Image from "next/image";
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import image from "../../public/assets/forest.jpg";
 import { EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
 import { getDateDiff } from "@/functions/getDateDiff";
+import { follow } from "@/functions/firebaseFunctions";
+import { DataContext } from "@/contexts/DataContext";
+import { db } from "@/app/firebase";
+import { query, collection, where, getDocs } from "firebase/firestore";
 
 export default function User({
   type,
@@ -13,6 +17,15 @@ export default function User({
   name: string;
   date?: string;
 }) {
+  const { currentUser } = useContext(DataContext);
+  const [isFollowing, setIsFollowing] = useState(false);
+
+  useEffect(() => {
+    if (currentUser) {
+      setIsFollowing(currentUser.following.includes(name.toString()));
+    }
+  }, [currentUser]);
+
   return (
     <header className="flex items-center gap-2  ">
       <Image
@@ -32,7 +45,15 @@ export default function User({
         {type == "post" ? (
           <EllipsisHorizontalIcon className="h-8 w-8 cursor-pointer" />
         ) : (
-          <span className="text-[#0072BD] text-xs">Follow</span>
+          <span
+            className="text-[#0072BD] text-xs"
+            onClick={() => {
+              follow(currentUser.username, name);
+              setIsFollowing(true);
+            }}
+          >
+            {isFollowing ? "" : "Follow"}
+          </span>
         )}
       </div>
     </header>

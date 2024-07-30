@@ -25,8 +25,8 @@ export default function Posts({ username }: { username: string }) {
 
       {userPosts ? (
         <div>
-          {userPosts.map((post: any) => (
-            <Image alt="" src={post.url} height={500} width={500} />
+          {userPosts.map((post: any, index) => (
+            <Image alt="" src={post.url} key={index} height={500} width={500} />
           ))}
         </div>
       ) : (

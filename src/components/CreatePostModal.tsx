@@ -48,7 +48,7 @@ export default function CreatePostModal() {
               date.toString()
             );
             alert("image upload");
-            window.location.reload();
+            // window.location.reload();
           })
           .catch((e) => {
             console.log(e);
