@@ -4,7 +4,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
-import { createUser, DataContext } from "@/contexts/DataContext";
+import { DataContext } from "@/contexts/DataContext";
+import { createUser } from "@/functions/firebaseFunctions";
 
 export default function SignupForm() {
   const { users } = useContext(DataContext);
@@ -32,11 +33,11 @@ export default function SignupForm() {
       message: "Passwords don't match",
       path: ["confirmPassword"],
     })
-    .refine((data) => !checkIfExits(data.username), {
+    .refine((data) => checkIfExits(data.username), {
       message: "Username already taken",
       path: ["username"],
     })
-    .refine((data) => !checkIfExits(data.email), {
+    .refine((data) => checkIfExits(data.email), {
       message: "Email already taken",
       path: ["email"],
     });

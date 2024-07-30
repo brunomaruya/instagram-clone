@@ -1,6 +1,6 @@
 "use client";
 import { db, storage } from "@/app/firebase";
-import { createPost, updateUserPosts } from "@/contexts/DataContext";
+
 import { PostModalContext } from "@/contexts/PostModalContext";
 import { PostsContext } from "@/contexts/PostsContext";
 import { DataContext } from "@/contexts/DataContext";
@@ -10,6 +10,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import Image from "next/image";
 import React, { useContext, useEffect, useState } from "react";
 import { v4 } from "uuid";
+import { createPost } from "@/functions/firebaseFunctions";
 
 export default function CreatePostModal() {
   const { isModalOpen, closeModal } = useContext(PostModalContext);
