@@ -20,10 +20,10 @@ export default function Header({ user }: { user: any }) {
     <>
       {currentUser ? (
         <div className="pt-[30px] px-[20px] flex mb-20">
-          <div className="w-[280px] mr-7 flex justify-center items-center">
+          <div className="xl:w-[280px] mr-7 flex justify-center items-center">
             {currentUser.profilePicture ? (
               <Image
-                className="rounded-full h-[150px] w-[150px] object-cover object-center"
+                className="rounded-full h-[100px] w-[100px] xl:h-[150px] xl:w-[150px] object-cover object-center"
                 src={currentUser.profilePicture}
                 width={500}
                 height={500}
@@ -31,7 +31,7 @@ export default function Header({ user }: { user: any }) {
               />
             ) : (
               <Image
-                className="rounded-full h-[150px] w-[150px]"
+                className="rounded-full h-[100px] w-[100px]  h-[150px] w-[150px]"
                 src={userImg}
                 width={500}
                 height={500}
@@ -39,21 +39,26 @@ export default function Header({ user }: { user: any }) {
               />
             )}
           </div>
-          <div className="w-[624px]">
+          <div className="xl:w-[624px]">
             <div className="flex items-center gap-2 mb-6">
               {currentUser && currentUser.username === user.username ? (
-                <>
+                <div className="flex flex-col md:flex-row">
                   <div className="text-xl mr-6">{user.username}</div>
-                  <Btn
-                    onClick={() => {
-                      openModal();
-                      console.log("clicked");
-                    }}
-                    text="Edit profile"
-                  />
-                  <Btn text="View archive" />
-                  <Cog6ToothIcon className="h-[30px] w-[30px]" />
-                </>
+                  <div className="flex gap-1 flex-col sm:flex-row">
+                    <div>
+                      <Btn
+                        onClick={() => {
+                          openModal();
+                          console.log("clicked");
+                        }}
+                        text="Edit profile"
+                      />
+                      <Btn text="View archive" />
+                    </div>
+
+                    <Cog6ToothIcon className="h-[30px] w-[30px]" />
+                  </div>
+                </div>
               ) : (
                 <>
                   <div className="text-xl">{user.username}</div>

@@ -87,7 +87,7 @@ export const createPost = async (
       url: url,
       caption: caption,
       date: date,
-    });
+    }).then(() => location.reload());
   } catch (e) {
     console.error("Error adding document: ", e);
   }

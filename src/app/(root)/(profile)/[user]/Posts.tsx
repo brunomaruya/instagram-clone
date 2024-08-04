@@ -24,7 +24,7 @@ export default function Posts({ username }: { username: string }) {
       <div className="h-[52px] flex items-center">Posts</div>
 
       {userPosts ? (
-        <div>
+        <div className="grid grid-cols-3 w-full">
           {userPosts.map((post: any, index) => (
             <Image alt="" src={post.url} key={index} height={500} width={500} />
           ))}
