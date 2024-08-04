@@ -41,7 +41,7 @@ export function isPostSlide(slide: Slide): slide is PostsSlide {
 export function RenderPostsSlide({ slide }: { slide: any }) {
   const [comment, setComment] = React.useState("");
   return (
-    <div className="flex h-[90%] ">
+    <div className="flex h-[90%] bg-black ">
       <Image
         className="object-contain"
         src={slide.url}
@@ -56,7 +56,7 @@ export function RenderPostsSlide({ slide }: { slide: any }) {
         <div className="p-4">No Comments</div>
 
         <div className="absolute bottom-0 w-full  ">
-          <div className="border-white border-t-[1px] border-b-[1px] p-4">
+          <div className="border-white border-t-[1px] border-b-[1px] px-4 py-2">
             <div className="flex justify-between items-center w-full my-1 ">
               <div className="flex">
                 <HeartIcon className="h-11 w-11 p-2 cursor-pointer" />
@@ -66,7 +66,7 @@ export function RenderPostsSlide({ slide }: { slide: any }) {
               <BookmarkIcon className="h-11 w-11 p-2 cursor-pointer" />
             </div>
             <div>Liked by ... and others</div>
-            {getDateDiff(slide.date) + " ago"}
+            <div className="text-sm"> {getDateDiff(slide.date) + " ago"}</div>
           </div>
           <div className="flex p-4">
             <input

@@ -76,14 +76,14 @@ export const updateUser = async (
 //POSTS
 
 export const createPost = async (
-  username: string,
+  user: any,
   url: string,
   caption: string,
   date: string
 ) => {
   try {
     const docRef = await addDoc(collection(db, "posts"), {
-      username: username,
+      user: user,
       url: url,
       caption: caption,
       date: date,

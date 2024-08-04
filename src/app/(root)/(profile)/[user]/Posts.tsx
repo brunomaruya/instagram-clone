@@ -30,6 +30,7 @@ export default function Posts({ username }: { username: string }) {
           {/* {console.log(userPosts)} */}
 
           <Lightbox
+            styles={{ container: { backgroundColor: "rgba(0, 0, 0, .8)" } }}
             open={index >= 0}
             index={index}
             close={() => setIndex(-1)}
@@ -37,13 +38,13 @@ export default function Posts({ username }: { username: string }) {
             render={{
               slide: ({ slide }) => <RenderPostsSlide slide={slide} />,
             }}
-            carousel={{ preload: 1, padding: 0 }}
           />
 
           {userPosts ? (
             <div className="grid grid-cols-3 w-full">
               {userPosts.map((post: any, index) => (
                 <Image
+                  className="w-full h-full object-cover cursor-pointer"
                   onClick={() => {
                     setIndex(index);
                   }}

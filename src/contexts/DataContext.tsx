@@ -54,7 +54,7 @@ export default function DataContextProvider({
   useEffect(() => {
     setCurrentUserPosts([]);
     posts.forEach((post) => {
-      if (post.username.toString() === currentUser.username.toString()) {
+      if (post.user.username.toString() === currentUser.username.toString()) {
         setCurrentUserPosts((oldArray: any) => [...oldArray, post]);
       }
     });

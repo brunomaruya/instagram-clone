@@ -38,7 +38,7 @@ export default function CreatePostModal() {
         getDownloadURL(ref(storage, postPath))
           .then((url) => {
             const date = new Date();
-            createPost(currentUser.username, url, caption, date.toString());
+            createPost(currentUser, url, caption, date.toString());
             updateUserPosts(
               currentUser.username,
               url,

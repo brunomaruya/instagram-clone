@@ -23,7 +23,11 @@ export default function Rightbar() {
         <div className="py-2">
           {users.map((user: any, index: number) => (
             <div className="px-4 py-2 " key={user.authId}>
-              <User name={user.name} type="suggestion" />
+              <User
+                name={user.name}
+                img={user.profilePicture}
+                type="suggestion"
+              />
             </div>
           ))}
         </div>

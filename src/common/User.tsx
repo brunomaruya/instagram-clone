@@ -1,21 +1,21 @@
 import Image from "next/image";
 import React, { useContext, useEffect, useState } from "react";
-import image from "../../public/assets/forest.jpg";
+import image from "../../public/assets/user.jpg";
 import { EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
 import { getDateDiff } from "@/functions/getDateDiff";
 import { follow } from "@/functions/firebaseFunctions";
 import { DataContext } from "@/contexts/DataContext";
-import { db } from "@/app/firebase";
-import { query, collection, where, getDocs } from "firebase/firestore";
 
 export default function User({
   type,
   name,
   date,
+  img,
 }: {
   type: "suggestion" | "post";
   name: string;
   date?: string;
+  img?: string;
 }) {
   const { currentUser } = useContext(DataContext);
   const [isFollowing, setIsFollowing] = useState(false);
@@ -35,18 +35,18 @@ export default function User({
           <Image
             width={500}
             height={500}
-            src={image}
+            src={img ? img : image}
             alt="forest"
             className={` ${
               type == "suggestion" ? "h-12 w-12" : "h-10 w-10"
-            } rounded-full cursor-pointer`}
+            } rounded-full cursor-pointer object-cover`}
           />
           <div className="flex-1 cursor-pointer">
             <span onClick={() => (window.location.href = `/${name}`)}>
               {name}
             </span>{" "}
             {type == "post" && (
-              <span> {date ? "•" + getDateDiff(date) : ""}</span>
+              <span> {date ? "• " + getDateDiff(date) : ""}</span>
             )}
           </div>
           <div className="cursor-pointer">
