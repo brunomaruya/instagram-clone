@@ -7,10 +7,20 @@ import Lightbox, {
   PostsSlide,
   useLightboxState,
 } from "yet-another-react-lightbox";
+import Image from "next/image";
+import User from "./User";
+import {
+  HeartIcon,
+  ChatBubbleOvalLeftIcon,
+  PaperAirplaneIcon,
+  BookmarkIcon,
+} from "@heroicons/react/24/outline";
+import { getDateDiff } from "@/functions/getDateDiff";
 
 declare module "yet-another-react-lightbox" {
   export interface PostsSlide {
     type: "posts-slide";
+    url: string;
     username: string;
     profilePicture?: string;
     caption?: string;
@@ -27,54 +37,54 @@ declare module "yet-another-react-lightbox" {
 export function isPostSlide(slide: Slide): slide is PostsSlide {
   return slide.type === "posts-slide";
 }
-export const slides: PostsSlide[] = [
-  {
-    type: "posts-slide",
-    username: "string",
-    profilePicture: "string",
-    caption: "string",
-    isFollowing: false,
-    isLiked: false,
-    isSaved: false,
-    usersWhoLiked: "string",
-  },
-  {
-    type: "posts-slide",
-    username: "string",
-    profilePicture: "string",
-    caption: "string",
-    isFollowing: false,
-    isLiked: false,
-    isSaved: false,
-    usersWhoLiked: "string",
-  },
-];
 
 export function RenderPostsSlide({ slide }: { slide: any }) {
-  const index = slides.findIndex((el) => el === slide);
-
-  return <div>{slide.username}</div>;
-}
-
-export default function PostsSlides() {
-  const [open, setOpen] = React.useState(false);
-  const [index, setIndex] = React.useState(-1);
-
+  const [comment, setComment] = React.useState("");
   return (
-    <div>
-      <h1>PostsSlides</h1>
-      <Lightbox
-        className=""
-        open={open}
-        close={() => setOpen(false)}
-        slides={slides}
-        render={{
-          slide: ({ slide }) =>
-            isPostSlide(slide) ? <RenderPostsSlide slide={slide} /> : null,
-        }}
-        carousel={{ preload: 1, padding: 0 }}
+    <div className="flex h-[90%] ">
+      <Image
+        className="object-contain"
+        src={slide.url}
+        width={500}
+        height={500}
+        alt="post"
       />
-      <button onClick={() => setOpen(true)}>Open Lightbox</button>
+      <div className="w-[500px] relative">
+        <div className="p-4 border-b-white border-b-[1px]">
+          <User name={slide.username} type="post" />
+        </div>
+        <div className="p-4">No Comments</div>
+
+        <div className="absolute bottom-0 w-full  ">
+          <div className="border-white border-t-[1px] border-b-[1px] p-4">
+            <div className="flex justify-between items-center w-full my-1 ">
+              <div className="flex">
+                <HeartIcon className="h-11 w-11 p-2 cursor-pointer" />
+                <ChatBubbleOvalLeftIcon className="h-11 w-11 p-2 cursor-pointer" />
+                <PaperAirplaneIcon className="h-11 w-11 p-2 cursor-pointer" />
+              </div>
+              <BookmarkIcon className="h-11 w-11 p-2 cursor-pointer" />
+            </div>
+            <div>Liked by ... and others</div>
+            {getDateDiff(slide.date) + " ago"}
+          </div>
+          <div className="flex p-4">
+            <input
+              onChange={(e) => setComment(e.target.value)}
+              type="text"
+              placeholder="Add a comment"
+              className="bg-transparent w-full focus:outline-none"
+            />
+            <button
+              className={`${
+                comment.length > 0 ? "text-blue-500" : "text-blue-950"
+              }`}
+            >
+              Post
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

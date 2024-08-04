@@ -45,7 +45,9 @@ export default function User({
             <span onClick={() => (window.location.href = `/${name}`)}>
               {name}
             </span>{" "}
-            {type == "post" && <span> • {date ? getDateDiff(date) : ""}</span>}
+            {type == "post" && (
+              <span> {date ? "•" + getDateDiff(date) : ""}</span>
+            )}
           </div>
           <div className="cursor-pointer">
             {type == "post" ? (
@@ -58,7 +60,7 @@ export default function User({
                   setIsFollowing(true);
                 }}
               >
-                {isFollowing || currentUser.username === name ? "" : "Follow"}
+                {isFollowing || currentUser.username === name ? "" : "• Follow"}
               </span>
             )}
           </div>

@@ -1,9 +1,5 @@
 import { db } from "@/app/firebase";
-import PostsSlides, {
-  isPostSlide,
-  RenderPostsSlide,
-  slides,
-} from "@/common/PostsSlides";
+import { isPostSlide, RenderPostsSlide } from "@/common/PostsSlides";
 import { DataContext } from "@/contexts/DataContext";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import Image from "next/image";
@@ -35,6 +31,7 @@ export default function Posts({ username }: { username: string }) {
 
           <Lightbox
             open={index >= 0}
+            index={index}
             close={() => setIndex(-1)}
             slides={userPosts}
             render={{
@@ -47,7 +44,9 @@ export default function Posts({ username }: { username: string }) {
             <div className="grid grid-cols-3 w-full">
               {userPosts.map((post: any, index) => (
                 <Image
-                  onClick={() => setIndex(index)}
+                  onClick={() => {
+                    setIndex(index);
+                  }}
                   alt=""
                   src={post.url}
                   key={index}

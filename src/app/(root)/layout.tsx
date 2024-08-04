@@ -5,7 +5,6 @@ import MainProvider from "@/providers/MainProvider";
 import EditProfileModal from "./(profile)/[user]/EditProfileModal";
 import Sidebar from "@/components/layout/Sidebar";
 import CreatePostModal from "@/components/layout/CreatePostModal";
-import PostsSlides from "@/common/PostsSlides";
 
 const inter = Inter({ subsets: ["latin"] });
 
