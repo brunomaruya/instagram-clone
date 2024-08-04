@@ -1,11 +1,9 @@
 "use client";
 import { db, storage } from "@/app/firebase";
-
 import { PostModalContext } from "@/contexts/PostModalContext";
 import { PostsContext } from "@/contexts/PostsContext";
 import { DataContext } from "@/contexts/DataContext";
 import { ArrowLeftIcon, PhotoIcon } from "@heroicons/react/24/outline";
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import Image from "next/image";
 import React, { useContext, useEffect, useState } from "react";

@@ -1,4 +1,7 @@
 "use client";
+import EditProfileContextProvider, {
+  EditProfileContext,
+} from "@/app/(root)/(profile)/[user]/EditProfileContext";
 import DataContextProvider from "@/contexts/DataContext";
 import PostsModalContextProvider from "@/contexts/PostModalContext";
 import PostsContextProvider from "@/contexts/PostsContext";
@@ -12,7 +15,9 @@ export default function MainProvider({ children }: { children: ReactNode }) {
       <SidebarIconContextProvider>
         <PostsContextProvider>
           <PostsModalContextProvider>
-            <DataContextProvider>{children}</DataContextProvider>
+            <EditProfileContextProvider>
+              <DataContextProvider>{children}</DataContextProvider>
+            </EditProfileContextProvider>
           </PostsModalContextProvider>
         </PostsContextProvider>
       </SidebarIconContextProvider>

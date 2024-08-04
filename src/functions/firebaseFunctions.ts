@@ -60,6 +60,19 @@ export const createUserDb = async ({
   }
 };
 
+export const updateUser = async (
+  username: string,
+  updatedUser: {
+    name?: string;
+    profilePicture?: string;
+    about?: string;
+  }
+) => {
+  await updateDoc(doc(db, "users", username.toString()), updatedUser)
+    .then(() => location.reload())
+    .catch((e) => console.log("updateDoc Error: ", e));
+};
+
 //POSTS
 
 export const createPost = async (
@@ -108,6 +121,6 @@ export async function follow(user: string, userToFollow: string) {
     following: arrayUnion(userToFollow),
   });
   await updateDoc(doc(db, "users", userToFollow.toString()), {
-    follower: arrayUnion(user),
+    followers: arrayUnion(user),
   });
 }

@@ -3,6 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  /* border: 0.5px solid red; */
+}
+
 .logo {
   font-family: "Grand Hotel", cursive;
 }

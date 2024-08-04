@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../../app/globals.css";
-import Sidebar from "../../components/Sidebar";
 import MainProvider from "@/providers/MainProvider";
-import CreatePostModal from "@/components/CreatePostModal";
+import EditProfileModal from "./(profile)/[user]/EditProfileModal";
+import Sidebar from "@/components/layout/Sidebar";
+import CreatePostModal from "@/components/layout/CreatePostModal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body>
         <MainProvider>
           <CreatePostModal />
+          <EditProfileModal />
           <div className="flex justify-between scroll-p-0 ">
             <Sidebar />
             <div className="w-full ml-0 md:ml-[76px]  xl:ml-[244px] 2xl:ml-[335px]">

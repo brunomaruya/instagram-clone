@@ -9,7 +9,6 @@ import Image from "next/image";
 import React, { useContext, useEffect, useState } from "react";
 
 export default function Feed() {
-  const { imageList } = useContext(PostsContext);
   const { posts } = useContext(DataContext);
 
   return (

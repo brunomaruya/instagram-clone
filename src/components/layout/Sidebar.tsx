@@ -1,14 +1,12 @@
-import InstagramLogo from "../common/InstagramLogo";
-
-import React from "react";
-import HomeBtn from "./SidebarBtns/HomeBtn";
-import SearchBtn from "./SidebarBtns/SearchBtn";
+import InstagramLogo from "@/common/InstagramLogo";
+import CreateBtn from "./SidebarBtns/CreateBtn";
 import ExploreBtn from "./SidebarBtns/ExploreBtn";
-import ReelsBtn from "./SidebarBtns/ReelsBtn";
+import HomeBtn from "./SidebarBtns/HomeBtn";
 import MessagesBtn from "./SidebarBtns/MessagesBtn";
 import NotificationsBtn from "./SidebarBtns/NotificationsBtn";
-import CreateBtn from "./SidebarBtns/CreateBtn";
 import Profile from "./SidebarBtns/Profile";
+import ReelsBtn from "./SidebarBtns/ReelsBtn";
+import SearchBtn from "./SidebarBtns/SearchBtn";
 
 export default function Sidebar() {
   return (

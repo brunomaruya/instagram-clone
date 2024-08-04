@@ -1,10 +1,11 @@
-import Topbar from "@/components/Topbar";
 import InstagramLogo from "../../common/InstagramLogo";
 import Image from "next/image";
-import Bottombar from "@/components/Bottombar";
-import Feed from "@/components/Feed";
-import Rightbar from "@/components/Rightbar";
-import Stories from "@/components/Stories";
+
+import Rightbar from "@/components/home/Rightbar";
+import Stories from "@/components/home/Stories";
+import Bottombar from "@/components/home/Bottombar";
+import Feed from "@/components/home/Feed";
+import Topbar from "@/components/home/Topbar";
 
 export default function Home() {
   return (
