@@ -1,11 +1,18 @@
 import { db } from "@/app/firebase";
+import PostsSlides, {
+  isPostSlide,
+  RenderPostsSlide,
+  slides,
+} from "@/common/PostsSlides";
 import { DataContext } from "@/contexts/DataContext";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import Image from "next/image";
 import React, { useContext, useEffect, useState } from "react";
+import Lightbox from "yet-another-react-lightbox";
 
 export default function Posts({ username }: { username: string }) {
   const [userPosts, setUserPosts] = useState<any[]>([]);
+  const [index, setIndex] = React.useState(-1);
 
   useEffect(() => {
     getPosts();
@@ -20,18 +27,42 @@ export default function Posts({ username }: { username: string }) {
   };
 
   return (
-    <div className="border-t-[#868686] border-t-[1px] w-full flex flex-col  items-center">
-      <div className="h-[52px] flex items-center">Posts</div>
-
+    <>
       {userPosts ? (
-        <div className="grid grid-cols-3 w-full">
-          {userPosts.map((post: any, index) => (
-            <Image alt="" src={post.url} key={index} height={500} width={500} />
-          ))}
+        <div className="border-t-[#868686] border-t-[1px] w-full flex flex-col  items-center">
+          <div className="h-[52px] flex items-center">Posts</div>
+          {/* {console.log(userPosts)} */}
+
+          <Lightbox
+            open={index >= 0}
+            close={() => setIndex(-1)}
+            slides={userPosts}
+            render={{
+              slide: ({ slide }) => <RenderPostsSlide slide={slide} />,
+            }}
+            carousel={{ preload: 1, padding: 0 }}
+          />
+
+          {userPosts ? (
+            <div className="grid grid-cols-3 w-full">
+              {userPosts.map((post: any, index) => (
+                <Image
+                  onClick={() => setIndex(index)}
+                  alt=""
+                  src={post.url}
+                  key={index}
+                  height={500}
+                  width={500}
+                />
+              ))}
+            </div>
+          ) : (
+            "no posts"
+          )}
         </div>
       ) : (
-        "no posts"
+        ""
       )}
-    </div>
+    </>
   );
 }
