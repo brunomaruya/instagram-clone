@@ -12,7 +12,7 @@ export default function Rightbar() {
   return (
     <div>
       <div className="px-4">
-        <User name={currentUser ? currentUser.name : ""} type="suggestion" />
+        <User name={currentUser ? currentUser.name : ""} type="currentUser" />
       </div>
 
       <main className="mt-6 mb-2">
