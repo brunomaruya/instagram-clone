@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import Header from "./MainComponent";
 import { useRouter } from "next/navigation";
 import MainComponent from "./MainComponent";
 

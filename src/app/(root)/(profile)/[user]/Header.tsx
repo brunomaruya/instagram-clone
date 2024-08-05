@@ -27,15 +27,15 @@ export default function Header({ user }: { user: any }) {
                 src={currentUser.profilePicture}
                 width={500}
                 height={500}
-                alt="forest"
+                alt="user"
               />
             ) : (
               <Image
-                className="rounded-full h-[100px] w-[100px]  h-[150px] w-[150px]"
+                className="rounded-full h-[100px] w-[100px]  xl:h-[150px] xl:w-[150px]"
                 src={userImg}
                 width={500}
                 height={500}
-                alt="forest"
+                alt="user"
               />
             )}
           </div>
@@ -49,7 +49,6 @@ export default function Header({ user }: { user: any }) {
                       <Btn
                         onClick={() => {
                           openModal();
-                          console.log("clicked");
                         }}
                         text="Edit profile"
                       />

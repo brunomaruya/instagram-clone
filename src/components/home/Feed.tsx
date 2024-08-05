@@ -1,20 +1,14 @@
 "use client";
-import { storage } from "@/app/firebase";
 import Post from "@/common/Post";
 import { DataContext } from "@/contexts/DataContext";
-import { PostsContext } from "@/contexts/PostsContext";
-
-import { getDownloadURL, listAll, ref } from "firebase/storage";
-import Image from "next/image";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 
 export default function Feed() {
   const { posts, currentUser } = useContext(DataContext);
 
   function containsObject(obj: any, list: any[]) {
     var i;
-    console.log(currentUser.username);
-    console.log(list);
+
     if (list) {
       for (i = 0; i < list.length; i++) {
         console.timeLog(list[i].username);

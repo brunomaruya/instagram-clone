@@ -12,12 +12,10 @@ import User from "./User";
 export default function Post({ post }: any) {
   return (
     <div className="w-full sm:w-[470px] mx-auto pb-4 mb-5 border-b-[1px] border-[#333333]">
-      {/* HEADER  */}
-      <div className="pb-3">
+      <header className="pb-3">
         <User user={post.user} type="post" date={post.date} />
-      </div>
+      </header>
 
-      {/* MAIN  */}
       <main>
         <Image
           width={500}
@@ -27,7 +25,7 @@ export default function Post({ post }: any) {
           className="w-full sm:w-[468px] h-[580px] object-cover rounded-md"
         />
       </main>
-      {/* FOOTER  */}
+
       <footer className="w-full px-4 md:px-0 text-[14px] ">
         <div className="flex justify-between items-center w-full my-1">
           <div className="flex">
@@ -40,7 +38,6 @@ export default function Post({ post }: any) {
         <div>Curtido por aaaaa e outras pessoas</div>
         <div className="mt-2">
           {post.user.username}
-
           <span> {post.caption}</span>
         </div>
         <div className="mt-2">Ver todos os comentários</div>

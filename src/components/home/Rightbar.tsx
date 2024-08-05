@@ -2,7 +2,6 @@
 import User from "@/common/User";
 import { DataContext } from "@/contexts/DataContext";
 import React, { useContext } from "react";
-import { useRTL } from "yet-another-react-lightbox";
 
 export default function Rightbar() {
   const { users, currentUser } = useContext(DataContext);

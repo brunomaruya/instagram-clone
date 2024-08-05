@@ -4,15 +4,10 @@ import { EditProfileContext } from "./EditProfileContext";
 import Image from "next/image";
 import userImg from "../../../../../public/assets/user.jpg";
 import { storage } from "@/app/firebase";
-import {
-  createPost,
-  updateUser,
-  updateUserPosts,
-} from "@/functions/firebaseFunctions";
+import { updateUser } from "@/functions/firebaseFunctions";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
 import { DataContext } from "@/contexts/DataContext";
-import { set } from "react-hook-form";
 
 export default function EditProfileModal() {
   const { isModalOpen, closeModal } = useContext(EditProfileContext);
@@ -24,13 +19,11 @@ export default function EditProfileModal() {
   const showImage = (e: any) => {
     if (e.target.files && e.target.files[0]) {
       setUploadedImage(e.target.files[0]);
-      console.log(e.target.files[0]);
     }
   };
 
   const update = (e: any) => {
     closeModal();
-    // e.preventDefault();
     if (uploadedImage) {
       const postPath = `profilePicture/${uploadedImage.name + v4()}`;
       const imageRef = ref(storage, postPath);
@@ -46,7 +39,7 @@ export default function EditProfileModal() {
               });
             })
             .catch((e) => {
-              console.log(e);
+              console.error("update: ", e);
             });
         });
       });

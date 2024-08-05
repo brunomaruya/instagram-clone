@@ -4,7 +4,6 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/app/firebase";
 import Header from "./Header";
 import Posts from "./Posts";
-import EditProfileModal from "./EditProfileModal";
 
 export default function MainComponent({ username }: { username: string }) {
   const [user, setUser] = useState<any>();

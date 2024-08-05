@@ -1,9 +1,5 @@
-import InstagramLogo from "../../common/InstagramLogo";
-import Image from "next/image";
-
 import Rightbar from "@/components/home/Rightbar";
 import Stories from "@/components/home/Stories";
-import Bottombar from "@/components/home/Bottombar";
 import Feed from "@/components/home/Feed";
 import Topbar from "@/components/home/Topbar";
 
@@ -20,9 +16,6 @@ export default function Home() {
         <div>
           <Feed />
         </div>
-        {/* <div className="fixed bottom-0 w-full md:hidden">
-          <Bottombar />
-        </div> */}
       </div>
       <div className="w-[383px] pl-16  border-transparent border mt-9 hidden xl:block">
         <Rightbar />

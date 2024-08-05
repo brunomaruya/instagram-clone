@@ -2,11 +2,7 @@
 import * as React from "react";
 import "yet-another-react-lightbox/styles.css";
 
-import Lightbox, {
-  Slide,
-  PostsSlide,
-  useLightboxState,
-} from "yet-another-react-lightbox";
+import { Slide, PostsSlide } from "yet-another-react-lightbox";
 import Image from "next/image";
 import User from "./User";
 import {

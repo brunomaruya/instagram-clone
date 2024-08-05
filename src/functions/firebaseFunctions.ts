@@ -30,7 +30,6 @@ export function signIn(data: any) {
   signInWithEmailAndPassword(auth, data.email, data.password)
     .then((userCredential) => {
       const user = userCredential.user;
-      console.log(user);
       window.location.href = "/";
     })
     .catch((error) => {
@@ -70,7 +69,7 @@ export const updateUser = async (
 ) => {
   await updateDoc(doc(db, "users", username.toString()), updatedUser)
     .then(() => location.reload())
-    .catch((e) => console.log("updateDoc Error: ", e));
+    .catch((e) => console.error("updateDoc Error: ", e));
 };
 
 //POSTS
