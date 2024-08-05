@@ -5,6 +5,7 @@ import MainProvider from "@/providers/MainProvider";
 import EditProfileModal from "./(profile)/[user]/EditProfileModal";
 import Sidebar from "@/components/layout/Sidebar";
 import CreatePostModal from "@/components/layout/CreatePostModal";
+import Bottombar from "@/components/home/Bottombar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,6 +28,9 @@ export default function RootLayout({
           <div className="flex justify-between scroll-p-0 ">
             <Sidebar />
             <div className="w-full ">{children}</div>
+            <div className="fixed bottom-0 w-full md:hidden ">
+              <Bottombar />
+            </div>
           </div>
         </MainProvider>
       </body>

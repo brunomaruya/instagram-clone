@@ -20,9 +20,9 @@ export default function Home() {
         <div>
           <Feed />
         </div>
-        <div className="fixed bottom-0 w-full md:hidden">
+        {/* <div className="fixed bottom-0 w-full md:hidden">
           <Bottombar />
-        </div>
+        </div> */}
       </div>
       <div className="w-[383px] pl-16  border-transparent border mt-9 hidden xl:block">
         <Rightbar />

@@ -9,7 +9,7 @@ import {
 
 function Header() {
   return (
-    <header className=" h-[75px] w-full flex justify-between items-center px-4">
+    <header className=" h-[75px] w-full flex justify-between items-center px-4 border-b-[1px] border-white">
       <div className="flex items-center gap-3  ">
         <Image
           src={userImg}
@@ -37,7 +37,7 @@ function Header() {
 
 function Footer() {
   return (
-    <footer className="w-full ">
+    <footer className="w-full  ">
       <form className="m-4 ">
         <input
           type="text"
@@ -52,10 +52,10 @@ function Footer() {
 export default function Chat() {
   return (
     <section className="w-full relative">
-      <div className="fixed top-0 left-[calc(77px+380px)] right-0">
+      <div className="fixed top-0 left-[120px]  md:left-[calc(77px+120px)]  lg:left-[calc(77px+380px)] right-0">
         <Header />
       </div>
-      <div className="fixed bottom-0 left-[calc(77px+380px)] right-0">
+      <div className="fixed bottom-12 md:bottom-0 left-[120px] md:left-[calc(77px+120px)] lg:left-[calc(77px+380px)] right-0">
         <Footer />
       </div>
     </section>
