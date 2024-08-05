@@ -106,7 +106,9 @@ export default function EditProfileModal() {
             <div className="w-full flex justify-between">
               <label htmlFor="name">Name: </label>
               <input
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
                 type="text"
                 className="w-[400px] text-black px-2"
                 placeholder="Your name"
