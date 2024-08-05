@@ -4,7 +4,7 @@ import Image from "next/image";
 
 function Preview() {
   return (
-    <div className="flex gap-3 py-2 px-6 hover:bg-[#262626] cursor-pointer">
+    <div className="flex gap-3 py-2 px-6 hover:bg-[#262626] cursor-pointer ">
       <Image
         src={userImg}
         alt=""
@@ -24,7 +24,7 @@ function Preview() {
 
 export default function MessagesPreview() {
   return (
-    <section className="w-[380px] border-r-white border-r-[1px]">
+    <section className="min-w-[380px] border-r-white border-r-[1px]">
       <h1 className="pt-[14px] px-6 pb-[10px]">Messages</h1>
       <div>
         <Preview />
