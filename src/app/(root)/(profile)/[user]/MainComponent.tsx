@@ -24,7 +24,7 @@ export default function MainComponent({ username }: { username: string }) {
   };
 
   return (
-    <div className=" flex justify-center bg-blue-200 md:ml-[77px] 2xl:ml-[335px]">
+    <div className=" flex justify-center  md:ml-[77px] 2xl:ml-[335px]">
       {user ? (
         <div className="w-[975px] flex items-center  flex-col">
           <Header user={user} />
