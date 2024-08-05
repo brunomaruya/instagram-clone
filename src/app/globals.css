@@ -4,7 +4,8 @@
 @tailwind utilities;
 
 * {
-  /* border: 0.5px solid red; */
+  outline: 0.1px solid rgba(255, 0, 0, 0.3);
+  box-sizing: border-box;
 }
 
 .logo {
@@ -51,7 +52,7 @@ body {
     @apply flex items-center gap-3 text-xl p-3 my-1 hover:bg-[#1a1a1a] rounded-lg hover:cursor-pointer;
   }
   .sidebar {
-    @apply xl:w-[72px] 2xl:min-w-[335px] h-screen px-3 pt-2 pb-5 hidden md:flex flex-col justify-between  !border-r-[1px] !border-[#1a1a1a] fixed;
+    @apply 2xl:min-w-[335px] h-screen px-3 pt-2 pb-5 hidden md:flex flex-col justify-between  !border-r-[1px] !border-[#1a1a1a] fixed;
   }
   .sign-box {
     @apply border-[1px] border-white rounded-md flex flex-col items-center w-[350px] py-[10px];

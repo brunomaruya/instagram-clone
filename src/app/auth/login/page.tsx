@@ -1,7 +1,6 @@
-import SigninForm from "@/components/SigninForm";
-import SignupForm from "@/components/SignupForm";
 import Link from "next/link";
 import React from "react";
+import SigninForm from "./SigninForm";
 
 export default function page() {
   return (
