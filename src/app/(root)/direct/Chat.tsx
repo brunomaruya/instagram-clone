@@ -49,13 +49,52 @@ function Footer() {
   );
 }
 
+function Message({
+  sentUser,
+  text,
+}: {
+  sentUser: "me" | "friend";
+  text: string;
+}) {
+  return (
+    <div className={`w-full mb-2`}>
+      <div
+        className={`flex gap-2 items-center  mx-4  ${
+          sentUser === "me" ? "justify-end" : ""
+        }`}
+      >
+        <Image
+          className={`w-7 h-7 rounded-2xl ${sentUser === "me" ? "hidden" : ""}`}
+          src={userImg}
+          alt=""
+          width={500}
+          height={50}
+        />
+        <div
+          className={`${
+            sentUser === "me" ? "bg-[#3797F0] " : "bg-[#262626]"
+          } py-[7px] px-3 w-fit rounded-full `}
+        >
+          <div> {text}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Chat() {
   return (
     <section className="w-full relative">
       <div className="fixed top-0 left-[120px]  md:left-[calc(77px+120px)]  lg:left-[calc(77px+380px)] right-0">
         <Header />
       </div>
-      <div className="fixed bottom-12 md:bottom-0 left-[120px] md:left-[calc(77px+120px)] lg:left-[calc(77px+380px)] right-0">
+
+      <div className="absolute bottom-[48px+76px] md:bottom-[76px] left-0 right-0 ">
+        <Message sentUser="friend" text="Hello" />
+        <Message sentUser="me" text="Hello" />
+      </div>
+
+      <div className="fixed bottom-12  md:bottom-0 left-[120px] md:left-[calc(77px+120px)] lg:left-[calc(77px+380px)] right-0">
         <Footer />
       </div>
     </section>

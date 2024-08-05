@@ -9,22 +9,31 @@ import Link from "next/link";
 
 export default function User({
   type,
-  name,
+  user,
   date,
-  img,
 }: {
   type: "suggestion" | "post" | "currentUser";
-  name: string;
+  user: any;
   date?: string;
-  img?: string;
 }) {
   const { currentUser } = useContext(DataContext);
   const [isFollowing, setIsFollowing] = useState(false);
 
+  function containsObject(obj: any, list: any[]) {
+    var i;
+    for (i = 0; i < list.length; i++) {
+      if (list[i].username === obj.username) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   useEffect(() => {
     if (currentUser) {
       if (currentUser.hasOwnProperty("following")) {
-        setIsFollowing(currentUser.following.includes(name.toString()));
+        setIsFollowing(containsObject(user, currentUser.following));
       }
     }
   }, [currentUser]);
@@ -37,7 +46,7 @@ export default function User({
             <Image
               width={500}
               height={500}
-              src={img ? img : image}
+              src={user.profilePicture ? user.profilePicture : image}
               alt="forest"
               className={` ${
                 type == "suggestion" ? "h-12 w-12" : "h-10 w-10"
@@ -45,7 +54,7 @@ export default function User({
             />
             <div className="flex-1 cursor-pointer">
               <span onClick={() => (window.location.href = `/${name}`)}>
-                {name}
+                {user.username}
               </span>{" "}
               {type == "post" && (
                 <span> {date ? "• " + getDateDiff(date) : ""}</span>
@@ -62,13 +71,13 @@ export default function User({
                     <span
                       className="text-[#0072BD] text-xs"
                       onClick={() => {
-                        follow(currentUser.username, name);
+                        follow(currentUser, user);
                         setIsFollowing(true);
                       }}
                     >
-                      {isFollowing || currentUser.username === name
+                      {isFollowing || currentUser.username === user.username
                         ? ""
-                        : "• Follow"}
+                        : "Follow"}
                     </span>
                   )}
                 </>

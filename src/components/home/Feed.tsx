@@ -9,13 +9,17 @@ import Image from "next/image";
 import React, { useContext, useEffect, useState } from "react";
 
 export default function Feed() {
-  const { posts } = useContext(DataContext);
+  const { posts, currentUser } = useContext(DataContext);
 
   return (
     <div>
-      {posts.map((post: any, index: any) => {
-        return <Post key={index} post={post} />;
-      })}
+      {currentUser ? (
+        <>
+          {posts.map((post: any, index: any) => {
+            if (currentUser) return <Post key={index} post={post} />;
+          })}
+        </>
+      ) : null}
     </div>
   );
 }

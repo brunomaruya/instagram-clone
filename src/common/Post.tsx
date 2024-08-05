@@ -14,12 +14,7 @@ export default function Post({ post }: any) {
     <div className="w-full sm:w-[470px] mx-auto pb-4 mb-5 border-b-[1px] border-[#333333]">
       {/* HEADER  */}
       <div className="pb-3">
-        <User
-          name={post.user.username}
-          type="post"
-          date={post.date}
-          img={post.user.profilePicture}
-        />
+        <User user={post.user} type="post" date={post.date} />
       </div>
 
       {/* MAIN  */}
@@ -45,7 +40,7 @@ export default function Post({ post }: any) {
         <div>Curtido por aaaaa e outras pessoas</div>
         <div className="mt-2">
           {post.user.username}
-          {console.log(post.user.username)}
+
           <span> {post.caption}</span>
         </div>
         <div className="mt-2">Ver todos os comentários</div>

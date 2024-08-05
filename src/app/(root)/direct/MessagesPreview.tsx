@@ -4,7 +4,7 @@ import Image from "next/image";
 
 function Preview() {
   return (
-    <div className="flex gap-3 py-2 px-6 hover:bg-[#262626] cursor-pointer ">
+    <div className="flex gap-3 py-2 px-6 hover:bg-[#262626] cursor-pointer w-full ">
       <Image
         src={userImg}
         alt=""

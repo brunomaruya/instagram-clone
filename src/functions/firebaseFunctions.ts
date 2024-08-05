@@ -116,11 +116,11 @@ export async function updateData(path: string, id: string, newData: any) {
 
 //FOLLOW
 
-export async function follow(user: string, userToFollow: string) {
-  await updateDoc(doc(db, "users", user.toString()), {
+export async function follow(user: any, userToFollow: any) {
+  await updateDoc(doc(db, "users", user.username.toString()), {
     following: arrayUnion(userToFollow),
   });
-  await updateDoc(doc(db, "users", userToFollow.toString()), {
+  await updateDoc(doc(db, "users", userToFollow.username.toString()), {
     followers: arrayUnion(user),
   });
 }

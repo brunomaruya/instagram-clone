@@ -15,11 +15,7 @@ export default function Rightbar() {
       {currentUser ? (
         <>
           <div className="px-4">
-            <User
-              name={currentUser.name}
-              type="currentUser"
-              img={currentUser.profilePicture}
-            />
+            <User type="currentUser" user={currentUser} />
           </div>
           <main className="mt-6 mb-2">
             <div className="flex justify-between py-1 px-4 text-sm">
@@ -31,11 +27,7 @@ export default function Rightbar() {
                 <>
                   {user.username !== currentUser.username ? (
                     <div className="px-4 py-2 " key={user.authId}>
-                      <User
-                        name={user.name}
-                        img={user.profilePicture}
-                        type="suggestion"
-                      />
+                      <User user={user} type="suggestion" />
                     </div>
                   ) : null}
                 </>
