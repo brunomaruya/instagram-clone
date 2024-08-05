@@ -11,12 +11,24 @@ import React, { useContext, useEffect, useState } from "react";
 export default function Feed() {
   const { posts, currentUser } = useContext(DataContext);
 
+  function containsObject(obj: any, list: any[]) {
+    var i;
+    for (i = 0; i < list.length; i++) {
+      if (list[i].username === obj.username) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   return (
     <div>
       {currentUser ? (
         <>
           {posts.map((post: any, index: any) => {
-            if (currentUser) return <Post key={index} post={post} />;
+            if (containsObject(post.user, currentUser.following))
+              return <Post key={index} post={post} />;
           })}
         </>
       ) : null}
