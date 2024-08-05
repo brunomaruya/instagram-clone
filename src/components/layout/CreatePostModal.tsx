@@ -41,6 +41,7 @@ export default function CreatePostModal() {
             createPost(currentUser, url, caption, date.toString());
             updateUserPosts(
               currentUser.username,
+              currentUser,
               url,
               caption,
               date.toString()

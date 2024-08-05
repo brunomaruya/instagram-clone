@@ -27,7 +27,6 @@ export default function Posts({ username }: { username: string }) {
       {userPosts ? (
         <div className="border-t-[#868686] border-t-[1px] w-full flex flex-col  items-center">
           <div className="h-[52px] flex items-center">Posts</div>
-          {/* {console.log(userPosts)} */}
 
           <Lightbox
             styles={{ container: { backgroundColor: "rgba(0, 0, 0, .8)" } }}

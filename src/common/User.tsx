@@ -21,8 +21,9 @@ export default function User({
 
   function containsObject(obj: any, list: any[]) {
     var i;
+
     for (i = 0; i < list.length; i++) {
-      if (list[i].username === obj.username) {
+      if (list[i].username === obj?.username) {
         return true;
       }
     }
@@ -40,54 +41,56 @@ export default function User({
 
   return (
     <>
-      {currentUser ? (
-        <Link href={`/${name}`}>
-          <header className="flex items-center gap-2  ">
-            <Image
-              width={500}
-              height={500}
-              src={user.profilePicture ? user.profilePicture : image}
-              alt="forest"
-              className={` ${
-                type == "suggestion" ? "h-12 w-12" : "h-10 w-10"
-              } rounded-full cursor-pointer object-cover`}
-            />
-            <div className="flex-1 cursor-pointer">
-              <span onClick={() => (window.location.href = `/${name}`)}>
-                {user.username}
-              </span>{" "}
-              {type == "post" && (
-                <span> {date ? "• " + getDateDiff(date) : ""}</span>
-              )}
-            </div>
-            <div className="cursor-pointer">
-              {type == "post" ? (
-                <EllipsisHorizontalIcon className="h-8 w-8 cursor-pointer" />
-              ) : (
-                <>
-                  {type === "currentUser" ? (
-                    ""
-                  ) : (
-                    <span
-                      className="text-[#0072BD] text-xs"
-                      onClick={() => {
-                        follow(currentUser, user);
-                        setIsFollowing(true);
-                      }}
-                    >
-                      {isFollowing || currentUser.username === user.username
-                        ? ""
-                        : "Follow"}
-                    </span>
+      {user ? (
+        <>
+          {currentUser ? (
+            <Link href={`/${user.username}`}>
+              <header className="flex items-center gap-2  ">
+                <Image
+                  width={500}
+                  height={500}
+                  src={user.profilePicture ? user.profilePicture : image}
+                  alt="forest"
+                  className={` ${
+                    type == "suggestion" ? "h-12 w-12" : "h-10 w-10"
+                  } rounded-full cursor-pointer object-cover`}
+                />
+                <div className="flex-1 cursor-pointer">
+                  <span>{user.username}</span>{" "}
+                  {type == "post" && (
+                    <span> {date ? "• " + getDateDiff(date) : ""}</span>
                   )}
-                </>
-              )}
-            </div>
-          </header>
-        </Link>
-      ) : (
-        ""
-      )}
+                </div>
+                <div className="cursor-pointer">
+                  {type == "post" ? (
+                    <EllipsisHorizontalIcon className="h-8 w-8 cursor-pointer" />
+                  ) : (
+                    <>
+                      {type === "currentUser" ? (
+                        ""
+                      ) : (
+                        <span
+                          className="text-[#0072BD] text-xs"
+                          onClick={() => {
+                            follow(currentUser, user);
+                            setIsFollowing(true);
+                          }}
+                        >
+                          {isFollowing || currentUser.username === user.username
+                            ? ""
+                            : "Follow"}
+                        </span>
+                      )}
+                    </>
+                  )}
+                </div>
+              </header>
+            </Link>
+          ) : (
+            ""
+          )}
+        </>
+      ) : null}
     </>
   );
 }

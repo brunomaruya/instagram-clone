@@ -95,13 +95,14 @@ export const createPost = async (
 
 export const updateUserPosts = async (
   username: string,
+  user: any,
   url: string,
   caption: string,
   date: string
 ) => {
   await updateDoc(doc(db, "users", username.toString()), {
     posts: arrayUnion({
-      username: username,
+      user: user,
       url: url,
       caption: caption,
       date: date,

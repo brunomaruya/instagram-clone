@@ -24,13 +24,13 @@ export default function Rightbar() {
             </div>
             <div className="py-2">
               {users.map((user: any, index: number) => (
-                <>
+                <div key={user.authId}>
                   {user.username !== currentUser.username ? (
-                    <div className="px-4 py-2 " key={user.authId}>
+                    <div className="px-4 py-2 ">
                       <User user={user} type="suggestion" />
                     </div>
                   ) : null}
-                </>
+                </div>
               ))}
             </div>
           </main>

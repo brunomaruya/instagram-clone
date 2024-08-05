@@ -13,10 +13,17 @@ export default function Feed() {
 
   function containsObject(obj: any, list: any[]) {
     var i;
-    for (i = 0; i < list.length; i++) {
-      if (list[i].username === obj.username) {
-        return true;
+    console.log(currentUser.username);
+    console.log(list);
+    if (list) {
+      for (i = 0; i < list.length; i++) {
+        console.timeLog(list[i].username);
+        if (list[i].username === obj.username) {
+          return true;
+        }
       }
+    } else if (obj.username === currentUser.username) {
+      return true;
     }
 
     return false;
