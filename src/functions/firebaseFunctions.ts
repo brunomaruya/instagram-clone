@@ -22,8 +22,7 @@ export function createUser(data: any) {
       createUserDb({ user, data });
     })
     .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
+      console.log(error);
     });
 }
 
@@ -34,8 +33,7 @@ export function signIn(data: any) {
       window.location.href = "/";
     })
     .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
+      console.log(error);
     });
 }
 

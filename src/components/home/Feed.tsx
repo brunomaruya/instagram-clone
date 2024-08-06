@@ -7,8 +7,10 @@ export default function Feed() {
   const { posts, currentUser } = useContext(DataContext);
 
   const checkIfFollowing = (post: { username: string }) => {
-    if (currentUser.following.includes(post.username)) {
-      return true;
+    if (currentUser.following) {
+      if (currentUser.following.includes(post.username)) {
+        return true;
+      }
     } else if (post.username === currentUser.username) {
       return true;
     }

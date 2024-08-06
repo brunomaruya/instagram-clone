@@ -15,7 +15,6 @@ interface IUser {
 export default function User({
   type,
   user,
-
   date,
 }: {
   type: "suggestion" | "post" | "currentUser";
@@ -25,44 +24,43 @@ export default function User({
   const { currentUser } = useContext(DataContext);
   const [isFollowing, setIsFollowing] = useState(false);
 
-  // function containsObject(obj: any, list: any[]) {
-  //   var i;
-  //   for (i = 0; i < list.length; i++) {
-  //     if (list[i].username === obj?.username) {
-  //       return true;
-  //     }
-  //   }
-  //   return false;
-  // }
+  function containsUsername(
+    currentUser: { following: string[] },
+    followingUser: string
+  ) {
+    const result = currentUser.following.includes(followingUser);
+    return result;
+  }
 
-  // useEffect(() => {
-  //   if (currentUser) {
-  //     if (currentUser.hasOwnProperty("following")) {
-  //       setIsFollowing(containsObject(username, currentUser.following));
-  //     }
-  //   }
-  // }, [currentUser]);
+  useEffect(() => {
+    if (currentUser) {
+      if (currentUser.hasOwnProperty("following")) {
+        setIsFollowing(containsUsername(currentUser, user.username));
+      }
+    }
+  }, [currentUser]);
 
   const dateElement = <span> {date ? "• " + getDateDiff(date) : ""}</span>;
   const postCaseElement = (
     <EllipsisHorizontalIcon className="h-8 w-8 cursor-pointer" />
   );
-  const notCurrentUserCaseElement = (
-    <>
-      {type === "currentUser" ? null : (
-        <span
-          className="text-[#0072BD] text-xs"
-          onClick={() => {
-            follow(currentUser.username, user.username);
-            setIsFollowing(true);
-          }}
-        >
-          {isFollowing || currentUser.username === user.username
-            ? ""
-            : "Follow"}
-        </span>
-      )}
-    </>
+
+  const currentUserCaseElement = (
+    <Link href="/auth/login" className="text-[#0072BD] text-xs">
+      Log out
+    </Link>
+  );
+  const suggestionCaseElement = (
+    <span
+      className="text-[#0072BD] text-xs"
+      onClick={(e) => {
+        follow(currentUser.username, user.username);
+        e.preventDefault();
+        setIsFollowing(true);
+      }}
+    >
+      {isFollowing || currentUser.username === user.username ? "" : "Follow"}
+    </span>
   );
   return (
     <>
@@ -82,7 +80,11 @@ export default function User({
               <span>{user.username}</span> {type == "post" && dateElement}
             </div>
             <div className="cursor-pointer">
-              {type == "post" ? postCaseElement : notCurrentUserCaseElement}
+              {type == "post"
+                ? postCaseElement
+                : type === "currentUser"
+                ? currentUserCaseElement
+                : suggestionCaseElement}
             </div>
           </header>
         </Link>
