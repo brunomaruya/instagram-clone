@@ -1,11 +1,12 @@
 export const objArrFilter = (objArr, strArr) => {
   //   const objArr = [{ name: "1" }, { name: "2" }, { name: "3" }];
   //   const nameArr = ["1", "2"];
-  console.log(objArr);
-  console.log(strArr);
 
-  const arr = objArr.filter((obj) => strArr.includes(obj.id));
+  if (strArr) {
+    console.log(objArr);
+    console.log(strArr);
+    const arr = objArr.filter((obj) => strArr.includes(obj.id));
+    return arr;
+  }
   // console.log(arr);
-
-  return arr;
 };

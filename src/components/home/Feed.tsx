@@ -10,6 +10,8 @@ export default function Feed() {
     if (currentUser.following) {
       if (currentUser.following.includes(post.username)) {
         return true;
+      } else if (post.username === currentUser.username) {
+        return true;
       }
     } else if (post.username === currentUser.username) {
       return true;
