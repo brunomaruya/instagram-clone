@@ -36,6 +36,7 @@ export function isPostSlide(slide: Slide): slide is PostsSlide {
 
 export function RenderPostsSlide({ slide }: { slide: any }) {
   const [comment, setComment] = React.useState("");
+
   return (
     <>
       {slide ? (

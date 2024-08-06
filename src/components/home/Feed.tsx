@@ -29,6 +29,7 @@ export default function Feed() {
         <>
           {posts.map((post: any, index: any) => {
             // if (containsObject(post.user, currentUser.following))
+            console.log(posts);
             return <Post key={index} post={post} />;
           })}
         </>

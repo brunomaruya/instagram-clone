@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, { useContext } from "react";
 import image from "../../public/assets/forest.jpg";
 import {
   BookmarkIcon,
@@ -8,12 +8,22 @@ import {
   PaperAirplaneIcon,
 } from "@heroicons/react/24/outline";
 import User from "./User";
+import { DataContext } from "@/contexts/DataContext";
 
 export default function Post({ post }: any) {
+  const { users } = useContext(DataContext);
+
+  const postUser = () => {
+    const obj = users.find(
+      (user: { username: string }) => user.username === post.username
+    );
+    return obj;
+  };
+
   return (
     <div className="w-full sm:w-[470px] mx-auto pb-4 mb-5 border-b-[1px] border-[#333333]">
       <header className="pb-3">
-        <User user={post.user} type="post" date={post.date} />
+        <User user={postUser()} type="post" date={post.date} />
       </header>
 
       <main>
@@ -22,7 +32,7 @@ export default function Post({ post }: any) {
           height={500}
           src={post.url.toString()}
           alt="forest"
-          className="w-full sm:w-[468px] h-[580px] object-cover rounded-md"
+          className="w-full sm:w-[468px] h-[580px] object-contain rounded-md"
         />
       </main>
 
