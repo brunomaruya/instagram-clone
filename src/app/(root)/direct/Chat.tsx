@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { ReactNode, useContext } from "react";
 import userImg from "../../../../public/assets/user.jpg";
 import Image from "next/image";
 import {
@@ -6,19 +7,24 @@ import {
   PhoneIcon,
   VideoCameraIcon,
 } from "@heroicons/react/24/outline";
+import { DataContext } from "@/contexts/DataContext";
 
-function Header() {
+function Header({
+  user,
+}: {
+  user: { username: string; profilePicture: string };
+}) {
   return (
     <header className=" h-[75px] w-full flex justify-between items-center px-4 border-b-[1px] border-white">
       <div className="flex items-center gap-3  ">
         <Image
-          src={userImg}
+          src={user.profilePicture ? user.profilePicture : userImg}
           alt=""
           width={500}
           height={500}
           className="w-14 h-14 rounded-full"
         />
-        <div className="font-bold">{"Name"}</div>
+        <div className="font-bold">{user.username}</div>
       </div>
       <div className="flex">
         <div className="p-2">
@@ -82,21 +88,37 @@ function Message({
   );
 }
 
-export default function Chat() {
+export default function Chat({ username }: { username: string }) {
+  const { users } = useContext(DataContext);
+
+  const user = () => {
+    console.log(users);
+    console.log(username);
+    const result = users.find(
+      (user: { username: string }) => user.username === username
+    );
+    console.log(result);
+    return result;
+  };
+
   return (
-    <section className="w-full relative">
-      <div className="fixed top-0 left-[120px]  md:left-[calc(77px+120px)]  lg:left-[calc(77px+380px)] right-0">
-        <Header />
-      </div>
+    <>
+      {user() && (
+        <section className="w-full relative">
+          <div className="fixed top-0 left-[120px]  md:left-[calc(77px+120px)]  lg:left-[calc(77px+380px)] right-0">
+            <Header user={user()} />
+          </div>
 
-      <div className="absolute bottom-[48px+76px] md:bottom-[76px] left-0 right-0 ">
-        <Message sentUser="friend" text="Hello" />
-        <Message sentUser="me" text="Hello" />
-      </div>
+          <div className="absolute bottom-[48px+76px] md:bottom-[76px] left-0 right-0 ">
+            <Message sentUser="friend" text="Hello" />
+            <Message sentUser="me" text="Hello" />
+          </div>
 
-      <div className="fixed bottom-12  md:bottom-0 left-[120px] md:left-[calc(77px+120px)] lg:left-[calc(77px+380px)] right-0">
-        <Footer />
-      </div>
-    </section>
+          <div className="fixed bottom-12  md:bottom-0 left-[120px] md:left-[calc(77px+120px)] lg:left-[calc(77px+380px)] right-0">
+            <Footer />
+          </div>
+        </section>
+      )}
+    </>
   );
 }
