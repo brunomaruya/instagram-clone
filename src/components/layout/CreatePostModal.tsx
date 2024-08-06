@@ -8,7 +8,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import Image from "next/image";
 import React, { useContext, useEffect, useState } from "react";
 import { v4 } from "uuid";
-import { createPost, updateUserPosts } from "@/functions/firebaseFunctions";
+import { createPost } from "@/functions/firebaseFunctions";
 
 export default function CreatePostModal() {
   const { isModalOpen, closeModal } = useContext(PostModalContext);
@@ -38,14 +38,7 @@ export default function CreatePostModal() {
         getDownloadURL(ref(storage, postPath))
           .then((url) => {
             const date = new Date();
-            createPost(currentUser, url, caption, date.toString());
-            updateUserPosts(
-              currentUser.username,
-              currentUser,
-              url,
-              caption,
-              date.toString()
-            );
+            createPost(currentUser.username, url, caption, date.toString());
             alert("image upload");
           })
           .catch((e) => {

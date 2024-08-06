@@ -37,7 +37,7 @@ export default function Post({ post }: any) {
         </div>
         <div>Curtido por aaaaa e outras pessoas</div>
         <div className="mt-2">
-          {post.user.username}
+          {post.username}
           <span> {post.caption}</span>
         </div>
         <div className="mt-2">Ver todos os comentários</div>

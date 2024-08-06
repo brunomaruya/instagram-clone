@@ -72,7 +72,7 @@ export default function User({
                         <span
                           className="text-[#0072BD] text-xs"
                           onClick={() => {
-                            follow(currentUser, user);
+                            follow(currentUser.username, user.username);
                             setIsFollowing(true);
                           }}
                         >

@@ -10,6 +10,7 @@ import {
   doc,
   setDoc,
   updateDoc,
+  where,
 } from "firebase/firestore";
 
 //USERS AUTH
@@ -75,52 +76,40 @@ export const updateUser = async (
 //POSTS
 
 export const createPost = async (
-  user: any,
+  username: string,
   url: string,
   caption: string,
   date: string
 ) => {
+  const newPost = {
+    username: username,
+    url: url,
+    caption: caption,
+    date: date,
+  };
   try {
-    const docRef = await addDoc(collection(db, "posts"), {
-      user: user,
-      url: url,
-      caption: caption,
-      date: date,
-    }).then(() => location.reload());
+    const docRef = await addDoc(collection(db, "posts"), newPost).then(
+      (post) => {
+        updateDoc(doc(db, "users", username.toString()), {
+          posts: arrayUnion(post.id),
+        });
+        updateDoc(doc(db, "posts", post.id.toString()), {
+          id: post.id,
+        });
+      }
+    );
   } catch (e) {
     console.error("Error adding document: ", e);
   }
 };
 
-export const updateUserPosts = async (
-  username: string,
-  user: any,
-  url: string,
-  caption: string,
-  date: string
-) => {
-  await updateDoc(doc(db, "users", username.toString()), {
-    posts: arrayUnion({
-      user: user,
-      url: url,
-      caption: caption,
-      date: date,
-    }),
-  });
-};
-
-//DATA
-export async function updateData(path: string, id: string, newData: any) {
-  await updateDoc(doc(db, path, id), newData);
-}
-
 //FOLLOW
 
-export async function follow(user: any, userToFollow: any) {
-  await updateDoc(doc(db, "users", user.username.toString()), {
+export async function follow(user: string, userToFollow: string) {
+  await updateDoc(doc(db, "users", user.toString()), {
     following: arrayUnion(userToFollow),
   });
-  await updateDoc(doc(db, "users", userToFollow.username.toString()), {
+  await updateDoc(doc(db, "users", userToFollow.toString()), {
     followers: arrayUnion(user),
   });
 }
