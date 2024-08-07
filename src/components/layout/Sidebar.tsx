@@ -38,7 +38,6 @@ export default function Sidebar() {
           <Profile />
         </div>
       </div>
-      <div>{/* bottom */}</div>
     </div>
   );
 }

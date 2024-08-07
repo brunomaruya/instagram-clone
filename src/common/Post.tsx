@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React, { useContext } from "react";
-import image from "../../public/assets/forest.jpg";
 import {
   BookmarkIcon,
   ChatBubbleOvalLeftIcon,
