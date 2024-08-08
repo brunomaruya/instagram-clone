@@ -32,7 +32,11 @@ export default function MessagesPreview() {
 
   const followingUsers = () => {
     const result = users.filter((user: { username: string }) => {
-      return currentUser.following.includes(user.username);
+      if (currentUser.following) {
+        return currentUser.following.includes(user.username);
+      } else if (currentUser.followers) {
+        return currentUser.followers?.includes(user.username);
+      }
     });
 
     return result;

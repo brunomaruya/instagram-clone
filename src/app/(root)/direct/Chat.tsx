@@ -1,5 +1,12 @@
 "use client";
-import React, { ReactNode, useContext, useEffect, useState } from "react";
+import React, {
+  ReactNode,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import userImg from "../../../../public/assets/user.jpg";
 import Image from "next/image";
 import {
@@ -14,6 +21,7 @@ import {
   collection,
   doc,
   getDocs,
+  onSnapshot,
   or,
   query,
   updateDoc,
@@ -97,6 +105,20 @@ export default function Chat({ username }: { username: string }) {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<any[]>([]);
 
+  const divRef = useRef<any>();
+
+  const scrollToElement: any = () => {
+    const { current } = divRef;
+    if (current) {
+      setTimeout(function () {
+        divRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 100);
+    }
+  };
+
   async function sendMessage() {
     const date = new Date();
 
@@ -106,11 +128,13 @@ export default function Chat({ username }: { username: string }) {
       date: date,
       text: message,
     });
+
+    scrollToElement();
   }
 
   async function getMessages() {
-    const querySnapshot = await getDocs(
-      query(
+    if (currentUser && targetUser) {
+      const q = query(
         collection(db, "messages"),
         or(
           and(
@@ -122,12 +146,16 @@ export default function Chat({ username }: { username: string }) {
             where("sentUser", "==", currentUser?.username)
           )
         )
-      )
-    );
+      );
 
-    querySnapshot.forEach((doc) => {
-      setMessages((prev) => [...prev, doc.data()]);
-    });
+      const unsubscribe = onSnapshot(q, (snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          if (change.type === "added") {
+            setMessages((prev) => [...prev, change.doc.data()]);
+          }
+        });
+      });
+    }
   }
 
   useEffect(() => {
@@ -141,6 +169,7 @@ export default function Chat({ username }: { username: string }) {
 
   useEffect(() => {
     if (users.length > 0) getMessages();
+    scrollToElement();
   }, [targetUser]);
 
   return (
@@ -151,7 +180,7 @@ export default function Chat({ username }: { username: string }) {
             <Header user={targetUser} />
           </div>
 
-          <div className="absolute bottom-[calc(48px+76px)] md:bottom-[76px]  left-0 right-0">
+          <div className="absolute bottom-[calc(48px+76px)] md:bottom-[76px] top-[75px] left-0 right-0 overflow-y-scroll">
             {messages
               .sort((a: any, b: any) => {
                 const first: any = new Date(toDateTime(a.date.seconds));
@@ -173,6 +202,7 @@ export default function Chat({ username }: { username: string }) {
                   />
                 );
               })}
+            <div ref={divRef}></div>
           </div>
           <div className="fixed bottom-12  md:bottom-0 left-[120px] md:left-[calc(77px+120px)] lg:left-[calc(77px+380px)] right-0">
             <footer className="w-full  ">
