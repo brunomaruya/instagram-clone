@@ -1,5 +1,5 @@
 "use client";
-import { db, storage } from "@/app/firebase";
+import { storage } from "@/app/firebase";
 import { PostModalContext } from "@/contexts/PostModalContext";
 import { PostsContext } from "@/contexts/PostsContext";
 import { DataContext } from "@/contexts/DataContext";

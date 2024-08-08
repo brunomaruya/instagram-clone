@@ -1,5 +1,5 @@
 "use client";
-import React, { ReactNode, useContext } from "react";
+import React, { ReactNode, useContext, useState } from "react";
 import userImg from "../../../../public/assets/user.jpg";
 import Image from "next/image";
 import {
@@ -41,20 +41,6 @@ function Header({
   );
 }
 
-function Footer() {
-  return (
-    <footer className="w-full  ">
-      <form className="m-4 ">
-        <input
-          type="text"
-          placeholder="Message..."
-          className="bg-transparent rounded-full w-full p-4  border-[1px] border-white h-11  "
-        />
-      </form>
-    </footer>
-  );
-}
-
 function Message({
   sentUser,
   text,
@@ -89,15 +75,13 @@ function Message({
 }
 
 export default function Chat({ username }: { username: string }) {
-  const { users } = useContext(DataContext);
+  const { users, currentUser } = useContext(DataContext);
+  const [message, setMessage] = useState("");
 
   const user = () => {
-    console.log(users);
-    console.log(username);
     const result = users.find(
       (user: { username: string }) => user.username === username
     );
-    console.log(result);
     return result;
   };
 
@@ -109,13 +93,21 @@ export default function Chat({ username }: { username: string }) {
             <Header user={user()} />
           </div>
 
-          <div className="absolute bottom-[48px+76px] md:bottom-[76px] left-0 right-0 ">
+          <div className="absolute bottom-[calc(48px+76px)] md:bottom-[76px]  left-0 right-0 bg-blue-200">
             <Message sentUser="friend" text="Hello" />
             <Message sentUser="me" text="Hello" />
           </div>
-
           <div className="fixed bottom-12  md:bottom-0 left-[120px] md:left-[calc(77px+120px)] lg:left-[calc(77px+380px)] right-0">
-            <Footer />
+            <footer className="w-full  ">
+              <form className="m-4" onSubmit={(e) => e.preventDefault()}>
+                <input
+                  onChange={(e) => setMessage(e.target.value)}
+                  type="text"
+                  placeholder="Message..."
+                  className="bg-transparent rounded-full w-full p-4  border-[1px] border-white h-11  "
+                />
+              </form>
+            </footer>
           </div>
         </section>
       )}
