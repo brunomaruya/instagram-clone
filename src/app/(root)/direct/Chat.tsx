@@ -30,6 +30,7 @@ import {
 import { db } from "@/app/firebase";
 import { getDateDiff } from "@/functions/getDateDiff";
 import { toDateTime } from "@/functions/toDateTime";
+import Link from "next/link";
 
 function Header({
   user,
@@ -38,7 +39,7 @@ function Header({
 }) {
   return (
     <header className=" h-[75px] w-full flex justify-between items-center px-4 border-b-[1px] border-white">
-      <div className="flex items-center gap-3  ">
+      <Link href={`/${user.username}`} className="flex items-center gap-3  ">
         <Image
           src={user.profilePicture ? user.profilePicture : userImg}
           alt=""
@@ -48,7 +49,7 @@ function Header({
         />
 
         <div className="font-bold">{user.username}</div>
-      </div>
+      </Link>
       <div className="flex">
         <div className="p-2">
           <PhoneIcon className="size-6 " />
