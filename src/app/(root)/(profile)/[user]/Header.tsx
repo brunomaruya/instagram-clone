@@ -21,10 +21,10 @@ export default function Header({ user }: { user: any }) {
       {currentUser ? (
         <div className="pt-[30px] px-[20px] flex mb-20">
           <div className="xl:w-[280px] mr-7 flex justify-center items-center">
-            {currentUser.profilePicture ? (
+            {user.profilePicture ? (
               <Image
                 className="rounded-full h-[100px] w-[100px] xl:h-[150px] xl:w-[150px] object-cover object-center"
-                src={currentUser.profilePicture}
+                src={user.profilePicture}
                 width={500}
                 height={500}
                 alt="user"
@@ -69,17 +69,9 @@ export default function Header({ user }: { user: any }) {
               )}
             </div>
             <div className="flex gap-3 text-[16px] mb-5">
-              <div>
-                {currentUser.posts ? currentUser.posts.length : 0} posts
-              </div>
-              <div>
-                {currentUser.followers ? currentUser.followers.length : 0}{" "}
-                followers
-              </div>
-              <div>
-                {currentUser.following ? currentUser.following.length : 0}{" "}
-                following
-              </div>
+              <div>{user.posts ? user.posts.length : 0} posts</div>
+              <div>{user.followers ? user.followers.length : 0} followers</div>
+              <div>{user.following ? user.following.length : 0} following</div>
             </div>
             <div>
               <div>{user.name}</div>

@@ -11,6 +11,7 @@ import {
   BookmarkIcon,
 } from "@heroicons/react/24/outline";
 import { getDateDiff } from "@/functions/getDateDiff";
+import { DataContext } from "@/contexts/DataContext";
 
 declare module "yet-another-react-lightbox" {
   export interface PostsSlide {
@@ -35,6 +36,12 @@ export function isPostSlide(slide: Slide): slide is PostsSlide {
 
 export function RenderPostsSlide({ slide }: { slide: any }) {
   const [comment, setComment] = React.useState("");
+  const [user, setUser] = React.useState<any>();
+  const { users } = React.useContext(DataContext);
+  React.useEffect(() => {
+    const user = users.filter((user: any) => user.username == slide.username);
+    setUser(user);
+  }, [users]);
 
   return (
     <>
@@ -49,7 +56,7 @@ export function RenderPostsSlide({ slide }: { slide: any }) {
           />
           <div className="w-[500px] relative">
             <div className="p-4 border-b-white border-b-[1px]">
-              <User user={slide.user} type="post" />
+              {user && <User user={user[0]} type="post" />}
             </div>
             <div className="p-4">{slide.caption}</div>
 

@@ -33,7 +33,7 @@ export default function User({
   }
 
   useEffect(() => {
-    if (currentUser) {
+    if (currentUser && user) {
       if (currentUser.hasOwnProperty("following")) {
         setIsFollowing(containsUsername(currentUser, user.username));
       }
@@ -50,7 +50,8 @@ export default function User({
       Log out
     </Link>
   );
-  const suggestionCaseElement = (
+
+  const suggestionCaseElement = user && (
     <span
       className="text-[#0072BD] text-xs"
       onClick={(e) => {
@@ -64,7 +65,7 @@ export default function User({
   );
   return (
     <>
-      {currentUser ? (
+      {currentUser && user ? (
         <Link href={`/${user.username}`}>
           <header className="flex items-center gap-2  ">
             <Image
