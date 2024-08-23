@@ -90,7 +90,7 @@ function Message({
         />
         <div
           className={`${
-            sentUser === "me" ? "bg-[#3797F0] " : "bg-[#262626]"
+            sentUser === "me" ? "bg-blueBg " : "bg-grayBg"
           } py-[7px] px-3 w-fit rounded-full `}
         >
           <div> {text}</div>

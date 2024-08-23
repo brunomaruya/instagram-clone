@@ -20,7 +20,7 @@ export default function Post({ post }: any) {
   };
 
   return (
-    <div className="w-full sm:w-[470px] mx-auto pb-4 mb-5 border-b-[1px] border-[#333333]">
+    <div className="w-full sm:w-[470px] mx-auto pb-4 mb-5 border-b-[1px] border-grayBg">
       <header className="pb-3">
         <User user={postUser()} type="post" date={post.date} />
       </header>

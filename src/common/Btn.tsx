@@ -13,7 +13,7 @@ export default function Btn({
     <button
       onClick={onClick}
       className={`${
-        color === "blue" ? "bg-blue-600" : "bg-[#363636]"
+        color === "blue" ? "bg-blueBg" : "bg-grayBg"
       } px-4 py-[7px] rounded-md text-[14px] h-[35px] hover:brightness-75 `}
     >
       {text}

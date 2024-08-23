@@ -8,7 +8,7 @@ import Link from "next/link";
 function Preview({ user }: { user: any }) {
   return (
     <Link className="w-full" href={`/direct/${user.username}`}>
-      <div className="flex gap-3 py-2 px-6 hover:bg-[#262626] cursor-pointer w-full ">
+      <div className="flex gap-3 py-2 px-6 hover:bg-grayBg cursor-pointer w-full ">
         <Image
           src={user.profilePicture ? user.profilePicture : userImg}
           alt=""

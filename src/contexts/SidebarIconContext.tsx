@@ -1,4 +1,5 @@
 "use client";
+import { usePathname } from "next/navigation";
 import React, { createContext, ReactNode, useEffect, useState } from "react";
 
 interface IContext {
@@ -13,7 +14,8 @@ export default function SidebarIconContextProvider({
 }: {
   children: ReactNode;
 }) {
-  const pathname = window.location.pathname;
+  const pathname = usePathname();
+  // const pathname = window.location.pathname;
   const [icon, setIcon] = useState<String>(pathname);
 
   useEffect(() => {

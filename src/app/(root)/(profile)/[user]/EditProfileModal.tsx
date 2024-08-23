@@ -59,7 +59,7 @@ export default function EditProfileModal() {
         className="w-full h-screen  justify-center items-center bg-gradient-to-t from-[rgba(0,0,0,0.7)] to-[rgba(0,0,0,0.7)]"
       ></div>
 
-      <div className="w-[692px] h-fit flex flex-col items-center bg-[#262626] rounded-xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <div className="w-[692px] h-fit flex flex-col items-center bg-grayBg rounded-xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <form className="flex w-full  my-5 gap-6 ">
           <div className="flex-1 flex flex-col gap-3 px-3">
             <h1>Photo</h1>

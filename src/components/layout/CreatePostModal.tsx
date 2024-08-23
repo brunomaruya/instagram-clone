@@ -62,8 +62,8 @@ export default function CreatePostModal() {
 
         {uploadedImage ? (
           <>
-            <div className="w-[1032px] h-[735px] flex flex-col items-center bg-[#262626] rounded-xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              <header className="h-[42px] w-full px-4 flex justify-between border-b-[1px] border-[#333333] items-center">
+            <div className="w-[1032px] h-[735px] flex flex-col items-center bg-grayBg rounded-xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <header className="h-[42px] w-full px-4 flex justify-between border-b-[1px] border-grayBorder items-center">
                 <ArrowLeftIcon className="h-[30px] w-[30px]" />
                 <div>Create new post</div>
                 <div
@@ -96,8 +96,8 @@ export default function CreatePostModal() {
           </>
         ) : (
           <>
-            <div className="w-[692px] h-[735px] flex flex-col items-center bg-[#262626] rounded-xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              <header className="h-[42px] w-full border-b-[1px] border-[#333333] flex justify-center items-center">
+            <div className="w-[692px] h-[735px] flex flex-col items-center bg-grayBg rounded-xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <header className="h-[42px] w-full border-b-[1px] border-grayBorder flex justify-center items-center">
                 Create new post
               </header>
               <main className="flex justify-center items-center flex-col h-full">

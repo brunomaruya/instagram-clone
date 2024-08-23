@@ -46,14 +46,14 @@ export default function User({
   );
 
   const currentUserCaseElement = (
-    <Link href="/auth/login" className="text-[#0072BD] text-xs">
+    <Link href="/auth/login" className="text-blueText text-xs">
       Log out
     </Link>
   );
 
   const suggestionCaseElement = user && (
     <span
-      className="text-[#0072BD] text-xs"
+      className="text-blueText text-xs"
       onClick={(e) => {
         follow(currentUser.username, user.username);
         e.preventDefault();

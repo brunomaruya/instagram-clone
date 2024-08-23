@@ -4,6 +4,9 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/app/firebase";
 import Header from "./Header";
 import Posts from "./Posts";
+import { Oval } from "react-loader-spinner";
+import { colors } from "../../../../constants/colors.js";
+import { basename } from "path/win32";
 
 export default function MainComponent({ username }: { username: string }) {
   const [user, setUser] = useState<any>();
@@ -30,12 +33,24 @@ export default function MainComponent({ username }: { username: string }) {
           <Posts username={username} />
         </div>
       ) : (
-        <div className="text-center">
-          <h1 className="mt-10 text-2xl">Sorry, this page isn't available.</h1>
-          <p className="mt-6">
-            The link you followed may be broken, or the page may have been
-            removed. Go back to Instagram.
-          </p>
+        // <div className="text-center">
+        //   <h1 className="mt-10 text-2xl">Sorry, this page isn't available.</h1>
+        //   <p className="mt-6">
+        //     The link you followed may be broken, or the page may have been
+        //     removed. Go back to Instagram.
+        //   </p>
+        // </div>
+        <div className="h-screen flex justify-center items-center">
+          <Oval
+            visible={true}
+            height="80"
+            width="80"
+            color={colors.blueBg}
+            secondaryColor="transparent"
+            ariaLabel="oval-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+          />
         </div>
       )}
     </div>
