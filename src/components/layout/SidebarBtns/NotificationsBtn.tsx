@@ -15,6 +15,7 @@ export default function NotificationsBtn() {
       onClick={handleOnClick}
       name="Notifications"
       icon={icon == "notifications" ? <Active /> : <HeartIcon />}
+      notAllowed={true}
     />
   );
 }

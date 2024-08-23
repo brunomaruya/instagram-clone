@@ -14,6 +14,7 @@ export default function SearchBtn() {
     <SidebarBtn
       onClick={handleOnClick}
       name="Search"
+      notAllowed={true}
       icon={
         icon == "search" ? (
           <ActiveMagnifyingGlassIcon />

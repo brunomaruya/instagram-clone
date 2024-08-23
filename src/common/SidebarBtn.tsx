@@ -3,7 +3,12 @@ import { ISidebarBtn } from "@/interfaces/ISidebarBtn";
 import { usePathname } from "next/navigation";
 import React from "react";
 
-export default function SidebarBtn({ name, icon, onClick }: ISidebarBtn) {
+export default function SidebarBtn({
+  name,
+  icon,
+  onClick,
+  notAllowed,
+}: ISidebarBtn) {
   const pathname = usePathname();
 
   const isChatOpen = () => {
@@ -13,7 +18,10 @@ export default function SidebarBtn({ name, icon, onClick }: ISidebarBtn) {
   };
 
   return (
-    <div className="sidebarBtn" onClick={onClick}>
+    <div
+      className={`sidebarBtn ${notAllowed && "cursor-not-allowed"}`}
+      onClick={onClick}
+    >
       <div className="size-7">{icon}</div>
 
       <span
