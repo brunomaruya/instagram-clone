@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
-
 import { Oval } from "react-loader-spinner";
 import { colors } from "../../../../constants/colors.js";
 import { db } from "@/app/firebase";
@@ -38,15 +37,6 @@ export default function ClientComponent({ username }: { username: string }) {
 
   useEffect(() => {
     fetchUserData();
-
-    // Timer para definir erro se os dados não forem carregados em 2 segundos
-    const timer = setTimeout(() => {
-      if (!user) {
-        setError(true);
-      }
-    }, 2000);
-
-    return () => clearTimeout(timer);
   }, [username]);
 
   if (error) {

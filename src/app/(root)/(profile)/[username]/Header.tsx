@@ -6,10 +6,8 @@ import {
   EllipsisHorizontalIcon,
   UserPlusIcon,
 } from "@heroicons/react/24/outline";
-
 import Btn from "@/common/Btn";
 import userImg from "../../../../../public/assets/user.jpg";
-
 import { DataContext } from "@/contexts/DataContext";
 import { EditProfileContext } from "@/contexts/EditProfileContext";
 
