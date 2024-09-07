@@ -1,17 +1,17 @@
 "use client";
 import Image from "next/image";
 import React, { useContext } from "react";
-import image from "../../../../../public/assets/forest.jpg";
-import Btn from "@/common/Btn";
 import {
   Cog6ToothIcon,
   EllipsisHorizontalIcon,
   UserPlusIcon,
 } from "@heroicons/react/24/outline";
+
+import Btn from "@/common/Btn";
 import userImg from "../../../../../public/assets/user.jpg";
 
 import { DataContext } from "@/contexts/DataContext";
-import { EditProfileContext } from "./EditProfileContext";
+import { EditProfileContext } from "@/contexts/EditProfileContext";
 
 export default function Header({ user }: { user: any }) {
   const { currentUser } = useContext(DataContext);

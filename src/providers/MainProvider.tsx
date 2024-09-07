@@ -1,7 +1,5 @@
 "use client";
-import EditProfileContextProvider, {
-  EditProfileContext,
-} from "@/app/(root)/(profile)/[user]/EditProfileContext";
+import EditProfileContextProvider from "@/contexts/EditProfileContext";
 import DataContextProvider from "@/contexts/DataContext";
 import PostsModalContextProvider from "@/contexts/PostModalContext";
 import PostsContextProvider from "@/contexts/PostsContext";

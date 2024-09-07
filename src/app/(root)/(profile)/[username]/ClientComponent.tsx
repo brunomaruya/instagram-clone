@@ -1,20 +1,24 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "@/app/firebase";
-import Header from "./Header";
-import Posts from "./Posts";
+
+import Header from "./Header.js";
+import Posts from "./Posts.js";
 import { Oval } from "react-loader-spinner";
 import { colors } from "../../../../constants/colors.js";
-import { basename } from "path/win32";
+import { db } from "@/app/firebase";
 
-export default function MainComponent({ username }: { username: string }) {
+export default function ClientComponent({ username }: { username: string }) {
   const [user, setUser] = useState<any>();
   useEffect(() => {
     getData();
   }, []);
 
   const getData = async () => {
+    if (!username) {
+      console.error("Username is " + username);
+      return;
+    }
     const docRef = doc(db, "users", username);
     const docSnap = await getDoc(docRef);
 

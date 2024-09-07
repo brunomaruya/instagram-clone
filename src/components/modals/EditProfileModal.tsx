@@ -1,13 +1,14 @@
 "use client";
 import React, { useContext, useState } from "react";
-import { EditProfileContext } from "./EditProfileContext";
 import Image from "next/image";
-import userImg from "../../../../../public/assets/user.jpg";
-import { storage } from "@/app/firebase";
 import { updateUser } from "@/functions/firebaseFunctions";
+import { storage } from "@/app/firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
+
+import userImg from "@/../public/assets/user.jpg";
 import { DataContext } from "@/contexts/DataContext";
+import { EditProfileContext } from "@/contexts/EditProfileContext";
 
 export default function EditProfileModal() {
   const { isModalOpen, closeModal } = useContext(EditProfileContext);

@@ -3,8 +3,7 @@ import { RenderPostsSlide } from "@/common/PostsSlides";
 import { DataContext } from "@/contexts/DataContext";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import Image from "next/image";
-import { objArrFilter } from "./objArrFilter";
-
+import { filterObjectsByIds } from "./objArrFilter";
 import React, { useContext, useEffect, useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
 
@@ -21,7 +20,7 @@ export default function Posts({ username }: { username: string }) {
     const q = query(collection(db, "users"), where("username", "==", username));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      setUserPosts(objArrFilter(posts, doc.data().posts));
+      setUserPosts(filterObjectsByIds(posts, doc.data().posts));
     });
   };
 
