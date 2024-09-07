@@ -2,61 +2,88 @@
 import React, { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 
-import Header from "./Header.js";
-import Posts from "./Posts.js";
 import { Oval } from "react-loader-spinner";
 import { colors } from "../../../../constants/colors.js";
 import { db } from "@/app/firebase";
+import Header from "./Header";
+import Posts from "./Posts";
+
+interface UserData {
+  username: string;
+}
 
 export default function ClientComponent({ username }: { username: string }) {
-  const [user, setUser] = useState<any>();
-  useEffect(() => {
-    getData();
-  }, []);
+  const [user, setUser] = useState<UserData | undefined>(undefined);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  const getData = async () => {
-    if (!username) {
-      console.error("Username is " + username);
-      return;
-    }
-    const docRef = doc(db, "users", username);
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      setUser(docSnap.data());
-    } else {
-      console.log("No such document");
+  const fetchUserData = async () => {
+    try {
+      const docRef = doc(db, "users", username);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const userData = docSnap.data() as UserData;
+        setUser(userData);
+      } else {
+        console.log("No such document");
+        setError(true);
+      }
+    } catch (error) {
+      setError(true);
+      console.error("Error getting document:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
+  useEffect(() => {
+    fetchUserData();
+
+    // Timer para definir erro se os dados não forem carregados em 2 segundos
+    const timer = setTimeout(() => {
+      if (!user) {
+        setError(true);
+      }
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [username]);
+
+  if (error) {
+    return (
+      <div className="text-center">
+        <h1 className="mt-10 text-2xl">Sorry, this page isn't available.</h1>
+        <p className="mt-6">
+          The link you followed may be broken, or the page may have been
+          removed. Go back to Instagram.
+        </p>
+      </div>
+    );
+  }
+
+  if (loading) {
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <Oval
+          visible={true}
+          height="80"
+          width="80"
+          color={colors.blueBg}
+          secondaryColor="transparent"
+          ariaLabel="oval-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+        />
+      </div>
+    );
+  }
+
   return (
     <div className=" flex justify-center  md:ml-[77px] 2xl:ml-[335px]">
-      {user ? (
-        <div className="w-[975px] flex items-center  flex-col">
-          <Header user={user} />
-          <Posts username={username} />
-        </div>
-      ) : (
-        // <div className="text-center">
-        //   <h1 className="mt-10 text-2xl">Sorry, this page isn't available.</h1>
-        //   <p className="mt-6">
-        //     The link you followed may be broken, or the page may have been
-        //     removed. Go back to Instagram.
-        //   </p>
-        // </div>
-        <div className="h-screen flex justify-center items-center">
-          <Oval
-            visible={true}
-            height="80"
-            width="80"
-            color={colors.blueBg}
-            secondaryColor="transparent"
-            ariaLabel="oval-loading"
-            wrapperStyle={{}}
-            wrapperClass=""
-          />
-        </div>
-      )}
+      <div className="w-[975px] flex items-center  flex-col">
+        <Header user={user} />
+        <Posts username={username} />
+      </div>
     </div>
   );
 }
