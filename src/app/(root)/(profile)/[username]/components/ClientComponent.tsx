@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { Oval } from "react-loader-spinner";
-import { colors } from "../../../../constants/colors.js";
+import { colors } from "../../../../../constants/colors.js";
 import { db } from "@/app/firebase";
 import Header from "./Header";
 import Posts from "./Posts";

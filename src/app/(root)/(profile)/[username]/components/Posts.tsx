@@ -3,7 +3,7 @@ import { RenderPostsSlide } from "@/common/PostsSlides";
 import { DataContext } from "@/contexts/DataContext";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import Image from "next/image";
-import { filterObjectsByIds } from "./objArrFilter";
+import { filterObjectsByIds } from "../../../../../utils/filterObjectsByIds";
 import React, { useContext, useEffect, useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
 

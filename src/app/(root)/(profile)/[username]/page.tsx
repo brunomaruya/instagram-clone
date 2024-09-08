@@ -1,6 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
-import ClientComponent from "./ClientComponent";
+import ClientComponent from "./components/ClientComponent";
 
 interface PageProps {
   params: {
