@@ -3,7 +3,7 @@ import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { signIn } from "@/functions/firebaseFunctions";
+import { signIn } from "../../services/firebase/firebaseService";
 
 const schema = z.object({
   email: z.string().email({ message: "enter a valid email" }),

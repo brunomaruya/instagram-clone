@@ -12,7 +12,7 @@ export default function page() {
       <div className="sign-box  ">
         <div className="h-12 flex items-center gap-1">
           <span>Nao tem uma conta?</span>
-          <Link href="/auth/accounts/emailsignup" className="link">
+          <Link href="/auth/register" className="link">
             Cadastre-se
           </Link>
         </div>

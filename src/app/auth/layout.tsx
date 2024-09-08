@@ -1,8 +1,6 @@
 import React, { ReactNode } from "react";
 import "../../app/globals.css";
 import Image from "next/image";
-import banner from "../../../public/assets/instagram-banner.jpg";
-import { PiFlagBannerFoldLight } from "react-icons/pi";
 import MainProvider from "@/providers/MainProvider";
 
 export default function Layout({ children }: { children: ReactNode }) {
