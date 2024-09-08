@@ -1,5 +1,5 @@
 "use client";
-import Post from "@/common/Post";
+import Post from "@/components/Post";
 import { DataContext } from "@/contexts/DataContext";
 import React, { useContext } from "react";
 

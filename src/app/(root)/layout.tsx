@@ -3,9 +3,10 @@ import { Inter } from "next/font/google";
 import "../../app/globals.css";
 import MainProvider from "@/providers/MainProvider";
 import EditProfileModal from "../../components/modals/EditProfileModal";
-import Sidebar from "@/components/layout/Sidebar";
-import CreatePostModal from "@/components/layout/CreatePostModal";
-import Bottombar from "@/components/home/Bottombar";
+
+import Bottombar from "@/app/(root)/components/home/Bottombar";
+import Sidebar from "./components/layout/Sidebar";
+import CreatePostModal from "./components/layout/CreatePostModal";
 
 const inter = Inter({ subsets: ["latin"] });
 

@@ -1,6 +1,6 @@
 "use client";
 import React, { useContext } from "react";
-import userImg from "../../../../public/assets/user.jpg";
+import userImg from "@/../public/assets/user.jpg";
 import Image from "next/image";
 import { DataContext } from "@/contexts/DataContext";
 import Link from "next/link";

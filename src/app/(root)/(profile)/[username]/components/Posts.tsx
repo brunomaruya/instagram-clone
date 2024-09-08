@@ -1,5 +1,5 @@
 import { db } from "@/app/firebase";
-import { RenderPostsSlide } from "@/common/PostsSlides";
+import { RenderPostsSlide } from "@/components/PostsSlides";
 import { DataContext } from "@/contexts/DataContext";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import Image from "next/image";

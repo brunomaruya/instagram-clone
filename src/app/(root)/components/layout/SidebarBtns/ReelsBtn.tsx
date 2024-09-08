@@ -1,5 +1,5 @@
 "use client";
-import SidebarBtn from "@/common/SidebarBtn";
+import SidebarBtn from "@/components/SidebarBtn";
 import { SidebarIconContext } from "@/contexts/SidebarIconContext";
 import { PlayCircleIcon } from "@heroicons/react/24/outline";
 import React, { useContext } from "react";

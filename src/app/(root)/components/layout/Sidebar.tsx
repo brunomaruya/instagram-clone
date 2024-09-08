@@ -1,5 +1,5 @@
 "use client";
-import InstagramLogo from "@/common/InstagramLogo";
+import InstagramLogo from "@/components/InstagramLogo";
 import CreateBtn from "./SidebarBtns/CreateBtn";
 import ExploreBtn from "./SidebarBtns/ExploreBtn";
 import HomeBtn from "./SidebarBtns/HomeBtn";

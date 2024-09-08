@@ -1,5 +1,5 @@
 "use client";
-import User from "@/common/User";
+import User from "@/components/User";
 import { DataContext } from "@/contexts/DataContext";
 import React, { useContext } from "react";
 

@@ -1,13 +1,6 @@
 "use client";
-import React, {
-  ReactNode,
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import userImg from "../../../../public/assets/user.jpg";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import userImg from "@/../public/assets/user.jpg";
 import Image from "next/image";
 import {
   InformationCircleIcon,
@@ -19,16 +12,13 @@ import {
   addDoc,
   and,
   collection,
-  doc,
-  getDocs,
   onSnapshot,
   or,
   query,
-  updateDoc,
   where,
 } from "firebase/firestore";
 import { db } from "@/app/firebase";
-import { getDateDiff } from "@/functions/getDateDiff";
+
 import { toDateTime } from "@/functions/toDateTime";
 import Link from "next/link";
 

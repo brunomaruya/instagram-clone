@@ -1,5 +1,5 @@
 "use client";
-import SidebarBtn from "@/common/SidebarBtn";
+import SidebarBtn from "@/components/SidebarBtn";
 import { PostModalContext } from "@/contexts/PostModalContext";
 
 import { PlusCircleIcon } from "@heroicons/react/24/outline";

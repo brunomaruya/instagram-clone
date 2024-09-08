@@ -1,5 +1,5 @@
 "use client";
-import SidebarBtn from "@/common/SidebarBtn";
+import SidebarBtn from "@/components/SidebarBtn";
 import { SidebarIconContext } from "@/contexts/SidebarIconContext";
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as Active } from "@heroicons/react/16/solid";

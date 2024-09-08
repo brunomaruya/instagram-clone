@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import MessagesPreview from "./MessagesPreview";
+import MessagesPreview from "./components/MessagesPreview";
 
 export default function layout({ children }: { children: ReactNode }) {
   return (

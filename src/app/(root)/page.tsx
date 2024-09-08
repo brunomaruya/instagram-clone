@@ -1,7 +1,7 @@
-import Rightbar from "@/components/home/Rightbar";
-import Stories from "@/components/home/Stories";
-import Feed from "@/components/home/Feed";
-import Topbar from "@/components/home/Topbar";
+import Rightbar from "@/app/(root)/components/home/Rightbar";
+import Stories from "@/app/(root)/components/home/Stories";
+import Feed from "@/app/(root)/components/home/Feed";
+import Topbar from "@/app/(root)/components/home/Topbar";
 
 export default function Home() {
   return (
