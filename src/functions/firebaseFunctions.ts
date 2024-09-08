@@ -89,7 +89,7 @@ export const createPost = async (
     const docRef = await addDoc(collection(db, "posts"), newPost).then(
       (post) => {
         updateDoc(doc(db, "users", username.toString()), {
-          posts: arrayUnion(post.id),
+          postIds: arrayUnion(post.id),
         });
         updateDoc(doc(db, "posts", post.id.toString()), {
           id: post.id,

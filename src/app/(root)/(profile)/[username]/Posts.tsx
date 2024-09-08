@@ -24,13 +24,15 @@ export default function Posts({ username }: { username: string }) {
       );
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
-        const filteredPosts = filterObjectsByIds(posts, doc.data().posts);
+        const filteredPosts = filterObjectsByIds(posts, doc.data().postIds);
+        console.log(doc.data().postIds);
         setUserPosts(filteredPosts);
       });
     } catch (error) {
       console.error("Error getting document:", error);
     }
   };
+
   return (
     <div className="border-t-grayBg border-t-[1px] w-full flex flex-col items-center">
       <div className="h-[52px] flex items-center">Posts</div>
@@ -44,7 +46,7 @@ export default function Posts({ username }: { username: string }) {
           slide: ({ slide }) => <RenderPostsSlide slide={slide} />,
         }}
       />
-      {userPosts.length > 0 ? (
+      {userPosts && userPosts.length > 0 ? (
         <div className="grid grid-cols-3 w-full">
           {userPosts.map((post, index) => (
             <Image
