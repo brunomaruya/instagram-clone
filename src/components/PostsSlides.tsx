@@ -10,7 +10,7 @@ import {
   PaperAirplaneIcon,
   BookmarkIcon,
 } from "@heroicons/react/24/outline";
-import { getDateDiff } from "@/functions/getDateDiff";
+import { getDateDiff } from "@/utils/dateUtils";
 import { DataContext } from "@/contexts/DataContext";
 
 declare module "yet-another-react-lightbox" {

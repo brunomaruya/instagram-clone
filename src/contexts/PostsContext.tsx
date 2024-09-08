@@ -1,4 +1,4 @@
-import { storage } from "@/app/firebase";
+import { storage } from "@/app/services/firebase/firebase";
 import { getDownloadURL, listAll, ref } from "firebase/storage";
 import React, { createContext, ReactNode, useEffect, useState } from "react";
 

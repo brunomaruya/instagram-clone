@@ -17,9 +17,9 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import { db } from "@/app/firebase";
+import { db } from "@/app/services/firebase/firebase";
 
-import { toDateTime } from "@/functions/toDateTime";
+import { toDateTime } from "@/utils/dateUtils";
 import Link from "next/link";
 
 function Header({

@@ -2,8 +2,8 @@ import Image from "next/image";
 import React, { useContext, useEffect, useState } from "react";
 import image from "../../public/assets/user.jpg";
 import { EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
-import { getDateDiff } from "@/functions/getDateDiff";
-import { follow } from "@/functions/firebaseFunctions";
+import { getDateDiff } from "@/utils/dateUtils";
+import { follow } from "@/app/services/firebase/firebaseService";
 import { DataContext } from "@/contexts/DataContext";
 import Link from "next/link";
 

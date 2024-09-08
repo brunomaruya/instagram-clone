@@ -1,4 +1,4 @@
-import { db } from "@/app/firebase";
+import { db } from "@/app/services/firebase/firebase";
 import { RenderPostsSlide } from "@/components/PostsSlides";
 import { DataContext } from "@/contexts/DataContext";
 import { collection, getDocs, query, where } from "firebase/firestore";

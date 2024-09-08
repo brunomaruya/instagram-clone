@@ -1,8 +1,8 @@
 "use client";
 import React, { useContext, useState } from "react";
 import Image from "next/image";
-import { updateUser } from "@/functions/firebaseFunctions";
-import { storage } from "@/app/firebase";
+import { updateUser } from "@/app/services/firebase/firebaseService";
+import { storage } from "@/app/services/firebase/firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
 
