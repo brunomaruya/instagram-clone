@@ -25,7 +25,7 @@ export default function Posts({ username }: { username: string }) {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         const filteredPosts = filterObjectsByIds(posts, doc.data().postIds);
-        console.log(doc.data().postIds);
+        console.log(filteredPosts);
         setUserPosts(filteredPosts);
       });
     } catch (error) {
