@@ -5,10 +5,12 @@ export function Message({
   sentUser,
   text,
   date,
+  userImg,
 }: {
   sentUser: "me" | "friend";
   text: string;
   date: any;
+  userImg: string;
 }) {
   return (
     <div title={toDateTime(date.seconds).toString()} className={`w-full mb-2`}>

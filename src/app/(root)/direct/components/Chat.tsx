@@ -55,9 +55,7 @@ export default function Chat({ username }: { username: string }) {
     <>
       {targetUser && (
         <section className="w-full relative">
-          <div className="fixed top-0 left-[120px] md:left-[calc(77px+120px)] lg:left-[calc(77px+380px)] right-0">
-            <Header user={targetUser} />
-          </div>
+          <Header user={targetUser} />
 
           <div className="absolute bottom-[calc(48px+76px)] md:bottom-[76px] top-[75px] left-0 right-0 overflow-y-scroll">
             {messages
@@ -73,6 +71,7 @@ export default function Chat({ username }: { username: string }) {
                   sentUser={
                     message.sentUser === currentUser.username ? "me" : "friend"
                   }
+                  userImg={targetUser.profilePicture}
                   text={message.text}
                 />
               ))}
