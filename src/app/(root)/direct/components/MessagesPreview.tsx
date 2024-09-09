@@ -4,11 +4,18 @@ import userImg from "@/../public/assets/user.jpg";
 import Image from "next/image";
 import { DataContext } from "@/contexts/DataContext";
 import Link from "next/link";
+import { useMessageContext } from "@/contexts/MessageContext";
+import { getDateDiff, toDateTime } from "@/utils/dateUtils";
 
-function Preview({ user }: { user: any }) {
+interface IUser {
+  username: string;
+  profilePicture?: string;
+}
+
+function Preview({ user }: { user: IUser }) {
   return (
     <Link className="w-full" href={`/direct/${user.username}`}>
-      <div className="flex gap-3 py-2 px-6 hover:bg-grayBg cursor-pointer w-full ">
+      <div className="flex items-center gap-3 py-2 px-6 hover:bg-grayBg cursor-pointer w-full ">
         <Image
           src={user.profilePicture ? user.profilePicture : userImg}
           alt=""
@@ -16,12 +23,8 @@ function Preview({ user }: { user: any }) {
           height={500}
           className="w-14 h-14 rounded-full"
         />
-        <div className=" flex-col justify-between hidden lg:flex">
-          <div>{user.username}</div>
-          <div className="text-sm text-gray-300">
-            {"last message"} • {"10m"}
-          </div>
-        </div>
+
+        <div>{user.username}</div>
       </div>
     </Link>
   );

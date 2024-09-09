@@ -1,42 +1,28 @@
 "use client";
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { DataContext } from "@/contexts/DataContext";
-import {
-  sendMessage,
-  getMessages,
-} from "@/app/services/firebase/messageService";
+import { useMessageContext } from "@/contexts/MessageContext";
 import { Header } from "./Header";
 import { Message } from "./Message";
 import { toDateTime } from "@/utils/dateUtils";
+import { DataContext } from "@/contexts/DataContext";
 
 export default function Chat({ username }: { username: string }) {
-  const { users, currentUser } = useContext(DataContext);
-  const [targetUser, setTargetUser] = useState<any>();
+  const { messages, sendMessage, setTargetUser, targetUser } =
+    useMessageContext();
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState<any[]>([]);
   const divRef = useRef<HTMLDivElement>(null);
+  const { users, currentUser } = useContext(DataContext);
 
   useEffect(() => {
-    if (users.length > 0) {
-      const foundUser = users.find(
-        (user: { username: string }) => user.username === username
-      );
-      setTargetUser(foundUser);
-    }
+    setTargetUser(users.find((user: any) => user.username === username));
   }, [users, username]);
-
-  useEffect(() => {
-    if (targetUser) {
-      return getMessages(currentUser, targetUser, setMessages);
-    }
-  }, [targetUser]);
 
   useEffect(() => {
     scrollToElement();
   }, [messages]);
 
   const handleSendMessage = async () => {
-    await sendMessage(currentUser, targetUser, message);
+    await sendMessage(message);
     setMessage("");
   };
 
@@ -60,7 +46,7 @@ export default function Chat({ username }: { username: string }) {
           <div className="absolute bottom-[calc(48px+76px)] md:bottom-[76px] top-[75px] left-0 right-0 overflow-y-scroll">
             {messages
               .sort(
-                (a: any, b: any) =>
+                (a, b) =>
                   new Date(toDateTime(a.date.seconds)).getTime() -
                   new Date(toDateTime(b.date.seconds)).getTime()
               )

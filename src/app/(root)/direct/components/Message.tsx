@@ -1,6 +1,6 @@
 import { toDateTime } from "@/utils/dateUtils";
 import Image from "next/image";
-import userImg from "@/../public/assets/user.jpg";
+import userImgDefault from "@/../public/assets/user.jpg";
 export function Message({
   sentUser,
   text,
@@ -10,7 +10,7 @@ export function Message({
   sentUser: "me" | "friend";
   text: string;
   date: any;
-  userImg: string;
+  userImg?: string;
 }) {
   return (
     <div title={toDateTime(date.seconds).toString()} className={`w-full mb-2`}>
@@ -21,7 +21,7 @@ export function Message({
       >
         <Image
           className={`w-7 h-7 rounded-2xl ${sentUser === "me" ? "hidden" : ""}`}
-          src={userImg}
+          src={userImg ? userImg : userImgDefault}
           alt=""
           width={500}
           height={50}

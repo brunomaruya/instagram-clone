@@ -1,6 +1,7 @@
 export const getDateDiff = (date) => {
   const current = new Date();
   const past = new Date(date);
+
   const msMinute = 60 * 1000;
   const msHour = 60 * 60 * 1000;
   const msDay = 60 * 60 * 24 * 1000;
