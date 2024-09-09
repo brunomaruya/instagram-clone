@@ -2,6 +2,7 @@ import { auth, db } from "./firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import {
   addDoc,
@@ -36,6 +37,16 @@ export function signIn(data: any) {
       console.log(error);
     });
 }
+
+export const logout = () => {
+  signOut(auth)
+    .then(() => {
+      window.location.href = "/auth/login";
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 
 //USERS DB
 export const createUserDb = async ({

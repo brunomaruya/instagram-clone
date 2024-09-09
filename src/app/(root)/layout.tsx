@@ -8,8 +8,6 @@ import Bottombar from "@/app/(root)/components/home/Bottombar";
 import Sidebar from "./components/layout/Sidebar";
 import CreatePostModal from "./components/layout/CreatePostModal";
 
-const inter = Inter({ subsets: ["latin"] });
-
 export const metadata: Metadata = {
   title: {
     template: "Instagram-clone | %s  ",
