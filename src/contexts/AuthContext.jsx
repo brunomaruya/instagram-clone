@@ -7,6 +7,7 @@ import {
 } from "react";
 import { auth } from "../app/services/firebase/firebase";
 import { useRouter } from "next/navigation";
+import Loading from "@/components/Loading";
 
 export const AuthContext = createContext();
 
@@ -33,7 +34,7 @@ export function AuthProvider({ children }) {
 
   // Exibe um carregamento até saber o estado do usuário
   if (loading) {
-    return <div>Carregando...</div>;
+    return <Loading />;
   }
 
   return (
