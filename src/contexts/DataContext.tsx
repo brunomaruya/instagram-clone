@@ -2,8 +2,17 @@ import React, { createContext, ReactNode, useEffect, useState } from "react";
 import { auth, db } from "@/app/services/firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { getDocs, collection } from "firebase/firestore";
+import { IPost } from "@/interfaces/IPost";
+import { PostsSlide } from "@/interfaces/PostsSlide";
 
-export const DataContext = createContext({} as any);
+interface IDataContext {
+  posts: PostsSlide[];
+  users: any[];
+  currentUser: any;
+  currentUserPosts: any;
+}
+
+export const DataContext = createContext({} as IDataContext);
 
 export default function DataContextProvider({
   children,
@@ -13,7 +22,7 @@ export default function DataContextProvider({
   const [currentUserId, setCurrentUserId] = useState("");
   const [users, setUsers] = useState<any[]>([]);
   const [currentUser, setCurrentUser] = useState<any>();
-  const [posts, setPosts] = useState<any[]>([]);
+  const [posts, setPosts] = useState<PostsSlide[]>([]);
   const [currentUserPosts, setCurrentUserPosts] = useState<any[]>([]);
 
   const checkAuth = () => {

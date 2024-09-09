@@ -12,18 +12,11 @@ import {
 } from "@heroicons/react/24/outline";
 import { getDateDiff } from "@/utils/dateUtils";
 import { DataContext } from "@/contexts/DataContext";
+import { IPost } from "@/interfaces/IPost";
 
 declare module "yet-another-react-lightbox" {
-  export interface PostsSlide {
+  export interface PostsSlide extends IPost {
     type: "posts-slide";
-    url: string;
-    username: string;
-    profilePicture?: string;
-    caption?: string;
-    isFollowing: boolean;
-    isLiked: boolean;
-    isSaved: boolean;
-    usersWhoLiked: string;
   }
   interface SlideTypes {
     "posts-slide": PostsSlide;

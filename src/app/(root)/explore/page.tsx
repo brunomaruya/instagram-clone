@@ -9,7 +9,6 @@ export default function page() {
   const [selectedPostIndex, setSelectedPostIndex] = useState<number>(-1);
   const { posts } = useContext(DataContext);
   if (posts) {
-    console.log(posts);
     return (
       <div className="ml-[335px] mt-10  ">
         <div className="grid grid-cols-3 gap-2 w-[967px] mx-auto  ">
