@@ -1,11 +1,9 @@
-import { db } from "@/app/services/firebase/firebase";
 import { RenderPostsSlide } from "@/components/PostsSlides";
 import { DataContext } from "@/contexts/DataContext";
-import { collection, getDocs, query, where } from "firebase/firestore";
 import Image from "next/image";
-import { filterObjectsByIds } from "../../../../../utils/filterObjectsByIds";
 import React, { useContext, useEffect, useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
+import { getUserPostsByUsername } from "@/app/services/firebase/postServices";
 
 export default function Posts({ username }: { username: string }) {
   const [userPosts, setUserPosts] = useState<any[]>([]);
@@ -13,25 +11,8 @@ export default function Posts({ username }: { username: string }) {
   const { posts } = useContext(DataContext);
 
   useEffect(() => {
-    getUserPosts();
+    getUserPostsByUsername(username, posts, setUserPosts);
   }, []);
-
-  const getUserPosts = async () => {
-    try {
-      const q = query(
-        collection(db, "users"),
-        where("username", "==", username)
-      );
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        const filteredPosts = filterObjectsByIds(posts, doc.data().postIds);
-
-        setUserPosts(filteredPosts);
-      });
-    } catch (error) {
-      console.error("Error getting document:", error);
-    }
-  };
 
   return (
     <div className="border-t-grayBg border-t-[1px] w-full flex flex-col items-center">
