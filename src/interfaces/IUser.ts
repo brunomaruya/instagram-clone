@@ -7,4 +7,5 @@ export interface IUser {
   name: string;
   postIds: string[];
   following: string[];
+  followers: string[];
 }
