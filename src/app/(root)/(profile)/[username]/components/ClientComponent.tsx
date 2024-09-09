@@ -1,42 +1,18 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
-import { Oval } from "react-loader-spinner";
-import { colors } from "../../../../../constants/colors.js";
-import { db } from "@/app/services/firebase/firebase";
 import Header from "./Header";
 import Posts from "./Posts";
-
-interface UserData {
-  username: string;
-}
+import { fetchUserDataByUsername } from "@/app/services/firebase/userService";
+import { IUser } from "@/interfaces/IUser";
+import Loading from "@/components/Loading";
 
 export default function ClientComponent({ username }: { username: string }) {
-  const [user, setUser] = useState<UserData | undefined>(undefined);
+  const [user, setUser] = useState<IUser | null>(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const fetchUserData = async () => {
-    try {
-      const docRef = doc(db, "users", username);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        const userData = docSnap.data() as UserData;
-        setUser(userData);
-      } else {
-        console.log("No such document");
-        setError(true);
-      }
-    } catch (error) {
-      setError(true);
-      console.error("Error getting document:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    fetchUserData();
+    fetchUserDataByUsername(username, setUser, setLoading, setError);
   }, [username]);
 
   if (error) {
@@ -52,28 +28,15 @@ export default function ClientComponent({ username }: { username: string }) {
   }
 
   if (loading) {
-    return (
-      <div className="h-screen flex justify-center items-center">
-        <Oval
-          visible={true}
-          height="80"
-          width="80"
-          color={colors.blueBg}
-          secondaryColor="transparent"
-          ariaLabel="oval-loading"
-          wrapperStyle={{}}
-          wrapperClass=""
-        />
-      </div>
-    );
+    return <Loading />;
   }
 
   return (
-    <div className=" flex justify-center  md:ml-[77px] 2xl:ml-[335px]">
+    <main className=" flex justify-center  md:ml-[77px] 2xl:ml-[335px]">
       <div className="w-[975px] flex items-center  flex-col">
         <Header user={user} />
         <Posts username={username} />
       </div>
-    </div>
+    </main>
   );
 }
