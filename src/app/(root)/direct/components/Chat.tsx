@@ -1,12 +1,6 @@
 "use client";
 import React, { useContext, useEffect, useRef, useState } from "react";
-import userImg from "@/../public/assets/user.jpg";
-import Image from "next/image";
-import {
-  InformationCircleIcon,
-  PhoneIcon,
-  VideoCameraIcon,
-} from "@heroicons/react/24/outline";
+
 import { DataContext } from "@/contexts/DataContext";
 import {
   addDoc,
@@ -20,75 +14,9 @@ import {
 import { db } from "@/app/services/firebase/firebase";
 
 import { toDateTime } from "@/utils/dateUtils";
-import Link from "next/link";
 
-function Header({
-  user,
-}: {
-  user: { username: string; profilePicture: string };
-}) {
-  return (
-    <header className=" h-[75px] w-full flex justify-between items-center px-4 border-b-[1px] border-white">
-      <Link href={`/${user.username}`} className="flex items-center gap-3  ">
-        <Image
-          src={user.profilePicture ? user.profilePicture : userImg}
-          alt=""
-          width={500}
-          height={500}
-          className="w-14 h-14 rounded-full"
-        />
-
-        <div className="font-bold">{user.username}</div>
-      </Link>
-      <div className="flex">
-        <div className="p-2">
-          <PhoneIcon className="size-6 " />
-        </div>
-        <div className="p-2">
-          <VideoCameraIcon className="size-6 " />
-        </div>
-        <div className="p-2">
-          <InformationCircleIcon className="size-6 " />
-        </div>
-      </div>
-    </header>
-  );
-}
-
-function Message({
-  sentUser,
-  text,
-  date,
-}: {
-  sentUser: "me" | "friend";
-  text: string;
-  date: any;
-}) {
-  return (
-    <div title={toDateTime(date.seconds).toString()} className={`w-full mb-2`}>
-      <div
-        className={`flex gap-2 items-center  mx-4  ${
-          sentUser === "me" ? "justify-end" : ""
-        }`}
-      >
-        <Image
-          className={`w-7 h-7 rounded-2xl ${sentUser === "me" ? "hidden" : ""}`}
-          src={userImg}
-          alt=""
-          width={500}
-          height={50}
-        />
-        <div
-          className={`${
-            sentUser === "me" ? "bg-blueBg " : "bg-grayBg"
-          } py-[7px] px-3 w-fit rounded-full `}
-        >
-          <div> {text}</div>
-        </div>
-      </div>
-    </div>
-  );
-}
+import { Header } from "./Header";
+import { Message } from "./Message";
 
 export default function Chat({ username }: { username: string }) {
   const { users, currentUser } = useContext(DataContext);
