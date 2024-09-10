@@ -5,17 +5,13 @@ import React, { useContext } from "react";
 
 export default function Rightbar() {
   const { users, currentUser } = useContext(DataContext);
-  let arr = [];
-  for (let i = 0; i < 5; i++) {
-    arr.push(i);
-  }
   return (
     <div>
       {currentUser ? (
         <>
-          <div className="px-4">
+          <header className="px-4">
             <User type="currentUser" user={currentUser} />
-          </div>
+          </header>
           <main className="mt-6 mb-2">
             <div className="flex justify-between py-1 px-4 text-sm">
               <span className="cursor-pointer">Sugestões para voce</span>

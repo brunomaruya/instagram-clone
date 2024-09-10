@@ -17,13 +17,13 @@ export default function ClientComponent({ username }: { username: string }) {
 
   if (error) {
     return (
-      <div className="text-center">
+      <section className="text-center">
         <h1 className="mt-10 text-2xl">Sorry, this page isn't available.</h1>
         <p className="mt-6">
           The link you followed may be broken, or the page may have been
           removed. Go back to Instagram.
         </p>
-      </div>
+      </section>
     );
   }
 
