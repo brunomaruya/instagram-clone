@@ -4,52 +4,30 @@ import Stories from "@/app/(root)/components/home/Stories";
 import Feed from "@/app/(root)/components/home/Feed";
 import Topbar from "@/app/(root)/components/home/Topbar";
 import { useAuth } from "@/contexts/AuthContext";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import { auth } from "../services/firebase/firebase";
 
 export default function Home() {
   const { user } = useAuth();
-  const router = useRouter();
-
-  // useEffect(() => {
-  //   auth.onAuthStateChanged((user) => {
-  //     if (user) {
-  //       console.log("Usuário está logado:", user);
-  //     } else {
-  //       console.log("Nenhum usuário está logado");
-  //     }
-  //   });
-  //   console.log(user);
-  //   if (user === null) {
-  //     console.log(user);
-  //     // router.push("/auth/login"); // Redireciona para a página de login se não estiver autenticado
-  //   } else {
-  //     console.log(user);
-  //     router.push("/");
-  //   }
-  // }, [user, router]);
 
   if (!user) {
     return <p>Loading...</p>; // Ou qualquer outra coisa enquanto verifica a autenticação
   }
 
   return (
-    <div className="flex  justify-center ml-0 md:ml-[76px]  xl:ml-[244px] 2xl:ml-[335px] ">
+    <section className="flex  justify-center ml-0 md:ml-[76px]  xl:ml-[244px] 2xl:ml-[335px] ">
       <div className="md:w-[630px] w-full mt-0  md:mt-4 border-transparent border">
-        <div className="md:hidden mb-5 fixed w-full bg-black top-0 z-[1000000000]">
+        <header className="md:hidden mb-5 fixed w-full bg-black top-0 z-[1000000000]">
           <Topbar />
-        </div>
-        <div className="mt-[70px] md:mt-0">
+        </header>
+        <aside className="mt-[70px] md:mt-0">
           <Stories />
-        </div>
-        <div>
+        </aside>
+        <main>
           <Feed />
-        </div>
+        </main>
       </div>
-      <div className="w-[383px] pl-16  border-transparent border mt-9 hidden xl:block">
+      <aside className="w-[383px] pl-16  border-transparent border mt-9 hidden xl:block">
         <Rightbar />
-      </div>
-    </div>
+      </aside>
+    </section>
   );
 }
