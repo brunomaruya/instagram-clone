@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Cog6ToothIcon,
   EllipsisHorizontalIcon,
@@ -11,10 +11,23 @@ import userImg from "@/../public/assets/user.jpg";
 import { DataContext } from "@/contexts/DataContext";
 import { EditProfileContext } from "@/contexts/EditProfileContext";
 import { IUser } from "@/interfaces/IUser";
+import {
+  checkIfFollowing,
+  follow,
+  unfollow,
+} from "@/app/services/firebase/firebaseService";
 
 export default function Header({ user }: { user: IUser }) {
   const { currentUser } = useContext(DataContext);
   const { openModal } = useContext(EditProfileContext);
+  const [isFollowing, setIsFollowing] = useState(false);
+
+  useEffect(() => {
+    checkIfFollowing(currentUser, user.username).then((isFollowing) => {
+      setIsFollowing(isFollowing);
+      console.log(isFollowing);
+    });
+  }, [currentUser]);
 
   const isCurrentUser = currentUser && currentUser.username === user.username;
 
@@ -52,7 +65,28 @@ export default function Header({ user }: { user: IUser }) {
   const renderOtherUserActions = () => (
     <>
       <div className="text-xl">{user.username}</div>
-      <Btn color="blue" text="Follow" />
+      {isFollowing ? (
+        <Btn
+          color="gray"
+          text="Unfollow"
+          onClick={(e: any) => {
+            unfollow(currentUser.username, user.username);
+            e.preventDefault();
+            setIsFollowing(false);
+          }}
+        />
+      ) : (
+        <Btn
+          color="blue"
+          text="Follow"
+          onClick={(e: any) => {
+            follow(currentUser.username, user.username);
+            e.preventDefault();
+            setIsFollowing(true);
+          }}
+        />
+      )}
+
       <Btn text="Message" />
       <Btn text={<UserPlusIcon className="h-[20px] w-[20px]" />} />
       <EllipsisHorizontalIcon className="h-[30px] w-[30px]" />
