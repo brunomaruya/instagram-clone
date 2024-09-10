@@ -1,3 +1,4 @@
+"use client";
 import React, { createContext, ReactNode, useContext, useState } from "react";
 import disableScroll from "disable-scroll";
 export const PostModalContext = createContext({} as any);

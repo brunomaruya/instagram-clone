@@ -22,9 +22,5 @@ export async function generateMetadata({
 export default function Page({ params }: { params: { username: string } }) {
   const { username } = params;
 
-  return (
-    <div>
-      <ClientComponent username={username} />
-    </div>
-  );
+  return <ClientComponent username={username} />;
 }
