@@ -1,4 +1,13 @@
-import { collection, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  addDoc,
+  doc,
+  updateDoc,
+  arrayUnion,
+} from "firebase/firestore";
 import { db } from "./firebase";
 import { filterObjectsByIds } from "@/utils/filterObjectsByIds";
 import { IPost } from "@/interfaces/IPost";
@@ -6,7 +15,6 @@ import { PostsSlide } from "yet-another-react-lightbox";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "@/app/services/firebase/firebase";
 import { v4 } from "uuid";
-import { createPost } from "@/app/services/firebase/firebaseService";
 
 export const getUserPostsByUsername = async (
   username: string,
@@ -48,5 +56,30 @@ export const uploadAndCreatePost = async (
     alert("Image uploaded successfully");
   } catch (error) {
     console.error(error);
+  }
+};
+
+export const createPost = async (
+  username: string,
+  url: string,
+  caption: string,
+  date: string
+) => {
+  const newPost = {
+    username: username,
+    url: url,
+    caption: caption,
+    date: date,
+  };
+  try {
+    const docRef = await addDoc(collection(db, "posts"), newPost);
+    updateDoc(doc(db, "users", username.toString()), {
+      postIds: arrayUnion(docRef.id),
+    });
+    updateDoc(doc(db, "posts", docRef.id.toString()), {
+      id: docRef.id,
+    });
+  } catch (e) {
+    console.error("Error adding document: ", e);
   }
 };
