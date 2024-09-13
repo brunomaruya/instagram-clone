@@ -1,4 +1,4 @@
-import { colors } from "@/constants/colors";
+import { colors } from "@/styles/theme";
 import React from "react";
 import { Oval } from "react-loader-spinner";
 

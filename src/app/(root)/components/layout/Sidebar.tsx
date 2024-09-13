@@ -19,7 +19,7 @@ export default function Sidebar() {
   };
   return (
     <div
-      className={`sidebar ${
+      className={`2xl:min-w-sidebar h-screen px-3 pt-2 pb-5 hidden md:flex flex-col justify-between  !border-r-[1px] !border-[#1a1a1a] fixed ${
         pathname === "/direct" || isChatOpen() ? "2xl:min-w-fit" : ""
       }`}
     >

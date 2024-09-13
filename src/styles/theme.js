@@ -7,3 +7,8 @@ export const colors = {
   blueText: "#0072BD",
   grayBorder2: "#333333",
 };
+
+export const widths = {
+  sidebar: "335px",
+  mediumSidebar: "77px",
+};

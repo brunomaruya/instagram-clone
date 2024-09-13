@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss";
-const colors = require("tailwindcss/colors");
+import { colors, widths } from "./src/styles/theme";
 
 const config: Config = {
   content: [
@@ -16,14 +16,17 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        // fuchsia: colors.fuchsia,
-        blueText: "#0072BD",
-        blueBg: "#3797F0",
-        grayBg: "#262626",
-        grayBg2: "#363636",
-        grayBorder: "#868686",
-        grayBorder2: "#333333",
-        sidebarBtnHover: "#1a1a1a",
+        sidebarBtnHover: colors.sidebarBtnHover,
+        blackBg: colors.blackBg,
+        grayBorder: colors.grayBorder,
+        blueBg: colors.blueBg,
+        grayBg: colors.grayBg,
+        blueText: colors.blueText,
+        grayBorder2: colors.grayBorder2,
+      },
+      width: {
+        sidebar: widths.sidebar,
+        mediumSidebar: widths.mediumSidebar,
       },
     },
   },
