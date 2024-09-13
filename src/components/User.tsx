@@ -3,9 +3,9 @@ import React, { useContext, useEffect, useState } from "react";
 import image from "../../public/assets/user.jpg";
 import { EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
 import { getDateDiff } from "@/utils/dateUtils";
-import { follow, logout } from "@/app/services/firebase/firebaseService";
 import { DataContext } from "@/contexts/DataContext";
-import Link from "next/link";
+import { logout } from "@/app/services/firebase/authService";
+import { follow } from "@/app/services/firebase/followService";
 
 interface IUser {
   username: string;

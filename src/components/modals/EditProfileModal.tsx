@@ -1,14 +1,13 @@
 "use client";
 import React, { useContext, useState } from "react";
 import Image from "next/image";
-import { updateUser } from "@/app/services/firebase/firebaseService";
 import { storage } from "@/app/services/firebase/firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
-
 import userImg from "@/../public/assets/user.jpg";
 import { DataContext } from "@/contexts/DataContext";
 import { EditProfileContext } from "@/contexts/EditProfileContext";
+import { updateUser } from "@/app/services/firebase/userDbService";
 
 export default function EditProfileModal() {
   const { isModalOpen, closeModal } = useContext(EditProfileContext);
@@ -50,7 +49,7 @@ export default function EditProfileModal() {
   };
 
   return (
-    <div
+    <section
       className={`${
         isModalOpen ? "flex " : "hidden"
       }  w-full  fixed z-[10000] `}
@@ -125,6 +124,6 @@ export default function EditProfileModal() {
           </div>
         </form>
       </div>
-    </div>
+    </section>
   );
 }

@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
 import { DataContext } from "@/contexts/DataContext";
-import { createUser } from "../../services/firebase/firebaseService";
+import { createUser } from "@/app/services/firebase/authService";
 
 export default function SignupForm() {
   const { users } = useContext(DataContext);

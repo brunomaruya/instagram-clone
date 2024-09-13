@@ -1,15 +1,11 @@
 "use client";
 
-import { storage } from "@/app/services/firebase/firebase";
 import { PostModalContext } from "@/contexts/PostModalContext";
 import { PostsContext } from "@/contexts/PostsContext";
 import { DataContext } from "@/contexts/DataContext";
 import { ArrowLeftIcon, PhotoIcon } from "@heroicons/react/24/outline";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import Image from "next/image";
 import React, { useContext, useState } from "react";
-import { v4 } from "uuid";
-import { createPost } from "@/app/services/firebase/firebaseService";
 import { uploadAndCreatePost } from "@/app/services/firebase/postServices";
 
 // Componente Principal do Modal de Criação de Post

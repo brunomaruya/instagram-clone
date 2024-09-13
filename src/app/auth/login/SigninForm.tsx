@@ -1,11 +1,10 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { signIn } from "../../services/firebase/firebaseService";
-import { useAuth } from "@/contexts/AuthContext";
-import { useRouter } from "next/navigation";
+
+import { signIn } from "@/app/services/firebase/authService";
 
 const schema = z.object({
   email: z.string().email({ message: "enter a valid email" }),
@@ -18,7 +17,6 @@ export default function SigninForm() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<Schema>({ resolver: zodResolver(schema) });
 
@@ -28,9 +26,9 @@ export default function SigninForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="mx-[40px] ">
-      <div className=" mb-[10px] text-center">
+      <header className=" mb-[10px] text-center">
         Cadastre-se para ver fotos e vídeos dos seus amigos.
-      </div>
+      </header>
 
       <input {...register("email")} className="input" placeholder="Email" />
       {errors.email && (
@@ -48,14 +46,14 @@ export default function SigninForm() {
       <button className="form-btn" type="submit">
         Entrar
       </button>
-      <div className="mt-[10px]  mb-[18px] flex items-center gap-2">
+      <section className="mt-[10px]  mb-[18px] flex items-center gap-2">
         <div className="line"></div>
         <div>OU</div>
         <div className="line"></div>
-      </div>
+      </section>
       <button className="form-btn  ">Entrar com o Facebook</button>
 
-      <div className="text-sm text-center">Esqueceu a senha ?</div>
+      <section className="text-sm text-center">Esqueceu a senha ?</section>
     </form>
   );
 }

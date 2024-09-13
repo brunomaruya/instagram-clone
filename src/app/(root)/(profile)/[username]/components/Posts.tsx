@@ -5,7 +5,6 @@ import Image from "next/image";
 import React, { useContext, useEffect, useState } from "react";
 import Lightbox, { PostsSlide } from "yet-another-react-lightbox";
 import { getUserPostsByUsername } from "@/app/services/firebase/postServices";
-import { IPost } from "@/interfaces/IPost";
 
 export default function Posts({ username }: { username: string }) {
   const [userPosts, setUserPosts] = useState<PostsSlide[]>([]);

@@ -11,11 +11,8 @@ import userImg from "@/../public/assets/user.jpg";
 import { DataContext } from "@/contexts/DataContext";
 import { EditProfileContext } from "@/contexts/EditProfileContext";
 import { IUser } from "@/interfaces/IUser";
-import {
-  checkIfFollowing,
-  follow,
-  unfollow,
-} from "@/app/services/firebase/firebaseService";
+import { checkIfFollowing } from "@/app/services/firebase/checkFollowService";
+import { follow, unfollow } from "@/app/services/firebase/followService";
 
 export default function Header({ user }: { user: IUser }) {
   const { currentUser } = useContext(DataContext);
