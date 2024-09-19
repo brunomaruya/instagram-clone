@@ -8,9 +8,9 @@ import {
 import React from "react";
 
 export const bottomBarBtns = [
-  { icon: <HomeIcon /> },
+  { icon: <HomeIcon />, name: "home", url: "/" },
   { icon: <MagnifyingGlassIcon /> },
-  { icon: <PlayCircleIcon /> },
+  { icon: <PlayCircleIcon />, name: "createPost" },
   { icon: <ChatBubbleOvalLeftEllipsisIcon /> },
   { icon: <UserCircleIcon /> },
 ];

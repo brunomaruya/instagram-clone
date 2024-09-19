@@ -1,8 +1,8 @@
 "use client";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useMessageContext } from "@/contexts/MessageContext";
-import { Header } from "../app/direct/components/Header";
-import { Message } from "../app/direct/components/Message";
+import { Header } from "./headers/ChatHeader";
+import { Message } from "./Message";
 import { toDateTime } from "@/utils/dateUtils";
 import { DataContext } from "@/contexts/DataContext";
 

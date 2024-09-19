@@ -43,7 +43,7 @@ export default function CreatePostModal() {
         className="w-full h-screen bg-gradient-to-t from-[rgba(0,0,0,0.7)] to-[rgba(0,0,0,0.7)]"
       />
 
-      <div className="w-[1032px] h-[735px] flex flex-col items-center bg-grayBg rounded-xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <div className="w-[500px] h-[500px] xl:w-[1032px] xl:h-[735px] flex flex-col items-center bg-grayBg rounded-xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <ModalHeader
           title="Create new post"
           actionText={selectedImage ? "Share" : null}
@@ -100,7 +100,7 @@ const UploadedImageSection = ({
 }) => (
   <div className="flex overflow-hidden w-full">
     <Image
-      className="h-[735px-31px] object-cover flex-[2]"
+      className="xl:w-[1032px] xl:h-[735px] object-cover flex-[2]"
       src={URL.createObjectURL(selectedImage)}
       width={500}
       height={500}
@@ -123,10 +123,7 @@ const UploadPrompt = ({
 }: {
   handleFileInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) => (
-  <div className="w-[692px] h-[735px] flex flex-col items-center bg-grayBg rounded-xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-    <header className="h-[42px] w-full border-b-[1px] border-grayBorder flex justify-center items-center">
-      Create new post
-    </header>
+  <div className="xl:w-[1032px] xl:h-[735px] flex flex-col items-center bg-grayBg rounded-xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
     <main className="flex justify-center items-center flex-col h-full">
       <PhotoIcon className="h-32 w-32" />
       <div>Drag and drop photos and videos here</div>

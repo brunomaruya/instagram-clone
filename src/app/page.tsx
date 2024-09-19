@@ -2,7 +2,7 @@
 import Rightbar from "@/components/Rightbar";
 import Stories from "@/components/Stories";
 import Feed from "@/components/Feed";
-import Topbar from "@/components/Topbar";
+import MobileHeader from "@/components/headers/MobileHeader";
 import { useAuth } from "@/contexts/AuthContext";
 
 export default function Home() {
@@ -17,7 +17,7 @@ export default function Home() {
       <section className="max-w-5xl w-full mx-auto  flex justify-between gap-16 ">
         <div className="md:w-feedWidth w-full mt-0  md:mt-4 border-transparent border ">
           <header className="md:hidden mb-5 fixed w-full bg-black top-0 z-[1000000000]">
-            <Topbar />
+            <MobileHeader />
           </header>
           <aside className="mt-[70px] md:mt-0">
             <Stories />

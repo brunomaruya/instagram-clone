@@ -2,7 +2,7 @@ import { HeartIcon, PlusCircleIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import React from "react";
 
-export default function Topbar() {
+export default function MobileHeader() {
   return (
     <header className="flex items-center justify-between px-4 h-[60px]  border-b-[1px] border-gray-500">
       <Link href="/" className="logo text-3xl  p-0">

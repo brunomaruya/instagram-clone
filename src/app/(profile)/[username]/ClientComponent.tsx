@@ -33,7 +33,7 @@ export default function ClientComponent({ username }: { username: string }) {
 
   return (
     user && (
-      <main className=" flex justify-center  md:ml-[77px] 2xl:ml-[335px]">
+      <main className=" flex justify-center  md:ml-mediumSidebarWidth 2xl:ml-largeSidebarWidth">
         <div className="w-[975px] flex items-center  flex-col">
           <Header user={user} />
           <Posts username={username} />
