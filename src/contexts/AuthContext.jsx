@@ -1,11 +1,5 @@
 "use client";
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "../app/services/firebase/firebase";
 import { useRouter } from "next/navigation";
 import Loading from "@/components/Loading";

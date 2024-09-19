@@ -4,9 +4,9 @@ import "../../app/globals.css";
 import MainProvider from "@/providers/MainProvider";
 import EditProfileModal from "../../components/modals/EditProfileModal";
 
-import Bottombar from "@/app/(root)/components/home/Bottombar";
-import Sidebar from "./components/layout/Sidebar";
-import CreatePostModal from "./components/layout/CreatePostModal";
+import Bottombar from "@/components/Bottombar";
+import Sidebar from "../../components/Sidebar";
+import CreatePostModal from "../../components/modals/CreatePostModal";
 
 export const metadata: Metadata = {
   title: {

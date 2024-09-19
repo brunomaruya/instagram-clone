@@ -1,8 +1,8 @@
 "use client";
-import Rightbar from "@/app/(root)/components/home/Rightbar";
-import Stories from "@/app/(root)/components/home/Stories";
-import Feed from "@/app/(root)/components/home/Feed";
-import Topbar from "@/app/(root)/components/home/Topbar";
+import Rightbar from "@/components/Rightbar";
+import Stories from "@/components/Stories";
+import Feed from "@/components/Feed";
+import Topbar from "@/components/Topbar";
 import { useAuth } from "@/contexts/AuthContext";
 
 export default function Home() {
