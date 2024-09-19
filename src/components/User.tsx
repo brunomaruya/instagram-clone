@@ -74,7 +74,7 @@ export default function User({
       {currentUser && user ? (
         <div
           onClick={handleBlockClick}
-          className="flex items-center gap-2 cursor-pointer"
+          className="flex items-center gap-2 cursor-pointer px-5 md:px-0"
         >
           <Image
             width={500}

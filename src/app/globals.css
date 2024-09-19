@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 * {
-  /* outline: 0.1px solid rgba(255, 0, 0, 0.3); */
+  outline: 0.1px solid rgba(255, 0, 0, 0.3);
 }
 
 .logo {
@@ -48,7 +48,7 @@ body {
 
 @layer components {
   .sidebarBtn {
-    @apply flex items-center gap-3 text-xl p-3 my-1 hover:bg-[#1a1a1a] rounded-lg cursor-pointer;
+    @apply flex items-center gap-3 text-xl p-3 my-1 hover:bg-sidebarBtnHover rounded-lg cursor-pointer;
   }
 
   .sign-box {

@@ -25,8 +25,18 @@ const config: Config = {
         grayBorder2: colors.grayBorder2,
       },
       width: {
-        sidebar: widths.sidebar,
-        mediumSidebar: widths.mediumSidebar,
+        largeSidebarWidth: widths.largeSidebarWidth,
+        feedWidth: widths.feedWidth,
+      },
+      minWidth: {
+        largeSidebarWidth: widths.largeSidebarWidth,
+      },
+      maxWidth: {
+        mainPageWidth: widths.mainPageWidth,
+      },
+      margin: {
+        mediumSidebarWidth: widths.mediumSidebarWidth,
+        largeSidebarWidth: widths.largeSidebarWidth,
       },
     },
   },

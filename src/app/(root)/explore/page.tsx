@@ -10,30 +10,32 @@ export default function page() {
   const { posts } = useContext(DataContext);
   if (posts) {
     return (
-      <div className="ml-[335px] mt-10  ">
-        <div className="grid grid-cols-3 gap-2 w-[967px] mx-auto  ">
-          {posts.map((post: any, index: number) => (
-            <Image
-              onClick={() => setSelectedPostIndex(index)}
-              src={post.url}
-              width={500}
-              height={500}
-              alt="image"
-              className="object-cover w-full h-full cursor-pointer"
-            />
-          ))}
+      <section className="ml-0 md:ml-mediumSidebarWidth 2xl:ml-largeSidebarWidth">
+        <div className="mt-10 max-w-5xl w-full mx-auto ">
+          <ul className="grid grid-cols-3 gap-2  mx-auto  ">
+            {posts.map((post: any, index: number) => (
+              <Image
+                onClick={() => setSelectedPostIndex(index)}
+                src={post.url}
+                width={500}
+                height={500}
+                alt="image"
+                className="object-cover w-full h-full cursor-pointer"
+              />
+            ))}
+          </ul>
+          <Lightbox
+            styles={{ container: { backgroundColor: "rgba(0, 0, 0, .8)" } }}
+            open={selectedPostIndex >= 0}
+            index={selectedPostIndex}
+            close={() => setSelectedPostIndex(-1)}
+            slides={posts}
+            render={{
+              slide: ({ slide }) => <RenderPostsSlide slide={slide} />,
+            }}
+          />
         </div>
-        <Lightbox
-          styles={{ container: { backgroundColor: "rgba(0, 0, 0, .8)" } }}
-          open={selectedPostIndex >= 0}
-          index={selectedPostIndex}
-          close={() => setSelectedPostIndex(-1)}
-          slides={posts}
-          render={{
-            slide: ({ slide }) => <RenderPostsSlide slide={slide} />,
-          }}
-        />
-      </div>
+      </section>
     );
   }
 }

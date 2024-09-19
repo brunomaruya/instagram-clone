@@ -19,14 +19,16 @@ export default function Sidebar() {
   };
   return (
     <div
-      className={`2xl:min-w-sidebar h-screen px-3 pt-2 pb-5 hidden md:flex flex-col justify-between  !border-r-[1px] !border-[#1a1a1a] fixed ${
-        pathname === "/direct" || isChatOpen() ? "2xl:min-w-fit" : ""
+      className={`fixed h-screen px-3 pt-2 pb-5 hidden md:flex flex-col justify-between  !border-r-[1px] !border-grayBorder2 ${
+        pathname === "/direct" || isChatOpen()
+          ? "2xl:min-w-fit  "
+          : "2xl:min-w-largeSidebarWidth"
       }`}
     >
       <div>
-        <div className="mt-2 mb-5">
+        <header className="mt-2 mb-5">
           <InstagramLogo />
-        </div>
+        </header>
         <div>
           <HomeBtn />
           <SearchBtn />

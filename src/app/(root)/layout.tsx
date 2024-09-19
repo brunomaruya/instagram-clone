@@ -29,7 +29,7 @@ export default function RootLayout({
           <EditProfileModal />
           <div className="flex justify-between scroll-p-0 ">
             <Sidebar />
-            <div className="w-full ">{children}</div>
+            <div className="w-full   ">{children}</div>
             <div className="fixed bottom-0 w-full md:hidden ">
               <Bottombar />
             </div>
