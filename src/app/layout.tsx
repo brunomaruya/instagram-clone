@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "../../app/globals.css";
+import "./globals.css";
 import MainProvider from "@/providers/MainProvider";
-import EditProfileModal from "../../components/modals/EditProfileModal";
+import EditProfileModal from "../components/modals/EditProfileModal";
 
 import Bottombar from "@/components/Bottombar";
-import Sidebar from "../../components/Sidebar";
-import CreatePostModal from "../../components/modals/CreatePostModal";
+import Sidebar from "../components/Sidebar";
+import CreatePostModal from "../components/modals/CreatePostModal";
 
 export const metadata: Metadata = {
   title: {

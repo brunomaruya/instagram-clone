@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Header from "./Header";
-import Posts from "./Posts";
+import Header from "../../../components/headers/ProfilePageHeader";
+import Posts from "../../../components/ProfilePagePosts";
 import { fetchUserDataByUsername } from "@/app/services/firebase/userService";
 import { IUser } from "@/interfaces/IUser";
 import Loading from "@/components/Loading";
