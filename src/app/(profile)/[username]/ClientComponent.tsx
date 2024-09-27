@@ -19,7 +19,9 @@ export default function ClientComponent({ username }: { username: string }) {
   if (error) {
     return (
       <section className="text-center ">
-        <h1 className="mt-10 text-2xl">Sorry, this page isn't available.</h1>
+        <h1 className="mt-10 text-2xl">
+          Sorry, this page isn&apos;t available.
+        </h1>
         <p className="mt-6">
           The link you followed may be broken, or the page may have been
           removed. Go back to Instagram.
