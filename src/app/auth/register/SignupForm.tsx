@@ -68,11 +68,13 @@ export default function SignupForm() {
     <>
       {users ? (
         <form onSubmit={handleSubmit(onSubmit)} className="mx-[40px] ">
-          <div className=" mb-[10px] text-center">
+          <div className=" mb-3 text-center">
             Cadastre-se para ver fotos e vídeos dos seus amigos.
           </div>
-          <button className="form-btn  ">Entrar com o Facebook</button>
-          <div className="mt-[10px]  mb-[18px] flex items-center gap-2">
+          <button disabled className="form-btn cursor-not-allowed">
+            Entrar com o Facebook
+          </button>
+          <div className="mt-3  mb-5 flex items-center gap-2">
             <div className="line"></div>
             <div>OU</div>
             <div className="line"></div>
@@ -121,11 +123,11 @@ export default function SignupForm() {
               {errors.confirmPassword?.message}
             </div>
           )}
-          <div className="text-xs mb-[6px] text-center">
+          <div className="text-xs mb-2 text-center">
             As pessoas que usam nosso serviço podem ter enviado suas informações
             de contato para o Instagram. Saiba mais
           </div>
-          <div className="text-xs mb-[6px] text-center">
+          <div className="text-xs mb-2 text-center">
             Ao se cadastrar, você concorda com nossos Termos, Política de
             Privacidade e Política de Cookies.
           </div>

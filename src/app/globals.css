@@ -47,13 +47,15 @@ body {
 }
 
 @layer components {
+  /* LOGIN AND REGISTER PAGE: */
+  .sign-box {
+    @apply border-[1px] border-white rounded-md flex flex-col items-center w-[350px] py-[10px];
+  }
+
   .sidebarBtn {
     @apply flex items-center gap-3 text-xl p-3 my-1 hover:bg-sidebarBtnHover rounded-lg cursor-pointer;
   }
 
-  .sign-box {
-    @apply border-[1px] border-white rounded-md flex flex-col items-center w-[350px] py-[10px];
-  }
   .form-btn {
     @apply mb-[6px] py-[7px] px-4 w-full rounded-md bg-blue-500 hover:bg-blue-700;
   }

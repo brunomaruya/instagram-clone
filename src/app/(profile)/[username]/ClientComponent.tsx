@@ -15,6 +15,7 @@ export default function ClientComponent({ username }: { username: string }) {
     fetchUserDataByUsername(username, setUser, setLoading, setError);
   }, [username]);
 
+  //ERROR CASE
   if (error) {
     return (
       <section className="text-center ">
@@ -27,10 +28,12 @@ export default function ClientComponent({ username }: { username: string }) {
     );
   }
 
+  //LOADING CASE
   if (loading) {
     return <Loading />;
   }
 
+  //SUCCESS CASE
   return (
     user && (
       <main className="flex justify-center  md:ml-mediumSidebarWidth 2xl:ml-largeSidebarWidth">
