@@ -13,4 +13,7 @@ export const widths = {
   largeSidebarWidth: "335px",
   feedWidth: "630px",
   mainPageWidth: "1024px",
+
+  //Profile Page
+  profilePageHeaderWidth: "950px",
 };

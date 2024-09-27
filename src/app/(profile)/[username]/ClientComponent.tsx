@@ -17,7 +17,7 @@ export default function ClientComponent({ username }: { username: string }) {
 
   if (error) {
     return (
-      <section className="text-center">
+      <section className="text-center ">
         <h1 className="mt-10 text-2xl">Sorry, this page isn't available.</h1>
         <p className="mt-6">
           The link you followed may be broken, or the page may have been
@@ -33,8 +33,8 @@ export default function ClientComponent({ username }: { username: string }) {
 
   return (
     user && (
-      <main className=" flex justify-center  md:ml-mediumSidebarWidth 2xl:ml-largeSidebarWidth">
-        <div className="w-[975px] flex items-center  flex-col">
+      <main className="flex justify-center  md:ml-mediumSidebarWidth 2xl:ml-largeSidebarWidth">
+        <div className="flex flex-col items-center w-profilePageHeaderWidth  ">
           <Header user={user} />
           <Posts username={username} />
         </div>

@@ -27,6 +27,7 @@ const config: Config = {
       width: {
         largeSidebarWidth: widths.largeSidebarWidth,
         feedWidth: widths.feedWidth,
+        profilePageHeaderWidth: widths.profilePageHeaderWidth,
       },
       minWidth: {
         largeSidebarWidth: widths.largeSidebarWidth,
